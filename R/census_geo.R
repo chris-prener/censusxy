@@ -47,7 +47,7 @@ census_geo <- function(.data, sf = FALSE){
   sf_prep <- dplyr::filter(df, !is.na(lat)) # remove missing spatial
 
   # warn and report number filtered
-  warning(paste0(input_n - nrow(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))
+  if(input_n - nrow(sf_prep) != 0){warning(paste0(input_n - nrow(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))}
 
   # project to sf object
   sf <- sf::st_as_sf(sf_prep, coords = c(x = "long", y = "lat"), crs = 4326)
