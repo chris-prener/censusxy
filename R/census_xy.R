@@ -8,18 +8,29 @@
 #' @description It is recomended that `census_batch()` be used in a pipe with `census_prep()`. See `vignette("censusxy")` for more details and example code.
 #' Since the census API will only accept batches of 10000, for more than 10000 addresses you can use a for loop or apply function to iterate multiple batches. As there is no limit on the Census API, but please use this functionality responsibly.
 #'
+#'@importFrom dplyr filter
+#'
 #'@export
 census_batch <- function(.data, sf = FALSE, batch = FALSE){
-  #check that data is specified and meets the format requirements.
-  if(isFALSE(batch)&{length(.data) > 9999}){stop("For 10,000 or more requests, please set the batch argument to TRUE")}
 
-  #
+  #check for missing variables
+  if(missing(.data)){stop("Please specify an arugment for .data")}
+
+  #check that data is specified and meets the format requirements.
+  if(isFALSE(batch)&length(.data) > 9999){stop("For 10,000 or more requests, please set the batch argument to TRUE")}
 
   # save as a csv in a temp file
 
   # query the census bureau API
 
   # convert resultant csv back to data.frame
+
+
+  df <- #readr::  response
+
+  # parse the address
+    df["lat"] <-
+    df["long"] <-
 
   # project if neccessary
 
@@ -30,13 +41,15 @@ census_batch <- function(.data, sf = FALSE, batch = FALSE){
   # remove missing observations (Mandatory for sf) and return warning
   input <- length(.data) # original data length
 
-  sf_prep <- dplyr::filter(response, !is.na(lat)) # remove missing spatial
+  sf_prep <- dplyr::filter(df, !is.na(lat)) # remove missing spatial
 
   # warn and report number filtered
   warning(paste0(input - length(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))
 
   # project to sf object
-  sf::st_as_sf(sf_prep, coords = c(x = lat, y = long), crs = 4326)
+  sf <- sf::st_as_sf(sf_prep, coords = c(x = lat, y = long), crs = 4326)
 
+  return(sf)
   }
+  else{return(df)}
 }
