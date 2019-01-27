@@ -50,7 +50,7 @@ census_geo <- function(.data, sf = FALSE){
   warning(paste0(input_n - nrow(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))
 
   # project to sf object
-  sf <- sf::st_as_sf(sf_prep, coords = c(x = "lat", y = "long"), crs = 4326)
+  sf <- sf::st_as_sf(sf_prep, coords = c(x = "long", y = "lat"), crs = 4326)
 
   return(sf)
   }
