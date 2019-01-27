@@ -27,10 +27,11 @@ census_geo <- function(.data, sf = FALSE){
   batch <- vector("list", length = n_splits)
 
     for (i in 1:n_splits) {
-    batch[i] <- census_geocoder(data.frame(splits[i]))
+    batch[[i]] <- census_geocoder(splits[[i]])
     }
 
-  df <- rbind(batch[1:n_splits])
+  # combine rows to df
+  df <- plyr::rbind.fill(batch)
   }
   else {df <- census_geocoder(.data)}
 
@@ -41,15 +42,15 @@ census_geo <- function(.data, sf = FALSE){
   if(!requireNamespace("sf")){stop("The `sf` package does not seem to be installed")}
 
   # remove missing observations (Mandatory for sf) and return warning
-  input <- length(.data) # original data length
+  input_n <- nrow(.data) # original data length
 
   sf_prep <- dplyr::filter(df, !is.na(lat)) # remove missing spatial
 
   # warn and report number filtered
-  warning(paste0(input - length(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))
+  warning(paste0(input_n - nrow(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))
 
   # project to sf object
-  sf <- sf::st_as_sf(sf_prep, coords = c(x = lat, y = long), crs = 4326)
+  sf <- sf::st_as_sf(sf_prep, coords = c(x = "lat", y = "long"), crs = 4326)
 
   return(sf)
   }
