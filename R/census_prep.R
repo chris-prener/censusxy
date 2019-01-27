@@ -8,6 +8,8 @@
 #' @param state Name of column containing state
 #' @param zip Name of column containing zipcode
 #'
+#' @importFrom dplyr select
+#'
 #'@export
 census_prep <- function(.data, address, id = NA, city = NA, state = NA, zip = NA){
 
@@ -19,14 +21,15 @@ census_prep <- function(.data, address, id = NA, city = NA, state = NA, zip = NA
   if(is.na(city) | is.na(state) | is.na(zip)){warning('Omission of City, State or Zip drastically reduces the rate of successful geocoding, only omit if absolutely neccessary.')}
 
   # prepare vectors
+  n_obs <- length(unlist(.data[1]))
 
-  if(is.na(id)){id <- seq(from = 1, to = length(.data$address), by = 1)
+  if(is.na(id)){id <- seq(from = 1, to = n_obs, by = 1)
   message('Unique ID Automatically Generated')}
-  else if(!is.na(id)){id <- .data$id}
+  else if(!is.na(id)){id <- dplyr::select(.data, id)}
 
-  if(!is.na(city)){city <- .data$city}
-  if(!is.na(state)){state <- .data$state}
-  if(!is.na(zip)){zip <- .data$zip}
+  if(!is.na(city)){city <- dplyr::select(.data, city)}
+  if(!is.na(state)){state <- dplyr::select(.data, state)}
+  if(!is.na(zip)){zip <- dplyr::select(.data, zip)}
 
   # prepare a data frame
 
