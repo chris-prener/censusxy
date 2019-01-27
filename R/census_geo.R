@@ -27,13 +27,13 @@ census_geo <- function(.data, sf = FALSE){
   batch <- vector("list", length = n_splits)
 
     for (i in 1:n_splits) {
-    batch[[i]] <- census_geocoder(splits[[i]])
+    batch[[i]] <- censusxy:::census_geocoder(splits[[i]])
     }
 
   # combine rows to df
   df <- plyr::rbind.fill(batch)
   }
-  else {df <- census_geocoder(.data)}
+  else {df <- censusxy:::census_geocoder(.data)}
 
 ### Projection to SF
 
