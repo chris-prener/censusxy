@@ -1,7 +1,7 @@
-#' This is the internal function for geocoding
-#' much of the code is borrowed from https://github.com/dmwelgus/MapChi
-#'
-#'
+# This is the internal function for geocoding
+# much of the code is borrowed from https://github.com/dmwelgus/MapChi
+#
+#
 census_geocoder <- function (df){
 
   # convert a df to a csv in a temporary directory.
