@@ -9,29 +9,29 @@
 #' @param zip Name of column containing zipcode
 #'
 #'@export
-census_prep <- function(.data, id, address, city = NA, state = NA, zip = NA){
+census_prep <- function(.data, id = NA, address, city = NA, state = NA, zip = NA){
   # check for missing values
-
-  # check length of data.frame
-  if(length(.data) > 9999){stop("The Census API only supports up to 10,000 addresses at a time.")}
+  if(missing(.data)){stop('Please specify an argument for .data')}
+  if(missing(address)){stop('Please specify an argument for address')}
+  # warn for ommitted city state zip
+  if(is.na(city) | is.na(state) | is.na(zip)){warning('Omission of City, State or Zip drastically reduces the rate of successful geocoding, only omit if absolutely neccessary.')}
 
   # setup non-standard evaluation
 
+  # prepare vectors
+
+  if(is.na(id)){id <- seq(from = 1, to = length(.data$address), by = 1)
+  message('Unique ID Automatically Generated')}
+  else if(!is.na(id)){id <- .data$id} # the length solution...
+  if(!is.na(city)){city <- .data$city}
+  if(!is.na(state)){state <- .data$state}
+  if(!is.na(zip)){zip <- .data$zip}
+
   # prepare a data frame
 
-  # save as a csv in a temp file
-
-  # query the census bureau API
-
-  # convert resultant csv back to data.frame
-
-  ## project if neccessary
-
-  # check if sf package is installed, return warning if not
-  if(isTRUE(sf)&!requireNamespace("sf")){stop("The `sf` package does not seem to be installed")}
-
-  # project to sf object
-  sf::st_as_sf()
+  prep <- data.frame(id = id, address = .data[address], city = city, state = state, zip = zip)
 
   ## return output
+  return(prep)
+
 }
