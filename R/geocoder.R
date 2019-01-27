@@ -1,4 +1,8 @@
-census_geo <- function (df){
+#' This is the internal function for geocoding
+#' much of the code is borrowed from https://github.com/dmwelgus/MapChi
+#'
+#'
+census_geocoder <- function (df){
 
   # convert a df to a csv in a temporary directory.
   tmp <- tempdir()
@@ -41,7 +45,7 @@ census_geo <- function (df){
   clean <- lapply(df2, length_15)
 
   ####
-  h1   <- t(as.data.frame(clean))
+  h1   <- t(as.data.frame(clean)) #transpose df
   h2   <- as.data.frame(h1)
   h2[] <- lapply(h2, as.character)
 
@@ -54,8 +58,8 @@ census_geo <- function (df){
 
   h2[] <- lapply(h2, stringr::str_trim)
   names(h2) <- c("id", "o_address", "o_city", "o_state", "o_zip", "status", "quality",
-                "m_address", "m_city", "m_state", "m_zip", "long", "lat", "GEOID", "side")
+                "m_address", "m_city", "m_state", "m_zip", "long", "lat", "TIGER_line_id", "side")
 
-  return(h2)
+  return(data.frame(h2, row.names = NULL)) # return df with no row names
 
 }

@@ -21,7 +21,7 @@ census_prep <- function(.data, address, id = NA, city = NA, state = NA, zip = NA
   if(is.na(city) | is.na(state) | is.na(zip)){warning('Omission of City, State or Zip drastically reduces the rate of successful geocoding, only omit if absolutely neccessary.')}
 
   # prepare vectors
-  n_obs <- length(unlist(.data[1]))
+  n_obs <- nrow(.data)
 
   if(is.na(id)){id <- seq(from = 1, to = n_obs, by = 1)
   message('Unique ID Automatically Generated')}

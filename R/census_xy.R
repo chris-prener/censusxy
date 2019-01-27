@@ -3,38 +3,40 @@
 #'
 #' @param .data A properly formatted data.frame containing addresses to geocode
 #' @param sf If TRUE, returns data in an SF class object
-#' @param batch If TRUE, allows for the geocoding of 10,000 or more addresses
 #'
-#' @description It is recomended that `census_batch()` be used in a pipe with `census_prep()`. See `vignette("censusxy")` for more details and example code.
-#' Since the census API will only accept batches of 10000, for more than 10000 addresses you can use a for loop or apply function to iterate multiple batches. As there is no limit on the Census API, but please use this functionality responsibly.
+#' @description It is recommended that `census_geo()` be used in a pipe with `census_prep()`. See `vignette("censusxy")` for more details and example code.
+#' When 10,000 or more addresses are specified, the function will parse the data into smaller chunks in order to overcome the limit of 10,000 requests. This functionality should be used responsibly.
 #'
 #'@importFrom dplyr filter
 #'
 #'@export
-census_batch <- function(.data, sf = FALSE, batch = FALSE){
+census_geo <- function(.data, sf = FALSE){
+### Function Setup and Batching
 
   #check for missing variables
   if(missing(.data)){stop("Please specify an arugment for .data")}
 
-  #check that data is specified and meets the format requirements.
-  if(isFALSE(batch)&length(.data) > 9999){stop("For 10,000 or more requests, please set the batch argument to TRUE")}
+  #check length and enter batch mode
+  if(nrow(.data) > 9999){message("Function now entering batch mode, this may take a while...")
 
-  # save as a csv in a temp file
+  # split df into 5000 count dframes
+  splits <- split(.data, (seq(nrow(.data))-1) %/% 5000)
 
-  # query the census bureau API
+  n_splits <- ceiling(nrow(.data) / 5000)
 
-  # convert resultant csv back to data.frame
+  batch <- vector("list", length = n_splits)
 
+    for (i in 1:n_splits) {
+    batch[i] <- census_geocoder(data.frame(splits[i]))
+    }
 
-  df <- #readr::  response
+  df <- rbind(batch[1:n_splits])
+  }
+  else {df <- census_geocoder(.data)}
 
-  # parse the address
-    df["lat"] <-
-    df["long"] <-
+### Projection to SF
 
-  # project if neccessary
-
-  if(isTRUE(sf)){
+  if(sf == TRUE){
   # check if sf package is installed, stop and warn if not
   if(!requireNamespace("sf")){stop("The `sf` package does not seem to be installed")}
 
