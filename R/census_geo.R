@@ -31,7 +31,7 @@ census_geo <- function(.data, sf = FALSE){
     }
 
   # combine rows to df
-  df <- plyr::rbind.fill(batch)
+  df <- dplyr::bind_rows(batch)
   }
   else {df <- censusxy:::census_geocoder(.data)}
 
