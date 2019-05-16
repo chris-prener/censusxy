@@ -1,58 +1,49 @@
-#' Geocode Addresses Batches Using the Census Bureau API
+#' Geocode Address Batches Using the Census Bureau API
 #'
 #'
 #' @param .data A properly formatted data.frame containing addresses to geocode
-#' @param sf If TRUE, returns data in an SF class object
+#' @param start Integer for the first thousand rows to begin geocoding
 #'
-#' @description It is recommended that `census_geo()` be used in a pipe with `census_prep()`. See `vignette("censusxy")` for more details and example code.
-#' When 10,000 or more addresses are specified, the function will parse the data into smaller chunks in order to overcome the limit of 10,000 requests. This functionality should be used responsibly.
+#' @description It is recommended that `cxy_geocode()` be used in a pipe with `cxy_prep()`. See `vignette("censusxy")` for more details and example code.
+#' When 1,000 or more addresses are specified, the function will parse the data into smaller chunks. The start option allows you to resume geocoding at a specific index.
 #'
-#'@importFrom dplyr filter
+#' @importFrom dplyr filter
 #'
 #'@export
-census_geo <- function(.data, sf = FALSE){
-### Function Setup and Batching
+cxy_geocode <- function(.data, start = 1){
 
   #check for missing variables
   if(missing(.data)){stop("Please specify an arugment for .data")}
 
+  # check valid start else subset
+  if(start > nrow(.data) %/% 1000){stop("Specified argument for `start` is out of valid range")}
+
   #check length and enter batch mode
-  if(nrow(.data) > 9999){message("Function now entering batch mode, this may take a while...")
+  if(nrow(.data) > 999){message("Function now entering batch mode, this may take a while...")
 
-  # split df into 5000 count dframes
-  splits <- split(.data, (seq(nrow(.data))-1) %/% 5000)
+  # split df into 1000 count dataframes
+  splits <- split(.data, (seq(nrow(.data))-1) %/% 1000)
 
-  n_splits <- ceiling(nrow(.data) / 5000)
+  #
 
-  batch <- vector("list", length = n_splits)
+  # prepare a vector for the results
+  batch <- vector("list", length(splits))
 
-    for (i in 1:n_splits) {
+  # try to geocode everything
+  try(
+    for (i in seq_along(splits)) {
     batch[[i]] <- censusxy:::census_geocoder(splits[[i]])
     }
+  )
 
   # combine rows to df
   df <- dplyr::bind_rows(batch)
   }
+
+  # for fewer than 1k addresses
   else {df <- censusxy:::census_geocoder(.data)}
 
-### Projection to SF
 
-  if(sf == TRUE){
-  # check if sf package is installed, stop and warn if not
-  if(!requireNamespace("sf")){stop("The `sf` package does not seem to be installed")}
-
-  # remove missing observations (Mandatory for sf) and return warning
-  input_n <- nrow(.data) # original data length
-
-  sf_prep <- dplyr::filter(df, !is.na(lat)) # remove missing spatial
-
-  # warn and report number filtered
-  if(input_n - nrow(sf_prep) != 0){warning(paste0(input_n - nrow(sf_prep)," Observations with missing spatial data were removed in order to create an SF object"))}
-
-  # project to sf object
-  sf <- sf::st_as_sf(sf_prep, coords = c(x = "long", y = "lat"), crs = 4326)
-
-  return(sf)
-  }
-  else{return(df)}
+  return(df)
 }
+
