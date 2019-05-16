@@ -1,14 +1,22 @@
 Package: censusxy
-Type: Package
+Type: Geocode dataframes using the Census Bureau geocoder
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: c(
+    person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-4310-9888")),
+    person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
+    comment = c(ORCID = "0000-0002-4361-2811"))
+    )
+Maintainer: The package maintainer chris.prener@slu.edu
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
+URL: https://github.com/slu-openGIS/censusxy
+BugReports: https://github.com/slu-openGIS/censusxy/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 depends: dplyr, readr, httr, plyr
-suggests: sf
+Suggests: sf
+VignetteBuilder: knitr
