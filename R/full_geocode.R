@@ -1,6 +1,6 @@
 # One Function Geocoding
 
-cxy_full_geocode <- function(.data, address, id, city = NA, state = NA, zip = NA){
+cxy_full_geocode <- function(.data, address, id, city = NA, state = NA, zip = NA, timeout = 1800){
 
   #TODO ADD NSE
 
@@ -36,7 +36,7 @@ batch <- vector("list", length(splits))
 # try to geocode everything
 try(
   for (i in seq_along(splits)) {
-    batch[[i]] <- censusxy:::census_geocoder(splits[[i]])
+    batch[[i]] <- censusxy:::census_geocoder(splits[[i]], timeout)
   }
 )
 

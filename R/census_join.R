@@ -22,10 +22,10 @@ cxy_join <- function(.data, original, id, exact = TRUE, simple = TRUE){
   }
 
   if(simple == TRUE){
-    .data <- dplyr::select(.data, lon, lat)
+    .data <- dplyr::select(.data, "lon", "lat", "id")
   }
 
-  join <- left_join(original, .data, by = c(id = "id"))
+  join <- left_join(.data, original, by = "id")
 
 
   return(join)

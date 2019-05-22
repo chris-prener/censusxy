@@ -1,6 +1,5 @@
 Package: censusxy
-Type: Geocode dataframes using the Census Bureau geocoder
-Title: What the Package Does (Title Case)
+Title: Geocode dataframes using the Census Bureau geocoder
 Version: 0.1.0
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
@@ -8,7 +7,7 @@ Authors@R: c(
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
     comment = c(ORCID = "0000-0002-4361-2811"))
     )
-Maintainer: The package maintainer chris.prener@slu.edu
+Maintainer: Chris Prener <chris.prener@slu.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
