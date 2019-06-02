@@ -32,8 +32,10 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
      censusxy:::census_geocoder(split[[i]], timeout)
      )
   }
+  # remove any list element of class try-catch
+  response <- reponse[sapply(response, function(x) class(x) != "try-error")]
 
-  response <- dplyr::bind_rows(response) # if any errors, this will trigger another error, need to remove class try catch
+  response <- dplyr::bind_rows(response)
   result <- left_join(prep, response, by = c("address", "city", "state", "zip"))
 
   # return result
