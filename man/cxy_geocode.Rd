@@ -5,15 +5,28 @@
 \title{Geocode Addresses Using the Census Bureau Geocoder}
 \usage{
 cxy_geocode(.data, id = NA, address, city = NA, state = NA,
-  zip = NA, timeout = 30)
+  zip = NA, timeout = 30, output = "tibble")
 }
 \arguments{
-\item{.data}{Dataframe containing address data}
+\item{.data}{dataframe containing address data. Mandatory if using column names}
 
-\item{id}{Unique identifier for}
+\item{id}{(Optional) Unique identifier for each observation}
 
-\item{zip}{}
+\item{address}{Either a character vector or column name containing address}
+
+\item{city}{(Optional) Either a character vector or column name containing city}
+
+\item{state}{(Optional) Either a character vector or column name containing state}
+
+\item{zip}{(Optional) Either a character/numeric vector or column name containing 5-digit zip code}
+
+\item{timeout}{Maximum number of minutes for each API call to the geocoder.}
+
+\item{output}{Either "tibble" or "sf"}
+}
+\value{
+either a tibble or sf object containing the census geocoder response
 }
 \description{
-Geocode Addresses Using the Census Bureau Geocoder
+This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
 }
