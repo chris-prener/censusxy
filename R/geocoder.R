@@ -1,9 +1,11 @@
-# This is the internal function for geocoding
+#' This is the internal function for geocoding
+#'
 #' @importFrom readr write_csv
 #' @importFrom dplyr %>% mutate
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom tidyr separate_
-
+#'
+#'
 census_geocoder <- function(.data, timeout){
 
   # create and store a csv in a temp dir

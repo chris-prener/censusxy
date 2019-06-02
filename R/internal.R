@@ -9,29 +9,29 @@ census_prep <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
   # dataframe method
   if(!missing(.data)){
     # init a df of appropriate length
-    l = rep_len(NA, nrow(.data[address]))
+    l = rep_len(NA, length(.data[[address]]))
     prep <- data.frame(id = l, address = l, city = l, state = l, zip = l)
 
     # id
     if(!is.na(id)){
-      prep["id"] <- .data[id]
+      prep["id"] <- .data[[id]]
     }
     else{
-      prep["id"] <- seq_len(nrow(.data[address]))
+      prep["id"] <- seq_along(.data[[address]])
     }
     # address
-    prep["address"] <- .data[address]
+    prep["address"] <- .data[[address]]
     # city
     if(!is.na(city)){
-      prep["city"] <- .data[city]
+      prep["city"] <- .data[[city]]
     }
     # state
     if(!is.na(state)){
-      prep["state"] <- .data[state]
+      prep["state"] <- .data[[state]]
     }
     # zip
     if(!is.na(zip)){
-      prep["zip"] <- .data[zip]
+      prep["zip"] <- .data[[zip]]
     }
   }
   # vector method
@@ -45,7 +45,7 @@ census_prep <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
       prep["id"] <- id
     }
     else{
-      prep["id"] <- seq_len(length(address))
+      prep["id"] <- seq_along(address)
     }
     # address
     prep["address"] <- address

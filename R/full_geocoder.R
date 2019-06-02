@@ -1,22 +1,45 @@
 #' Geocode Addresses Using the Census Bureau Geocoder
 #'
-#' @param .data Dataframe containing address data
-#' @param id Unique identifier for
-#' @param address
-#' @param city
-#' @param state
-#' @param zip
+#' @param .data dataframe containing address data. Mandatory if using column names
+#' @param id (Optional) Unique identifier for each observation
+#' @param address Either a character vector or column name containing address
+#' @param city (Optional) Either a character vector or column name containing city
+#' @param state (Optional) Either a character vector or column name containing state
+#' @param zip (Optional) Either a character/numeric vector or column name containing 5-digit zip code
+#' @param timeout Maximum number of minutes for each API call to the geocoder.
 #'
-#' @return
+#' @description This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
+#'
+#' @importFrom dplyr bind_rows left_join
+#'
+#' @return a dataframe containing a parsed census geocoder response
+#'
 #' @export
-#'
-#' @examples
 cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA, timeout = 30){
 
-  #TODO Add NSE
+  #Non Standard Eval
+  if(!missing(.data)){
+    # save parameters to list for quoting
+    paramList <- as.list(match.call())
 
-  #TODO Add warnings
-    # omission of City, State, Zip makes lesss accurate and significantly slower
+    if(!is.na(id)){
+      id <- rlang::quo_name(rlang::enquo(id))
+    }
+      address <- rlang::quo_name(rlang::enquo(address))
+    if(!is.na(city)){
+      city <- rlang::quo_name(rlang::enquo(city))
+    }
+    if(!is.na(state)){
+      state <- rlang::quo_name(rlang::enquo(state))
+    }
+    if(!is.na(zip)){
+      zip <- rlang::quo_name(rlang::enquo(zip))
+    }
+  }
+
+  # errors and warnings
+    if(missing(address)){stop("A character vector or column containing address must be supplied")}
+    if(any(is.na(city), is.na(state), is.na(zip))){warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")}
 
   # prepare and split
   censusxy:::census_prep(.data, id, address, city, state, zip) -> prep
@@ -35,8 +58,8 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
   # remove any list element of class try-catch
   response <- response[sapply(response, function(x) class(x) != "try-error")]
 
-  response <- dplyr::bind_rows(response)
-  result <- left_join(prep, response, by = c("address", "city", "state", "zip"))
+  suppressWarnings({response <- dplyr::bind_rows(response)}) # supress warning of filling with NAs, this is anticipated behavior
+  result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip"))
 
   # return result
   return(result)
