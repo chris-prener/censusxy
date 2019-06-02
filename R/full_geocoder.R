@@ -33,7 +33,7 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
      )
   }
   # remove any list element of class try-catch
-  response <- reponse[sapply(response, function(x) class(x) != "try-error")]
+  response <- response[sapply(response, function(x) class(x) != "try-error")]
 
   response <- dplyr::bind_rows(response)
   result <- left_join(prep, response, by = c("address", "city", "state", "zip"))
