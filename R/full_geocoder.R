@@ -7,15 +7,17 @@
 #' @param state (Optional) Either a character vector or column name containing state
 #' @param zip (Optional) Either a character/numeric vector or column name containing 5-digit zip code
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
+#' @param output Either "tibble" or "sf"
 #'
 #' @description This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
 #'
-#' @importFrom dplyr bind_rows left_join
+#' @importFrom dplyr bind_rows left_join filter as_tibble
+#' @importFrom sf st_as_sf
 #'
-#' @return a dataframe containing a parsed census geocoder response
+#' @return either a tibble or sf object containing the census geocoder response
 #'
 #' @export
-cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA, timeout = 30){
+cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA, timeout = 30, output = "tibble"){
 
   #Non Standard Eval
   if(!missing(.data)){
@@ -60,6 +62,16 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
 
   suppressWarnings({response <- dplyr::bind_rows(response)}) # supress warning of filling with NAs, this is anticipated behavior
   result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip"))
+
+  # output type
+  if(output == "tibble"){
+    result <- dplyr::as_tibble(result)
+  }
+  if(output == "sf"){
+    result %>%
+      dplyr::filter(!is.na(lon) & !is.na(lat)) %>%
+      sf::st_as_sf(coords = c("lon", "lat"), crs = 4326) -> result
+  }
 
   # return result
   return(result)
