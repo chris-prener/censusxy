@@ -11,19 +11,26 @@ vignette: >
 
 ## Overview
 
-The `censusxy` package is designed to provide easy and efficient access to the [US Census Bureau Batch Geocoder](https://geocoding.geo.census.gov/geocoder/geographies/addressbatch?form) in `R`. It was developed specifically to work with large objects of the data.frame class.
+The `censusxy` package is designed to provide easy and efficient access to the [US Census Bureau Batch Geocoder](https://geocoding.geo.census.gov/geocoder/geographies/addressbatch?form) in `R`. It was developed specifically with large datasets in mind.
  
 ## Workflow
 
-The geocode function includes an optional argument `start` which allows the user to subset by thousands of rows. This serves two protections. First, if your internet connection times out or your computer sleeps, the function has a tendency to get stuck in an infinite loop. If this happens you will need to manually terminate the execution.
-
-There is also the possibility of a corrupt API return. Because the geocoding is wrapped in a `try()` the function will output all of the results prior to the error. From there, you may specify the `start` argument to pick up where you left off.
+This package contains a single function, `cxy_geocode()`.
 
 
-The actual process is simple. It requries the data already be parsed into address, city, state and zip.
-```{r cxy_full}
-cxy_prep(orig, address, id, city, state, zip) %>%
-  cxy_geocode() %>%
-  cxy_join(orig)
-```
 
+## Timeout
+
+The timeout is for small batches, of 1000 only
+Too long and computer may sleep
+If a batch times out, the next one will be attempted.
+
+## Parsing Addresses
+
+`censusxy` requires addresses to be parsed into components, and often times data is not supplied in this format. The R package `postmastr` can be used to parse address data into these components.
+
+## Responsible Use
+
+The US Census Bureau makes their geocoding API available without any API key, and this package allows for virtually unlimited batch geocoding. Please use this function responsibly, as many others will need use of this API for their research and development.
+
+## Reporting Issues
