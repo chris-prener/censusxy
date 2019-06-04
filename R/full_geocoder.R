@@ -12,7 +12,6 @@
 #' @description This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
 #'
 #' @importFrom dplyr bind_rows left_join filter as_tibble
-#' @importFrom sf st_as_sf
 #'
 #' @return either a tibble or sf object containing the census geocoder response
 #'
@@ -67,12 +66,13 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
   if(output == "tibble"){
     result <- dplyr::as_tibble(result)
   }
-  if(output == "sf"){
+  if(requireNamespace("sf", quietly = TRUE)){
+    if(output == "sf"){
     result %>%
       dplyr::filter(!is.na(lon) & !is.na(lat)) %>%
       sf::st_as_sf(coords = c("lon", "lat"), crs = 4326) -> result
+    }
   }
-
   # return result
   return(result)
 }

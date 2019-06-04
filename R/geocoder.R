@@ -20,7 +20,7 @@ census_geocoder <- function(.data, timeout){
 
   # parse as csv
   text <- httr::content(response, as = "text", encoding = "UTF-8")
-  df <- read.csv(text = text, header = FALSE, stringsAsFactors = FALSE)
+  df <- utils::read.csv(text = text, header = FALSE, stringsAsFactors = FALSE)
 
   # split original address into components
   df <- tidyr::separate_(df, "V2", c("address", "city" ,"state", "zip"), sep = ",")
@@ -40,8 +40,8 @@ census_geocoder <- function(.data, timeout){
   else{
   # split and coerce class of coords
   df <- tidyr::separate_(df, "V6", c("lon", "lat"), sep = ",") %>%
-    dplyr::mutate(lon = as(lon, "numeric"),
-                  lat = as(lat, "numeric"))
+    dplyr::mutate(lon = methods::as(lon, "numeric"),
+                  lat = methods::as(lat, "numeric"))
   }
   # apply names
   names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "lon", "lat", "TIGER_line_id", "side")
