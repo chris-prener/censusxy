@@ -11,7 +11,7 @@
 #'
 #' @description This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
 #'
-#' @importFrom dplyr bind_rows left_join filter as_tibble
+#' @importFrom dplyr bind_rows left_join filter as_tibble select rename %>%
 #'
 #' @return either a tibble or sf object containing the census geocoder response
 #'
@@ -39,8 +39,12 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
   }
 
   # errors and warnings
-    if(missing(address)){stop("A character vector or column containing address must be supplied")}
-    if(any(is.na(city), is.na(state), is.na(zip))){warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")}
+    if(missing(address)){
+      stop("A character vector or column containing address must be supplied")
+    }
+    if(any(is.na(city), is.na(state), is.na(zip))){
+      warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
+    }
 
   # prepare and split
   censusxy:::census_prep(.data, id, address, city, state, zip) -> prep
@@ -60,7 +64,7 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
   response <- response[sapply(response, function(x) class(x) != "try-error")]
 
   suppressWarnings({response <- dplyr::bind_rows(response)}) # supress warning of filling with NAs, this is anticipated behavior
-  result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip"))
+  result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip")) %>% dplyr::select(-id.y) %>% dplyr::rename(id = id.x)
 
   # output type
   if(output == "tibble"){

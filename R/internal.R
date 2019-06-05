@@ -62,6 +62,12 @@ census_prep <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
       prep["zip"] <- zip
     }
   }
+  # enforce data types
+  prep["id"]      <- methods::as(prep[["id"]], "numeric")
+  prep["address"] <- methods::as(prep[["address"]], "character")
+  prep["city"]    <- methods::as(prep[["city"]], "character")
+  prep["state"]   <- methods::as(prep[["state"]], "character")
+  prep["zip"]     <- methods::as(prep[["zip"]], "numeric")
 
   return(prep)
 }
