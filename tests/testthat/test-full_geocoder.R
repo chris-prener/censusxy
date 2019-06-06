@@ -1,6 +1,6 @@
 # Load Test Data. Homicides = 1822
-load("../../inst/extdata/homicides.rda")
-load("../../inst/extdata/test.rda")
+load("homicides.rda")
+load("test.rda")
 
 # geocode once with the large data
 out <- cxy_geocode(stl_homicides, address = address, city = "St Louis", state = "MO", timeout = 30, output = "tibble")
