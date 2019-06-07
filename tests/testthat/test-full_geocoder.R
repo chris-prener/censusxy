@@ -20,9 +20,24 @@ test_that("omission of city/state/zip warning triggers", {
   )
 })
 
-# Non Standard Eval
+# for dataframe input
+## Non Standard Eval
 test_that("non-standard evaluation works", {
+  cxy_geocode(df, address = address, city = city, state = state, zip = zip)
+})
+## Standard Evaluation
+test_that("standard evaluation works", {
+  cxy_geocode(df, "id", "address", "city", "state", "zip")
+})
 
+# vector input works
+test_that("vector input works", {
+  cxy_geocode(address = df$address, id = df$id, city = df$city, state = df$state, zip = df$zip)
+})
+
+# defaulting to NA
+test_that("missing defaults work", {
+  cxy_geocode(address = df$address)
 })
 
 # Output Types
@@ -36,8 +51,7 @@ test_that("output to sf works",{
 
 # Prepping
 
-## Df method
-## Vector method
+
 
 # Splitting
 
