@@ -57,15 +57,26 @@ test_that("output to sf works",{
 
 # Timeout
 test_that("API Timeout works", {
-
+  expect_error()
 })
 
 # Removing Errors and Batch Binding
+test_that("Removing try-catch from lists work",{
 
+})
+
+test_that("Batch properly binds", { # Will fail if no matches for any address...
+
+})
 # Parsing of matched return
+test_that("Parsing of matched return works", {
+
+})
 
 # Parsing of no matched return
+test_that("Parsing of no match return works", {
 
+})
 
 
 
