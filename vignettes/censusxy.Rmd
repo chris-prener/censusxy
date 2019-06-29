@@ -4,7 +4,7 @@ author: "Branson Fox and Christopher Prener"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{stlcsb}
+  %\VignetteIndexEntry{censusxy}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,22 +15,47 @@ The `censusxy` package is designed to provide easy and efficient access to the [
  
 ## Workflow
 
-This package contains a single function, `cxy_geocode()`.
+### Data
+This implementation assumes that your data are contained in a data.frame and that address data is split into components `street address`, `city` , `state` and `zip code`. If your data are not split into components, the authors recommend the package [`postmastr`](https://github.com/slu-openGIS/postmastr)
 
+### Usage
+This package contains a single function, `cxy_geocode()`. The only required arguments are `.data` for the data.frame containing address data and `address` specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.
 
+```r
+results <- cxy_geocode(homicides, address = street_address)
+```
+
+However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly.
+
+```r
+results <- cxy_geocode(homicides, address = street_address, city = city, state = state, zip = postal_code)
+```
+
+Finally, two output types are supported. By default, a tibble is returned. If you have `sf` installed, you can output an sf object. Note, however, that it returns only and all matches, including those approximated by street length.
+
+```r
+homicide_sf <- cxy_geocode(homicides, id, street_address, city, state, postal_code, output = "sf")
+```
+
+This output can be previewed with a package like [`mapview`](https://cran.r-project.org/package=mapview):
+```r
+> library(mapview)
+> mapview(homicide_sf)
+```
 
 ## Timeout
 
-The timeout is for small batches, of 1000 only
-Too long and computer may sleep
-If a batch times out, the next one will be attempted.
+The function contains an argument for timeout, which specifies how many minutes until the API query ends as an error. In this implementation, it is per 1000 addresses, not the whole batch size. It is set to default at 30 minutes, which should be appropriate for most internet speeds.
 
-## Parsing Addresses
+If a batch times out, the next 1000 addresses will be attempted.
 
-`censusxy` requires addresses to be parsed into components, and often times data is not supplied in this format. The R package `postmastr` can be used to parse address data into these components.
+Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return.
+
 
 ## Responsible Use
 
 The US Census Bureau makes their geocoding API available without any API key, and this package allows for virtually unlimited batch geocoding. Please use this function responsibly, as many others will need use of this API for their research and development.
 
 ## Reporting Issues
+
+If you think you've found a bug, please create a [`reprex`](http://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/slu-openGIS/censusxy/issues/new/).
