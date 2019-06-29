@@ -3,7 +3,7 @@ load("homicides.rda")
 load("test.rda")
 
 # geocode once with the large data
-out <- cxy_geocode(stl_homicides, address = "address", city = "city", state = "state", timeout = 30, output = "tibble")
+out <- cxy_geocode(homicides, address = "street_address", city = "city", state = "state", timeout = 30, output = "tibble")
 out_sf <- cxy_geocode(df, address = "address", city = "city", state = "state", zip = "zip", timeout = 30, output = "sf")
 
 # Errors and Warnings
