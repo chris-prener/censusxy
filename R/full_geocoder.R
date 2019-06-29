@@ -12,11 +12,15 @@
 #' @description This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette \code{vignette(censusxy)} for more details
 #'
 #' @importFrom dplyr bind_rows left_join filter as_tibble select rename %>%
+#' @importFrom rlang quo_name enquo
 #'
 #' @return either a tibble or sf object containing the census geocoder response
 #'
 #' @export
 cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, output = "tibble"){
+
+  # global bindings
+   id.y = id.x = lon = lat = NULL
 
   # Non-Standard Evaluation
   if(!missing(id)){
@@ -82,6 +86,12 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
   response <- response[sapply(response, function(x) class(x) != "try-error")]
 
   suppressWarnings({response <- dplyr::bind_rows(response)}) # supress warning of filling with NAs, this is anticipated behavior
+
+  # error if no matches found for batch
+  if(all(response[["status"]] ==  "No_Match")){
+    stop("No matches found for any of the supplied addresses. Make sure to include city, state and zip for best results")
+  }
+
   result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip")) %>% dplyr::select(-id.y) %>% dplyr::rename(id = id.x)
 
   # output type

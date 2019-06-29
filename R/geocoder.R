@@ -4,8 +4,12 @@
 #' @importFrom dplyr %>% mutate
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom tidyr separate_
+#' @importFrom methods as
 #
 census_geocoder <- function(.data, timeout){
+
+  # global bindings
+  zip = city = state = lon = lat = NULL
 
   # create and store a csv in a temp dir
   tmp <- tempdir()
@@ -26,7 +30,7 @@ census_geocoder <- function(.data, timeout){
   df <- tidyr::separate_(df, "V2", c("address", "city" ,"state", "zip"), sep = ",")
 
   # coerce zip to numeric, and remove spaces from state and city
-  df <- dplyr::mutate(df, zip = as(zip, "numeric"),
+  df <- dplyr::mutate(df, zip = methods::as(zip, "numeric"),
                       city = trimws(city, "left"),
                       state = trimws(state, "left"))
 

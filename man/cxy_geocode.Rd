@@ -4,8 +4,8 @@
 \alias{cxy_geocode}
 \title{Geocode Addresses Using the Census Bureau Geocoder}
 \usage{
-cxy_geocode(.data, id = NA, address, city = NA, state = NA,
-  zip = NA, timeout = 30, output = "tibble")
+cxy_geocode(.data, id, address, city, state, zip, timeout = 30,
+  output = "tibble")
 }
 \arguments{
 \item{.data}{dataframe containing address data. Mandatory if using column names}
