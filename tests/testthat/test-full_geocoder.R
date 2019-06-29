@@ -20,24 +20,19 @@ test_that("omission of city/state/zip warning triggers", {
   )
 })
 
-# for dataframe input
-## Non Standard Eval
+
+# Non Standard Eval
 test_that("non-standard evaluation works", {
   cxy_geocode(df, address = address, city = city, state = state, zip = zip)
 })
-## Standard Evaluation
+# Standard Evaluation
 test_that("standard evaluation works", {
   cxy_geocode(df, "id", "address", "city", "state", "zip")
 })
 
-# vector input works
-test_that("vector input works", {
-  cxy_geocode(address = df$address, id = df$id, city = df$city, state = df$state, zip = df$zip)
-})
-
 # defaulting to NA
 test_that("missing defaults work", {
-  cxy_geocode(address = df$address)
+  cxy_geocode(df, address = address)
 })
 
 # Output Types
@@ -68,6 +63,7 @@ test_that("Removing try-catch from lists work",{
 test_that("Batch properly binds", { # Will fail if no matches for any address...
 
 })
+
 # Parsing of matched return
 test_that("Parsing of matched return works", {
 

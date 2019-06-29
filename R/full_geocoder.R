@@ -16,39 +16,57 @@
 #' @return either a tibble or sf object containing the census geocoder response
 #'
 #' @export
-cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA, timeout = 30, output = "tibble"){
+cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, output = "tibble"){
 
-  #Non Standard Eval
-  if(!missing(.data)){
-    # save parameters to list for quoting
-    paramList <- as.list(match.call())
+  # Non-Standard Evaluation
+  if(!missing(id)){
+    idX <- rlang::quo_name(rlang::enquo(id))
+  }
+  else{
+    idX <- NA
+  }
 
-    if(!is.na(id)){
-      id <- rlang::quo_name(rlang::enquo(id))
-    }
-      address <- rlang::quo_name(rlang::enquo(address))
-    if(!is.na(city)){
-      city <- rlang::quo_name(rlang::enquo(city))
-    }
-    if(!is.na(state)){
-      state <- rlang::quo_name(rlang::enquo(state))
-    }
-    if(!is.na(zip)){
-      zip <- rlang::quo_name(rlang::enquo(zip))
-    }
+  # address
+  addressX <- rlang::quo_name(rlang::enquo(address))
+
+  # city
+  if(!missing(city)){
+    cityX <- rlang::quo_name(rlang::enquo(city))
+  }
+  else{
+    cityX <- NA
+  }
+
+  # state
+  if(!missing(state)){
+    stateX <- rlang::quo_name(rlang::enquo(state))
+  }
+  else{
+    stateX <- NA
+  }
+
+  # zip
+  if(!missing(zip)){
+    zipX <- rlang::quo_name(rlang::enquo(zip))
+  }
+  else{
+    zipX <- NA
   }
 
   # errors and warnings
-    if(missing(address)){
-      stop("A character vector or column containing address must be supplied")
+    if(missing(.data)){
+      stop("A data.frame must be supplied for .data")
     }
-    if(any(is.na(city), is.na(state), is.na(zip))){
+    if(missing(address)){
+      stop("A column containing address must be supplied for address")
+    }
+    if(any(missing(city), missing(state), missing(zip))){
       warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
     }
 
   # prepare and split
-  censusxy:::census_prep(.data, id, address, city, state, zip) -> prep
-  censusxy:::census_split(prep) -> split
+  census_prep(.data, idX, addressX, cityX, stateX, zipX) -> prep
+  census_split(prep) -> split
 
   # convert timeout to min
   timeout <- timeout * 60
@@ -57,7 +75,7 @@ cxy_geocode <- function(.data, id = NA, address, city = NA, state = NA, zip = NA
 
   for (i in seq_along(split)) {
    response[[i]] <- try(
-     censusxy:::census_geocoder(split[[i]], timeout)
+     census_geocoder(split[[i]], timeout)
      )
   }
   # remove any list element of class try-catch
