@@ -42,6 +42,9 @@ This output can be previewed with a package like [`mapview`](https://cran.r-proj
 > library(mapview)
 > mapview(homicide_sf)
 ```
+```{r exampleMap1, echo=FALSE, out.width = '60%'}
+knitr::include_graphics("../man/figures/homicide_example.png")
+```
 
 ## Timeout
 
