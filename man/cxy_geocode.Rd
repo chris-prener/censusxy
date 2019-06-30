@@ -7,8 +7,7 @@
 cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble")
 }
 \arguments{
-\item{.data}{dataframe containing address data. Mandatory if using column
-names}
+\item{.data}{dataframe containing address data}
 
 \item{id}{Optional; unique identifier for each observation}
 

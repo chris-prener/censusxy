@@ -8,8 +8,7 @@
 #'
 #' @usage cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble")
 #'
-#' @param .data dataframe containing address data. Mandatory if using column
-#'     names
+#' @param .data dataframe containing address data
 #' @param id Optional; unique identifier for each observation
 #' @param address Column name containing address
 #' @param city Optional; column name containing city
