@@ -1,14 +1,14 @@
 Package: censusxy
-Title: Geocode dataframes using the Census Bureau geocoder
-Version: 0.1.0
+Title: Access the U.S. Census Bureau Geocoder
+Version: 0.1.0.9000
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
     comment = c(ORCID = "0000-0002-4361-2811"))
     )
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Provides access to the U.S. Census Bureau's API for
+    for batch geocoding American street addresses.
 Depends: R (>= 3.3)
 License: GPL-3
 URL: https://github.com/slu-openGIS/censusxy
