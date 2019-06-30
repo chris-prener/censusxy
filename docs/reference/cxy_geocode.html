@@ -32,9 +32,13 @@
 
 <meta property="og:title" content="Geocode Addresses Using the Census Bureau Geocoder — cxy_geocode" />
 
-<meta property="og:description" content="This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette vignette(censusxy) for more details" />
+<meta property="og:description" content="This is the single function of the censusxy package, allowing
+    for the easy geocoding of US Addresses using the US Census Bureau
+    Geocoder. This function allows for flexible input and virtually
+    unlimited batch sizes. See the vignette vignette(censusxy)
+    for more details" />
 
-<meta property="og:image" content="/logo.png" />
+<meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -105,29 +109,33 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Geocode Addresses Using the Census Bureau Geocoder</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/full_geocoder.R'><code>R/full_geocoder.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/cxy_geocode.R'><code>R/cxy_geocode.R</code></a></small>
     <div class="hidden name"><code>cxy_geocode.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This is the single function of the censusxy package, allowing for the easy geocoding of US Addresses using the US Census Bureau Geocoder. This function allows for flexible input and virtually unlimited batch sizes. See the vignette <code>vignette(censusxy)</code> for more details</p>
+    <p>This is the single function of the censusxy package, allowing
+    for the easy geocoding of US Addresses using the US Census Bureau
+    Geocoder. This function allows for flexible input and virtually
+    unlimited batch sizes. See the vignette <code>vignette(censusxy)</code>
+    for more details</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_geocode</span>(<span class='no'>.data</span>, <span class='no'>id</span>, <span class='no'>address</span>, <span class='no'>city</span>, <span class='no'>state</span>, <span class='no'>zip</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tibble"</span>)</pre>
+    <pre class="usage"><span class='fu'>cxy_geocode</span>(<span class='no'>.data</span>, <span class='no'>id</span>, <span class='no'>address</span>, <span class='no'>city</span>, <span class='no'>state</span>, <span class='no'>zip</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tibble"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>dataframe containing address data. Mandatory if using column names</p></td>
+      <td><p>dataframe containing address data. Mandatory if using column
+names</p></td>
     </tr>
     <tr>
       <th>id</th>
-      <td><p>(Optional) Unique identifier for each observation</p></td>
+      <td><p>Optional; unique identifier for each observation</p></td>
     </tr>
     <tr>
       <th>address</th>
@@ -135,15 +143,15 @@
     </tr>
     <tr>
       <th>city</th>
-      <td><p>(Optional) Column name containing city</p></td>
+      <td><p>Optional; column name containing city</p></td>
     </tr>
     <tr>
       <th>state</th>
-      <td><p>(Optional) Column name containing state</p></td>
+      <td><p>Optional; column name containing state</p></td>
     </tr>
     <tr>
       <th>zip</th>
-      <td><p>(Optional) Column name containing 5-digit zip code</p></td>
+      <td><p>Optional; column name containing 5-digit zip code</p></td>
     </tr>
     <tr>
       <th>timeout</th>
@@ -151,13 +159,13 @@
     </tr>
     <tr>
       <th>output</th>
-      <td><p>Either "tibble" or "sf"</p></td>
+      <td><p>One of either "tibble" or "sf"</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>either a tibble or sf object containing the census geocoder response</p>
+    <p>Either a tibble or sf object containing the census geocoder response.</p>
     
 
   </div>
@@ -174,7 +182,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Christopher Prener, Branson Fox.</p>
+  <p>Developed by <a href='https://chris-prener.github.io'>Christopher Prener</a>, Branson Fox.</p>
 </div>
 
 <div class="pkgdown">
