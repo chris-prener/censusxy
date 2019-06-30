@@ -8,11 +8,15 @@ load(system.file("extdata", "test.rda", package = "censusxy", mustWork = TRUE))
 # test inputs ------------------------------------------------
 
 test_that("misspecified functions return errors", {
-  # missing address
-  expect_error(cxy_geocode(),
-               "A data.frame must be supplied for .data")
-  expect_error(cxy_geocode(df),
-               "A column containing address must be supplied for address")
+  expect_error(cxy_geocode(address = street_address, city = city, state = state),
+               "A existing data frame or tibble must be specified for '.data'.")
+  expect_error(cxy_geocode(homicides, city = city, state = state),
+               "A column containing address must be supplied for 'address'.")
+  expect_error(cxy_geocode(homicides, address = street_address, city = city, state = state,
+                           timeout = "ham"),
+               "A numeric value must be specified for 'timeout'.")
+  expect_error(cxy_geocode(homicides, address = street_address, city = city, state = state, output = "ham"),
+               "Please choose one of 'tibble' or 'sf' for 'output'.")
 })
 
 # test function ------------------------------------------------
