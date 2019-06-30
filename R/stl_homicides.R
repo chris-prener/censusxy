@@ -30,7 +30,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(stl_homicides)
+#' @usage data(stl_homicides_small)
 #'
 #' @format A tibble with 24 rows and 6 variables:
 #' \describe{

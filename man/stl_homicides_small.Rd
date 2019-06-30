@@ -17,7 +17,7 @@
 \href{http://www.slmpd.org/Crimereports.shtml}{St. Louis Metropolitan Police Department}
 }
 \usage{
-data(stl_homicides)
+data(stl_homicides_small)
 }
 \description{
 An example data set containing the addresses for Homicides reported by the Saint Louis Metropolitan Police Department
