@@ -31,7 +31,7 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
 
    # check for missing parameters
    if (missing(.data)){
-     stop("A existing data frame or tibble must be specified for '.data'.")
+     stop("An existing data frame or tibble must be specified for '.data'.")
    }
 
    if(missing(address)){
