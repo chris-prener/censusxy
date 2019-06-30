@@ -22,19 +22,19 @@ This implementation assumes that your data are contained in a data.frame and tha
 This package contains a single function, `cxy_geocode()`. The only required arguments are `.data` for the data.frame containing address data and `address` specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.
 
 ```r
-results <- cxy_geocode(homicides, address = street_address)
+results <- cxy_geocode(stl_homicides, address = street_address)
 ```
 
 However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly.
 
 ```r
-results <- cxy_geocode(homicides, address = street_address, city = city, state = state, zip = postal_code)
+results <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state, zip = postal_code)
 ```
 
 Finally, two output types are supported. By default, a tibble is returned. If you have `sf` installed, you can output an sf object. Note, however, that it returns only and all matches, including those approximated by street length.
 
 ```r
-homicide_sf <- cxy_geocode(homicides, id, street_address, city, state, postal_code, output = "sf")
+homicide_sf <- cxy_geocode(stl_homicides, id, street_address, city, state, postal_code, output = "sf")
 ```
 
 This output can be previewed with a package like [`mapview`](https://cran.r-project.org/package=mapview):

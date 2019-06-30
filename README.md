@@ -29,7 +29,7 @@ remotes::install_github("slu-openGIS/censusxy")
 ## Example Usage
 
 ``` r
-homicide_sf <- cxy_geocode(homicides, id, street_address, city, state, postal_code, output = "sf")
+homicide_sf <- cxy_geocode(stl_homicides, id, street_address, city, state, postal_code, output = "sf")
 ```
 
 ``` r
