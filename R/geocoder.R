@@ -35,8 +35,6 @@ cxy_geocoder <- function(.data, timeout){
 
   # special parse case for no matches so that it can bind in large batches
   if(length(df) < 7){
-
-    warning("No Matches Found for this Batch")
     l = rep_len(NA, nrow(df))
     non <- data.frame(quality = l, match_address = l, lon = l, lat = l, TIGER_line_id = l, side = l)
     df <- cbind(df, non)
