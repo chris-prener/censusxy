@@ -4,7 +4,7 @@
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom methods as
 #' @importFrom readr write_csv
-#' @importFrom tidyr separate_
+#' @importFrom tidyr separate
 #
 cxy_geocoder <- function(.data, timeout){
 
@@ -45,7 +45,7 @@ cxy_geocoder <- function(.data, timeout){
   } else {
 
   # split and coerce class of coords
-  df <- tidyr::separate_(df, "V6", c("lon", "lat"), sep = ",")
+  df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",")
   df <- dplyr::mutate(df,
                       lon = methods::as(lon, "numeric"),
                       lat = methods::as(lat, "numeric"))
