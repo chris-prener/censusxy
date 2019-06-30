@@ -2,7 +2,6 @@
 #
 #' @importFrom dplyr %>% mutate
 #' @importFrom httr POST upload_file timeout content
-#' @importFrom methods as
 #' @importFrom readr write_csv
 #' @importFrom tidyr separate
 #
@@ -30,7 +29,7 @@ cxy_geocoder <- function(.data, timeout){
   df <- tidyr::separate_(df, "V2", c("address", "city" ,"state", "zip"), sep = ",")
 
   # coerce zip to numeric, and remove spaces from state and city
-  df <- dplyr::mutate(df, zip = methods::as(zip, "numeric"),
+  df <- dplyr::mutate(df, zip = as.numeric(zip),
                       city = trimws(city, "left"),
                       state = trimws(state, "left"))
 
@@ -47,8 +46,8 @@ cxy_geocoder <- function(.data, timeout){
   # split and coerce class of coords
   df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",")
   df <- dplyr::mutate(df,
-                      lon = methods::as(lon, "numeric"),
-                      lat = methods::as(lat, "numeric"))
+                      lon = as.numeric(lon),
+                      lat = as.numeric(lat))
 
   }
 
