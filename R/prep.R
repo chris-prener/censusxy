@@ -1,13 +1,12 @@
-# internal functions for geocoder
+# internal functions for preparing data for geocoding
 
 # prepare the dataframe to the geocoder standards
-census_prep <- function(.data, id, address, city, state, zip){
+cxy_prep <- function(.data, id, address, city, state, zip){
 
   # id
-  if(is.na(id)){
+  if (is.na(id)) {
     idX <- 1:nrow(.data)
-  }
-  else{
+  } else {
     idX <- .data[[id]]
   }
 
@@ -15,45 +14,47 @@ census_prep <- function(.data, id, address, city, state, zip){
   addressX <- .data[[address]]
 
   # city
-  if(is.na(city)){
+  if (is.na(city)) {
     cityX <- NA
-  }
-  else{
+  } else {
     cityX <- .data[[city]]
   }
 
   # state
-  if(is.na(state)){
+  if (is.na(state)) {
     stateX <- NA
-  }
-  else{
+  } else {
     stateX <- .data[[state]]
   }
 
   # zip
-  if(is.na(zip)){
+  if (is.na(zip)) {
     zipX <- NA
-  }
-  else{
+  } else {
     zipX <- .data[[zip]]
   }
 
-  prep <- data.frame(stringsAsFactors = FALSE,
-                     id = idX,
+  # prepare data frame
+  prep <- data.frame(id = idX,
                      address = addressX,
                      city = cityX,
                      state = stateX,
-                     zip = zipX)
+                     zip = zipX,
+                     stringsAsFactors = FALSE)
 
+  # return result
   return(prep)
+
 }
 
 # split and uniques (must be result from prep due to strict naming)
-census_split <- function(.data, rows = 1000){
+cxy_split <- function(.data, rows = 1000){
+
   uniq <- .data[!duplicated(.data[,c("address", "city", "state", "zip")]),]
 
   splits <- split(uniq, (seq(nrow(uniq))-1) %/% rows)
-  # returns a list of length `rows` elements
-  return(splits)
-}
 
+  # returns list of length `rows` elements
+  return(splits)
+
+}

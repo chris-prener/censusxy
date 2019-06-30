@@ -1,12 +1,12 @@
 # This is the internal function for geocoding
 #
-#' @importFrom readr write_csv
 #' @importFrom dplyr %>% mutate
 #' @importFrom httr POST upload_file timeout content
-#' @importFrom tidyr separate_
 #' @importFrom methods as
+#' @importFrom readr write_csv
+#' @importFrom tidyr separate_
 #
-census_geocoder <- function(.data, timeout){
+cxy_geocoder <- function(.data, timeout){
 
   # global bindings
   zip = city = state = lon = lat = NULL
@@ -36,19 +36,26 @@ census_geocoder <- function(.data, timeout){
 
   # special parse case for no matches so that it can bind in large batches
   if(length(df) < 7){
+
     warning("No Matches Found for this Batch")
     l = rep_len(NA, nrow(df))
     non <- data.frame(quality = l, match_address = l, lon = l, lat = l, TIGER_line_id = l, side = l)
     df <- cbind(df, non)
-  }
-  else{
+
+  } else {
+
   # split and coerce class of coords
-  df <- tidyr::separate_(df, "V6", c("lon", "lat"), sep = ",") %>%
-    dplyr::mutate(lon = methods::as(lon, "numeric"),
-                  lat = methods::as(lat, "numeric"))
+  df <- tidyr::separate_(df, "V6", c("lon", "lat"), sep = ",")
+  df <- dplyr::mutate(df,
+                      lon = methods::as(lon, "numeric"),
+                      lat = methods::as(lat, "numeric"))
+
   }
+
   # apply names
   names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "lon", "lat", "TIGER_line_id", "side")
 
+  # return output
   return(df)
+
 }

@@ -16,9 +16,15 @@ BugReports: https://github.com/slu-openGIS/censusxy/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Depends: dplyr, httr, methods, readr, rlang, tidyr
+Depends: 
+    dplyr, 
+    httr, 
+    methods, 
+    readr, 
+    rlang,
+    sf,
+    tidyr
 Suggests: 
     knitr,
-    sf,
     testthat (>= 2.1.0)
 VignetteBuilder: knitr
