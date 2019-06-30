@@ -2,10 +2,10 @@
 #'
 #' @param .data dataframe containing address data. Mandatory if using column names
 #' @param id (Optional) Unique identifier for each observation
-#' @param address Either a character vector or column name containing address
-#' @param city (Optional) Either a character vector or column name containing city
-#' @param state (Optional) Either a character vector or column name containing state
-#' @param zip (Optional) Either a character/numeric vector or column name containing 5-digit zip code
+#' @param address Column name containing address
+#' @param city (Optional) Column name containing city
+#' @param state (Optional) Column name containing state
+#' @param zip (Optional) Column name containing 5-digit zip code
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
 #' @param output Either "tibble" or "sf"
 #'

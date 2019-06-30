@@ -12,13 +12,13 @@ cxy_geocode(.data, id, address, city, state, zip, timeout = 30,
 
 \item{id}{(Optional) Unique identifier for each observation}
 
-\item{address}{Either a character vector or column name containing address}
+\item{address}{Column name containing address}
 
-\item{city}{(Optional) Either a character vector or column name containing city}
+\item{city}{(Optional) Column name containing city}
 
-\item{state}{(Optional) Either a character vector or column name containing state}
+\item{state}{(Optional) Column name containing state}
 
-\item{zip}{(Optional) Either a character/numeric vector or column name containing 5-digit zip code}
+\item{zip}{(Optional) Column name containing 5-digit zip code}
 
 \item{timeout}{Maximum number of minutes for each API call to the geocoder.}
 
