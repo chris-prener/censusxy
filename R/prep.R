@@ -58,3 +58,58 @@ cxy_split <- function(.data, rows = 1000){
   return(splits)
 
 }
+
+# indentify all observations
+cxy_id <- function(.data, inputs){
+
+  # add id numbers to each row
+  .data <- tibble::rowid_to_column(.data, var = "cxy_id")
+
+  # add unique identifiers to each row
+  full
+
+}
+
+# identify unique observations
+cxy_unique_id <- function(.data){
+
+  # set global bindings
+  . = ...address = NULL
+
+  # add unique id numbers for each address string
+  full %>%
+    dplyr::distinct(...address) %>%
+    tibble::rowid_to_column(var = "...uid") %>%
+    dplyr::left_join(full, ., by = "...address") -> .data
+
+}
+
+# subset to return only unique observations
+cxy_unique <- function(.data){
+
+  # set global bindings
+  cxy_uid = ...address = NULL
+
+  # return only distinct addresses
+  .data %>%
+    dplyr::distinct(...uid, .keep_all = TRUE) %>%
+    dplyr::select(...uid, ...address) -> .data
+
+}
+
+# replace data
+cxy_replace <- function(source, target, batch = FALSE){
+
+  # set global bindings
+  . = ...id = ...uid = ...address = NULL
+
+  # optionally prepare
+  if (batch == FALSE){
+    target <- dplyr::select(target, -...address)
+  }
+
+  # join parsed and source data
+  out <- dplyr::left_join(source, target, by = "...uid")
+  out <- dplyr::select(out, -...id, -...uid)
+
+}

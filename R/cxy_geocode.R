@@ -9,7 +9,6 @@
 #' @usage cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble")
 #'
 #' @param .data dataframe containing address data
-#' @param id Optional; unique identifier for each observation
 #' @param address Column name containing address
 #' @param city Optional; column name containing city
 #' @param state Optional; column name containing state
@@ -24,7 +23,7 @@
 #' @importFrom sf st_as_sf
 #'
 #' @export
-cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, output = "tibble"){
+cxy_geocode <- function(.data, address, city, state, zip, timeout = 30, output = "tibble"){
 
   # global bindings
    id.y = id.x = lon = lat = NULL
@@ -48,12 +47,6 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
    }
 
   # non-standard evaluation
-  if (!missing(id)) {
-    idX <- rlang::quo_name(rlang::enquo(id))
-  } else {
-    idX <- NA
-  }
-
   # address
   addressX <- rlang::quo_name(rlang::enquo(address))
 
@@ -78,12 +71,18 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
     zipX <- NA
   }
 
+  # construct vector of valid input variables
+  # invars <- c(address, cityX, stateX, zipX)
+  # invars <- inputs[!is.na(invars)]
+
+  # warning about missing geographies
   if(any(missing(city), missing(state), missing(zip))){
     warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
   }
 
   # prepare and split
-  prep <- cxy_prep(.data, idX, addressX, cityX, stateX, zipX)
+  .data <- cxy_id(.data, inputs = invars)
+  prep <- cxy_prep(.data, cxy_id, addressX, cityX, stateX, zipX)
   split <- cxy_split(prep)
   response <- vector("list", length(split))
 
