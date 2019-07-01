@@ -26,11 +26,17 @@ x <- function(.data, address, city, state, zip){
     zipX <- NA
   }
 
-  out <- c(address, cityX, stateX, zipX)
+  out <- c(addressX, cityX, stateX, zipX)
   out <- out[!is.na(out)]
 
   return(out)
 
 }
 
-x(address = "manufacturer", city = "model")
+vars <- x(address = manufacturer, city = model)
+
+y <- ggplot2::mpg
+
+vars2 <- rlang::syms(vars)
+
+dplyr::distinct(y, !!!vars2, .keep_all = TRUE)
