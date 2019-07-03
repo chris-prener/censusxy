@@ -2,6 +2,10 @@
 
 cxy_replace <- function(source, result, style){
 
+  # global bindings
+  TIGER_line_id = address = city = cxy_uid = id = lat = lon = match_address = quality =
+    side = state = status = zip = NULL
+
   # rename id
   result <- dplyr::rename(result, cxy_uid = id)
 

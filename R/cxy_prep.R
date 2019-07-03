@@ -3,6 +3,9 @@
 # prepare the dataframe to the geocoder standards
 cxy_prep <- function(.data, address, city, state, zip){
 
+  # global binding
+  cxy_uid = NULL
+
   # limit to distinct obervations
   .data <- dplyr::distinct(.data, cxy_uid, .keep_all = TRUE)
 

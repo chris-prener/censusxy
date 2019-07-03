@@ -6,7 +6,8 @@
 #'     unlimited batch sizes. See the vignette \code{vignette(censusxy)}
 #'     for more details
 #'
-#' @usage cxy_geocode(.data, id, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30)
+#' @usage cxy_geocode(.data, address, city, state, zip,
+#'     style = "minimal", output = "tibble", timeout = 30)
 #'
 #' @param .data dataframe containing address data
 #' @param address Column name containing address
