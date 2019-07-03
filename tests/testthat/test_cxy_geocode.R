@@ -41,7 +41,7 @@ test_that("warning of ommission triggers for city, state, or zip", {
     cxy_geocode(x, address = street_address, city = city, zip = postal_code), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
   )
   expect_warning(
-    cxy_geocode(x, address = street_address, state = state, zip = postal_code), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
+    try(cxy_geocode(x, address = street_address, state = state, zip = postal_code), silent = TRUE), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
   )
 
 })
