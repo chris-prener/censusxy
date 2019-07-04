@@ -7,8 +7,13 @@ Authors@R: c(
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
     comment = c(ORCID = "0000-0002-4361-2811"))
     )
-Description: Provides access to the U.S. Census Bureau's API for
-    for batch geocoding American street addresses.
+Description: Provides access to the U.S. Census Bureau's API for batch geocoding 
+    American street addresses (<https://geocoding.geo.census.gov/geocoder>).
+    The package offers a vectorized solution for address geocoding. It was also 
+    developed specifically with large data sets in mind - only unique addresses 
+    are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, 
+    it will be automatically subset into appropriately sized API calls, geocoded, and 
+    then put back together so that a single object is returned.
 Depends: R (>= 3.3)
 License: GPL-3
 URL: https://github.com/slu-openGIS/censusxy
