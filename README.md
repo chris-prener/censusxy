@@ -39,8 +39,15 @@ installed automatically with `censusxy` if they are not already present.
 
 ### Installing censusxy
 
-The package is soon to be on CRAN, but meanwhile, the development
-version of `censusxy` can be accessed from GitHub with `remotes`:
+Once `sf` is installed, the easiest way to get `censusxy` is to install
+it from CRAN:
+
+``` r
+install.packages("censusxy")
+```
+
+Alternatively, the development version of `censusxy` can be accessed
+from GitHub with `remotes`:
 
 ``` r
 # install.packages("remotes")

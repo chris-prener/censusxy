@@ -26,14 +26,14 @@ For Linux users, steps will vary based on the flavor being used. Our [configurat
 Once `sf` is installed, the easiest way to get `censusxy` is to install it from CRAN:
 
 ``` r
-install.packages("compstatr")
+install.packages("censusxy")
 ```
 
-The development version of `compstatr` can be accessed from GitHub with `remotes`:
+The development version of `censusxy` can be accessed from GitHub with `remotes`:
 
 ```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/compstatr")
+remotes::install_github("slu-openGIS/censusxy")
 ```
 
 ### Tips
