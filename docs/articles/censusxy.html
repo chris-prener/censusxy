@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -126,12 +126,12 @@
 <div id="usage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h3>
-<p>This package contains a single exported function, <code><a href="../reference/cxy_geocode.html">cxy_geocode()</a></code>. The only required arguments are <code>.data</code> for the <code>data.frame</code> or tibble containing address data, and <code>address</code> specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address)</span></code></pre></div>
+<p>This package contains a single exported function, <code>cxy_geocode()</code>. The only required arguments are <code>.data</code> for the <code>data.frame</code> or tibble containing address data, and <code>address</code> specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, <span class="dt">address =</span> street_address)</span></code></pre></div>
 <p>However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide deta contain city and state data as well, so the preferred call for these data would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>results &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</span></code></pre></div>
 <p>Finally, two output types are supported. By default, a tibble is returned (<code>output = "tibble"</code>) with a minimal set of variables that describe the accuracy of a given observation’s geocoding (<code>style = "minimal"</code>). A complete set of values returned by the API for each observation can be obtained by using <code>style = "full"</code>. Alternatively, an <code>sf</code> object can be returned with the geocoded data projected using the <a href="https://epsg.io/4326">WGS 1984</a> geographic coordinate system:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>homicide_sf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>homicide_sf &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</span></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>output = "tibble"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
