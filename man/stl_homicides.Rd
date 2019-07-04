@@ -7,8 +7,8 @@
 \format{A tibble with 1822 rows and 6 variables:
 \describe{
   \item{street_address}{number, street and street suffix where homicide occured}
-  \item{year}{year homicide occured}
-  \item{date}{data homicide occured}
+  \item{year}{year homicide occurred}
+  \item{date}{data homicide occurred}
   \item{state}{state abbreviation of location, in these data, all "MO"}
   \item{postal_code}{zipcode/postal code of location, in these data all NA}
   \item{city}{city of location, in these data all "St. Louis"}
@@ -20,7 +20,7 @@
 data(stl_homicides)
 }
 \description{
-An example data set containing the addresses for Homicides reported by the Saint Louis Metropolitan Police Department
+An example data set containing the addresses for homicides reported by the Saint Louis Metropolitan Police Department
 }
 \examples{
 str(stl_homicides)

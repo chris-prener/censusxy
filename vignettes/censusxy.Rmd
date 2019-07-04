@@ -50,7 +50,7 @@ This package contains a single exported function, `cxy_geocode()`. The only requ
 results <- cxy_geocode(stl_homicides, address = street_address)
 ```
 
-However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide deta contain city and state data as well, so the preferred call for these data would be:
+However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide data contain city and state data as well, so the preferred call for these data would be:
 
 ```r
 results <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state)

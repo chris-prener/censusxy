@@ -14,5 +14,20 @@ This is the initial version of the `censusxy` package.
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
 
+There was one NOTE on winbuilder checks:
+
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Christopher Prener <chris.prener@slu.edu>'
+
+New submission
+
+Possibly mis-spelled words in DESCRIPTION:
+  Geocoder (2:38)
+  geocoded (15:73)
+  geocoding (10:72, 12:58, 14:31)
+  vectorized (12:26)
+
+The four words identified are all spelled correctly.
+
 ## Reverse dependencies
 Not applicable.
