@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Using the <code>censusxy</code> Package • censusxy</title>
+<title>Using the censusxy Package • censusxy</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Using the &lt;code&gt;censusxy&lt;/code&gt; Package">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Using the censusxy Package">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png">
 <meta name="twitter:card" content="summary">
@@ -72,7 +72,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Using the <code>censusxy</code> Package</h1>
+      <h1>Using the censusxy Package</h1>
                         <h4 class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
             <h4 class="date">2019-07-04</h4>
@@ -91,7 +91,7 @@
 <div id="motivation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h3>
-<p>The <code>censusxy</code> package was developed specifically with large datasets in mind. There are other implentations for accessing the Census Bureau’s API for geocoding in <code>R</code> (e.g. the <a href="https://CRAN.R-project.org/package=censusr"><code>censusr</code> package</a>) that require iteration to geocode multiple addresses at once. <code>censusxy</code>, on the other hand, is designed to operate on on a column of addresses in a data frame or tibble object. Additionaly, the Census Bureau caps the number of addresses that can be sent to the API in a single call at 1,000. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. The package therefore provides an efficient solution to batch geocoding via the Census Bureau’s services.</p>
+<p>The <code>censusxy</code> package was developed specifically with large data sets in mind. There are other implementations for accessing the Census Bureau’s API for geocoding in <code>R</code> (e.g. the <a href="https://CRAN.R-project.org/package=censusr"><code>censusr</code> package</a>) that require iteration to geocode multiple addresses at once. <code>censusxy</code>, on the other hand, is designed to operate on on a column of addresses in a data frame or tibble object. Additionally, the Census Bureau caps the number of addresses that can be sent to the API in a single call at 1,000. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. The package therefore provides an efficient solution to batch geocoding via the Census Bureau’s services.</p>
 </div>
 <div id="responsible-use" class="section level3">
 <h3 class="hasAnchor">
@@ -121,17 +121,17 @@
 <div id="data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h3>
-<p>This implementation assumes that your data are contained in a <code>data.frame</code> or tibble, and that address data are split into a number of components: street address, city, state, and five digit zip code. If your data are not split into components, the authors recommend the package <a href="https://github.com/slu-openGIS/postmastr"><code>postmastr</code></a> for street address parsing. Not all components are required. For example, the sample homicide data included in the package lack zip code data. However, the more components you have, the better your results will be.</p>
+<p>This implementation assumes that your data are contained in a <code>data.frame</code> or tibble, and that address data are split into a number of component variables: street address, city, state, and five digit zip code. If your data are not split into components, the authors recommend the package <a href="https://github.com/slu-openGIS/postmastr"><code>postmastr</code></a> for street address parsing. Not all components are required. For example, the sample homicide data included in the package lack zip code data. However, the more components you have, the better your results will be. Both sample data objects in this package present data as they should be formatted for geocoding.</p>
 </div>
 <div id="usage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h3>
-<p>This package contains a single exported function, <code>cxy_geocode()</code>. The only required arguments are <code>.data</code> for the <code>data.frame</code> or tibble containing address data, and <code>address</code> specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, <span class="dt">address =</span> street_address)</span></code></pre></div>
-<p>However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide datain contain city and state data as well, so the preferred call for these data would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>results &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</span></code></pre></div>
+<p>This package contains a single exported function, <code><a href="../reference/cxy_geocode.html">cxy_geocode()</a></code>. The only required arguments are <code>.data</code> for the <code>data.frame</code> or tibble containing address data, and <code>address</code> specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address)</span></code></pre></div>
+<p>However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide deta contain city and state data as well, so the preferred call for these data would be:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</span></code></pre></div>
 <p>Finally, two output types are supported. By default, a tibble is returned (<code>output = "tibble"</code>) with a minimal set of variables that describe the accuracy of a given observation’s geocoding (<code>style = "minimal"</code>). A complete set of values returned by the API for each observation can be obtained by using <code>style = "full"</code>. Alternatively, an <code>sf</code> object can be returned with the geocoded data projected using the <a href="https://epsg.io/4326">WGS 1984</a> geographic coordinate system:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>homicide_sf &lt;-<span class="st"> </span><span class="kw">cxy_geocode</span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>homicide_sf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</span></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>output = "tibble"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
