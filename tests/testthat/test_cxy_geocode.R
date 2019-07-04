@@ -4,19 +4,6 @@ context("test cxy_geocode function")
 
 x <- stl_homicides_small
 
-# test NSE and SE --------------------------------------------
-test_that("non-standard evaluation works", {
-  expect_silent(
-    cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code)
-  )
-})
-test_that("standard evaluation works", {
-  expect_silent(
-    cxy_geocode(x, address = "street_address", city = "city", state = "state", zip = "postal_code")
-  )
-})
-
-
 # test inputs ------------------------------------------------
 
 test_that("misspecified functions return errors", {
@@ -41,7 +28,7 @@ test_that("warning of ommission triggers for city, state, or zip", {
     cxy_geocode(x, address = street_address, city = city, zip = postal_code), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
   )
   expect_warning(
-    cxy_geocode(x, address = street_address, state = state, zip = postal_code), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
+    try(cxy_geocode(x, address = street_address, state = state, zip = postal_code), silent = TRUE), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
   )
 
 })
@@ -54,7 +41,7 @@ test_that("output type produces correct output class", {
     cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code, output = "sf"), "sf"
   )
   expect_s3_class(
-    cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code, output = "tibble"), "tbl_df"
+    cxy_geocode(x, address = "street_address", city = "city", state = "state", zip = "postal_code", output = "tibble"), "tbl_df"
   )
 
 })

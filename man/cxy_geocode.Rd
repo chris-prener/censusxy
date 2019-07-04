@@ -4,12 +4,11 @@
 \alias{cxy_geocode}
 \title{Geocode Addresses Using the Census Bureau Geocoder}
 \usage{
-cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble")
+cxy_geocode(.data, address, city, state, zip,
+    style = "minimal", output = "tibble", timeout = 30)
 }
 \arguments{
 \item{.data}{dataframe containing address data}
-
-\item{id}{Optional; unique identifier for each observation}
 
 \item{address}{Column name containing address}
 
@@ -19,9 +18,11 @@ cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble
 
 \item{zip}{Optional; column name containing 5-digit zip code}
 
-\item{timeout}{Maximum number of minutes for each API call to the geocoder.}
+\item{style}{One of either \code{"minimal"}, \code{"match"}, or \code{"full"}}
 
-\item{output}{One of either "tibble" or "sf"}
+\item{output}{One of either \code{"tibble"} or \code{"sf"}}
+
+\item{timeout}{Maximum number of minutes for each API call to the geocoder.}
 }
 \value{
 Either a tibble or sf object containing the census geocoder response.

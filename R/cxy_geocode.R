@@ -6,16 +6,17 @@
 #'     unlimited batch sizes. See the vignette \code{vignette(censusxy)}
 #'     for more details
 #'
-#' @usage cxy_geocode(.data, id, address, city, state, zip, timeout = 30, output = "tibble")
+#' @usage cxy_geocode(.data, address, city, state, zip,
+#'     style = "minimal", output = "tibble", timeout = 30)
 #'
 #' @param .data dataframe containing address data
-#' @param id Optional; unique identifier for each observation
 #' @param address Column name containing address
 #' @param city Optional; column name containing city
 #' @param state Optional; column name containing state
 #' @param zip Optional; column name containing 5-digit zip code
+#' @param style One of either \code{"minimal"}, \code{"match"}, or \code{"full"}
+#' @param output One of either \code{"tibble"} or \code{"sf"}
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
-#' @param output One of either "tibble" or "sf"
 #'
 #' @return Either a tibble or sf object containing the census geocoder response.
 #'
@@ -24,7 +25,7 @@
 #' @importFrom sf st_as_sf
 #'
 #' @export
-cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, output = "tibble"){
+cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){
 
   # global bindings
    id.y = id.x = lon = lat = NULL
@@ -48,12 +49,6 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
    }
 
   # non-standard evaluation
-  if (!missing(id)) {
-    idX <- rlang::quo_name(rlang::enquo(id))
-  } else {
-    idX <- NA
-  }
-
   # address
   addressX <- rlang::quo_name(rlang::enquo(address))
 
@@ -78,12 +73,18 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
     zipX <- NA
   }
 
+  # warning about missing geographies
   if(any(missing(city), missing(state), missing(zip))){
     warning("Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
   }
 
+  # construct vector of valid input variables
+  invars <- c(addressX, cityX, stateX, zipX)
+  invars <- invars[!is.na(invars)]
+
   # prepare and split
-  prep <- cxy_prep(.data, idX, addressX, cityX, stateX, zipX)
+  .data <- cxy_id(.data, inputs = invars)
+  prep <- cxy_prep(.data, address = addressX, city = cityX, state = stateX, zip = zipX)
   split <- cxy_split(prep)
   response <- vector("list", length(split))
 
@@ -109,23 +110,17 @@ cxy_geocode <- function(.data, id, address, city, state, zip, timeout = 30, outp
   }
 
   # construct output
-  result <- dplyr::left_join(prep, response, by = c("address", "city", "state", "zip"))
-  result <- dplyr::select(result, -id.y)
-  result <- dplyr::rename(result, id = id.x)
+  out <- cxy_replace(source = .data, result = response, style = style)
 
-  # output type
-  if (output == "tibble") {
+  # optionally convert to sf
+  if (output == "sf"){
 
-    result <- dplyr::as_tibble(result)
-
-  } else if (output == "sf"){
-
-    result <- dplyr::filter(result, !is.na(lon) & !is.na(lat))
-    result <- sf::st_as_sf(result, coords = c("lon", "lat"), crs = 4326)
+    out <- dplyr::filter(out, !is.na(lon) & !is.na(lat))
+    out <- sf::st_as_sf(out, coords = c("lon", "lat"), crs = 4326)
 
   }
 
   # return result
-  return(result)
+  return(out)
 
 }

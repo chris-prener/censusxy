@@ -1,14 +1,16 @@
 # internal functions for preparing data for geocoding
 
 # prepare the dataframe to the geocoder standards
-cxy_prep <- function(.data, id, address, city, state, zip){
+cxy_prep <- function(.data, address, city, state, zip){
+
+  # global binding
+  cxy_uid = NULL
+
+  # limit to distinct obervations
+  .data <- dplyr::distinct(.data, cxy_uid, .keep_all = TRUE)
 
   # id
-  if (is.na(id)) {
-    idX <- 1:nrow(.data)
-  } else {
-    idX <- .data[[id]]
-  }
+  idX <- .data[["cxy_uid"]]
 
   # address
   addressX <- .data[[address]]
@@ -44,17 +46,5 @@ cxy_prep <- function(.data, id, address, city, state, zip){
 
   # return result
   return(prep)
-
-}
-
-# split and uniques (must be result from prep due to strict naming)
-cxy_split <- function(.data, rows = 1000){
-
-  uniq <- .data[!duplicated(.data[,c("address", "city", "state", "zip")]),]
-
-  splits <- split(uniq, (seq(nrow(uniq))-1) %/% rows)
-
-  # returns list of length `rows` elements
-  return(splits)
 
 }
