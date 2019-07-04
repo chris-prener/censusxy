@@ -7,6 +7,12 @@
     <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_geocode.html</loc>
   </url>
   <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/stl_homicides.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/stl_homicides_small.html</loc>
+  </url>
+  <url>
     <loc>https://slu-openGIS.github.io/censusxy//articles/censusxy.html</loc>
   </url>
 </urlset>

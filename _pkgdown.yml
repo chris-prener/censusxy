@@ -3,3 +3,15 @@ url: https://slu-openGIS.github.io/censusxy/
 authors:
   Christopher Prener:
     href: https://chris-prener.github.io
+
+reference:
+  - title: "Geocoding"
+    desc: "Return longitude and latitude of American street addresses"
+    contents:
+    - cxy_geocode
+
+  - title: "Sample Data"
+    desc: "Sample data for demonstrating geocoding"
+    contents:
+    - stl_homicides
+    - stl_homicides_small

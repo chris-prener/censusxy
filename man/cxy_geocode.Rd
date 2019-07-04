@@ -8,7 +8,7 @@ cxy_geocode(.data, address, city, state, zip,
     style = "minimal", output = "tibble", timeout = 30)
 }
 \arguments{
-\item{.data}{dataframe containing address data}
+\item{.data}{Data frame or tibble containing address data}
 
 \item{address}{Column name containing address}
 
