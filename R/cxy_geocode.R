@@ -9,7 +9,7 @@
 #' @usage cxy_geocode(.data, address, city, state, zip,
 #'     style = "minimal", output = "tibble", timeout = 30)
 #'
-#' @param .data dataframe containing address data
+#' @param .data Data frame or tibble containing address data
 #' @param address Column name containing address
 #' @param city Optional; column name containing city
 #' @param state Optional; column name containing state
