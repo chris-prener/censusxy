@@ -77,7 +77,7 @@ If you request an `sf` object, you easily preview the results with the
 [`mapview` package](https://CRAN.R-project.org/package=mapview):
 
 ``` r
-mapview::mapview(homicide_sf)
+> mapview::mapview(homicide_sf)
 ```
 
 <img src="man/figures/homicide_example.png" width="60%" />

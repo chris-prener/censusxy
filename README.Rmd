@@ -56,7 +56,7 @@ homicide_sf <- cxy_geocode(data, address = street_address, city = city, state = 
 If you request an `sf` object, you easily preview the results with the [`mapview` package](https://CRAN.R-project.org/package=mapview):
 
 ```r
-mapview::mapview(homicide_sf)
+> mapview::mapview(homicide_sf)
 ```
 ```{r exampleMap1, echo=FALSE, out.width = '60%'}
 knitr::include_graphics("man/figures/homicide_example.png")
