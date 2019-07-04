@@ -16,40 +16,39 @@ test_that("misspecified functions return errors", {
                "A numeric value must be specified for 'timeout'.")
   expect_error(cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code, output = "ham"),
                "Please choose one of 'tibble' or 'sf' for 'output'.")
+  expect_error(cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code, style = "ham"),
+               "Please choose one of 'minimal' or 'full' for 'style'.")
 })
 
 # test warnings ------------------------------------------------
 
 test_that("warning of ommission triggers for city, state, or zip", {
-  expect_warning(
-    cxy_geocode(x, address = street_address, city = city, state = state), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
-  )
-  expect_warning(
-    cxy_geocode(x, address = street_address, city = city, zip = postal_code), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
-  )
-  expect_warning(
-    try(cxy_geocode(x, address = street_address, state = state, zip = postal_code), silent = TRUE), "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder"
-  )
-
+  skip_on_cran()
+  skip_if_offline(host = "r-project.org")
+  expect_warning(cxy_geocode(x, address = street_address, city = city, state = state),
+                 "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
+  expect_warning(cxy_geocode(x, address = street_address, city = city, zip = postal_code),
+                 "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
+  expect_warning(try(cxy_geocode(x, address = street_address, state = state, zip = postal_code), silent = TRUE),
+                 "Omission of city, state or zip code greatly reduces the speed and accuracy of the geocoder")
 })
 
-
-# test output --------------------------------------------------
+# test output, non-standard evaluation, and ---------------------------------------------
 
 test_that("output type produces correct output class", {
-  expect_s3_class(
-    cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code, output = "sf"), "sf"
-  )
-  expect_s3_class(
-    cxy_geocode(x, address = "street_address", city = "city", state = "state", zip = "postal_code", output = "tibble"), "tbl_df"
-  )
-
+  skip_on_cran()
+  skip_if_offline(host = "r-project.org")
+  expect_s3_class(cxy_geocode(x, address = street_address, city = city, state = state, zip = postal_code,
+                              output = "sf", style = "minimal"), "sf")
+  expect_s3_class(cxy_geocode(x, address = "street_address", city = "city", state = "state", zip = "postal_code",
+                              output = "tibble", style = "full"), "tbl_df")
 })
 
 # test no-matches ----------------------------------------------
 
 test_that("error is returned for zero matches", {
-  expect_error(
-    suppressWarnings(cxy_geocode(x, address = "street_address")), "No matches found for any of the supplied addresses. Make sure to include city, state and zip for best results"
-  )
+  skip_on_cran()
+  skip_if_offline(host = "r-project.org")
+  expect_error(suppressWarnings(cxy_geocode(x, address = "street_address")),
+               "No matches found for any of the supplied addresses. Make sure to include city, state and zip for best results")
 })

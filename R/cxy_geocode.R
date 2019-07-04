@@ -14,7 +14,7 @@
 #' @param city Optional; column name containing city
 #' @param state Optional; column name containing state
 #' @param zip Optional; column name containing 5-digit zip code
-#' @param style One of either \code{"minimal"}, \code{"match"}, or \code{"full"}
+#' @param style One of either \code{"minimal"} or \code{"full"}
 #' @param output One of either \code{"tibble"} or \code{"sf"}
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
 #'
@@ -42,6 +42,10 @@ cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", out
    # check for incorrectly specified parameters
    if (is.numeric(timeout) == FALSE){
      stop("A numeric value must be specified for 'timeout'.")
+   }
+
+   if (style %in% c("minimal", "full") == FALSE){
+     stop("Please choose one of 'minimal' or 'full' for 'style'.")
    }
 
    if (output %in% c("tibble", "sf") == FALSE){
