@@ -18,7 +18,7 @@ cxy_geocode(.data, address, city, state, zip,
 
 \item{zip}{Optional; column name containing 5-digit zip code}
 
-\item{style}{One of either \code{"minimal"}, \code{"match"}, or \code{"full"}}
+\item{style}{One of either \code{"minimal"} or \code{"full"}}
 
 \item{output}{One of either \code{"tibble"} or \code{"sf"}}
 
