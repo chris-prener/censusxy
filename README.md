@@ -14,9 +14,9 @@ status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg
 
 The `censusxy` package is designed to provide easy and efficient access
 to the [US Census Bureau Batch
-Geocoder](https://geocoding.geo.census.gov/geocoder/geographies/addressbatch?form)
-in `R`. The package offers a vectorized solution for address geocoding
-(as opposed to packages like
+Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. The
+package offers a vectorized solution for address geocoding (as opposed
+to packages like
 [`censusr`](https://CRAN.R-project.org/package=censusr), which provide
 functionality for a single address at a time). `censusxy` was also
 developed specifically with large data sets in mind - only unique
