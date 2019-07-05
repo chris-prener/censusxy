@@ -2,6 +2,7 @@
 
 * CRAN release version of the software.
 * Corrected tense shifts in description paragraph in `DESCRIPTION`, `README.Rmd`, and `index.Rmd`
+* Other minor updates to `pkgdown` site and `README.Rmd`
 
 # censusxy 0.1.0
 
