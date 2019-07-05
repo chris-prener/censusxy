@@ -28,7 +28,7 @@
 cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){
 
   # global bindings
-   id.y = id.x = lon = lat = NULL
+   lon = lat = NULL
 
    # check for missing parameters
    if (missing(.data)){
