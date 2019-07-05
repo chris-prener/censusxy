@@ -75,7 +75,7 @@
       <h1>Using the censusxy Package</h1>
                         <h4 class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 class="date">2019-07-04</h4>
+            <h4 class="date">2019-07-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/master/vignettes/censusxy.Rmd"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -104,10 +104,10 @@
 <p>We recommend that users install <code>sf</code> before proceeding with the installation of <code>censusxy</code>. Windows users should be able to install <code>sf</code> without significant issues, but macOS and Linux users will need to install several open source spatial libraries to get <code>sf</code> itself up and running. The easiest approach for macOS users is to install the GDAL 2.0 Complete framework from <a href="https://www.kyngchaos.com/software/frameworks/">Kyng Chaos</a>.</p>
 <p>For Linux users, steps will vary based on the flavor being used. Our <a href="https://github.com/slu-openGIS/compstatr/blob/master/.travis.yml">configuration file</a> for Travis CI and its associated <a href="https://github.com/slu-openGIS/areal/blob/master/.travis/install.sh">bash script</a> should be useful in determining the necessary components to install.</p>
 <p>Once <code>sf</code> is installed, the easiest way to get <code>censusxy</code> is to install it from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"compstatr"</span>)</a></code></pre></div>
 <p>The development version of <code>compstatr</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb2-2" title="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/compstatr"</span>)</a></code></pre></div>
 </div>
 <div id="tips" class="section level3">
 <h3 class="hasAnchor">
@@ -127,14 +127,14 @@
 <h3 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h3>
 <p>This package contains a single exported function, <code><a href="../reference/cxy_geocode.html">cxy_geocode()</a></code>. The only required arguments are <code>.data</code> for the <code>data.frame</code> or tibble containing address data, and <code>address</code> specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address)</a></code></pre></div>
 <p>However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide data contain city and state data as well, so the preferred call for these data would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">results &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, <span class="dt">address =</span> street_address, <span class="dt">city =</span> city, <span class="dt">state =</span> state)</a></code></pre></div>
 <p>Finally, two output types are supported. By default, a tibble is returned (<code>output = "tibble"</code>) with a minimal set of variables that describe the accuracy of a given observation’s geocoding (<code>style = "minimal"</code>). A complete set of values returned by the API for each observation can be obtained by using <code>style = "full"</code>. Alternatively, an <code>sf</code> object can be returned with the geocoded data projected using the <a href="https://epsg.io/4326">WGS 1984</a> geographic coordinate system:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>homicide_sf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">homicide_sf &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(stl_homicides, id, street_address, city, state, postal_code, <span class="dt">output =</span> <span class="st">"sf"</span>)</a></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>output = "tibble"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/mapview/topics/mapView">mapview</a></span>(homicide_sf)</a></code></pre></div>
 <p><img src="../man/figures/homicide_example.png" width="60%"></p>
 </div>
 <div id="timeout" class="section level3">
@@ -173,7 +173,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://chris-prener.github.io">Christopher Prener</a>, Branson Fox.</p>
+  <p>Developed by <a href="https://chris-prener.github.io">Christopher Prener</a>, <a href="https://bransonf.com">Branson Fox</a>.</p>
 </div>
 
 <div class="pkgdown">
