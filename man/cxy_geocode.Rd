@@ -34,3 +34,15 @@ This is the single function of the censusxy package, allowing
     unlimited batch sizes. See the vignette \code{vignette(censusxy)}
     for more details
 }
+\examples{
+# load sample data
+data <- stl_homicides_small
+
+# geocode data
+data <- cxy_geocode(data, address = "street_address", city = "city",
+    state = "state", zip = "postal_code")
+
+# preview data
+data
+
+}

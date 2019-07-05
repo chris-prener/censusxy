@@ -24,11 +24,22 @@
 #' @importFrom rlang enquo quo_name
 #' @importFrom sf st_as_sf
 #'
+#' @examples
+#' # load sample data
+#' data <- stl_homicides_small
+#'
+#' # geocode data
+#' data <- cxy_geocode(data, address = "street_address", city = "city",
+#'     state = "state", zip = "postal_code")
+#'
+#' # preview data
+#' data
+#'
 #' @export
 cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){
 
-  # global bindings
-   id.y = id.x = lon = lat = NULL
+   # global bindings
+   lon = lat = NULL
 
    # check for missing parameters
    if (missing(.data)){
