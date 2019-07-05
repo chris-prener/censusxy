@@ -10,13 +10,13 @@ vignette: >
 ---
 
 ## Overview
-The `censusxy` package is designed to provide easy and efficient access to the [US Census Bureau Batch Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. 
+The `censusxy` package is designed to provide easy and efficient access to the [U.S. Census Bureau Batch Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. 
 
 ### Motivation
 The `censusxy` package has been developed specifically with large data sets in mind. There are other implementations for accessing the Census Bureau's API for geocoding in `R` (e.g. the [`censusr` package](https://CRAN.R-project.org/package=censusr)) that require iteration to geocode multiple addresses at once. `censusxy`, on the other hand, is designed to operate on on a column of addresses in a data frame or tibble object. Additionally, the Census Bureau caps the number of addresses that can be sent to the API in a single call at 1,000. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. The package therefore provides an efficient solution to batch geocoding via the Census Bureau's services.
 
 ### Responsible Use
-The US Census Bureau makes their geocoding API available without any API key, and this package allows for virtually unlimited batch geocoding. Please use this package responsibly, as others will need use of this API for their research.
+The U.S. Census Bureau makes their geocoding API available without any API key, and this package allows for virtually unlimited batch geocoding. Please use this package responsibly, as others will need use of this API for their research.
 
 ### Installation
 We recommend that users install `sf` before proceeding with the installation of `censusxy`. Windows users should be able to install `sf` without significant issues, but macOS and Linux users will need to install several open source spatial libraries to get `sf` itself up and running. The easiest approach for macOS users is to install the GDAL 2.0 Complete framework from [Kyng Chaos](https://www.kyngchaos.com/software/frameworks/). 
@@ -68,7 +68,7 @@ Output returned as an `sf` object can be previewed with a package like [`mapview
 ```r
 > mapview::mapview(homicide_sf)
 ```
-```{r exampleMap1, echo=FALSE, out.width = '60%'}
+```{r exampleMap1, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("../man/figures/homicide_example.png")
 ```
 

@@ -14,7 +14,7 @@ status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 
 The `censusxy` package is designed to provide easy and efficient access
-to the [US Census Bureau Batch
+to the [U.S. Census Bureau Batch
 Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. The
 package offers a batch solution for address geocoding (as opposed to
 packages like [`censusr`](https://CRAN.R-project.org/package=censusr),
@@ -87,7 +87,7 @@ If you request an `sf` object, you easily preview the results with the
 > mapview::mapview(homicide_sf)
 ```
 
-<img src="man/figures/homicide_example.png" width="60%" />
+<img src="man/figures/homicide_example.png" width="100%" />
 
 ## Contributor Code of Conduct
 
