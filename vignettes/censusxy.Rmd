@@ -44,22 +44,22 @@ The key function, `cxy_geocode`, supports non-standard evaluation, meaning you c
 This implementation assumes that your data are contained in a `data.frame` or tibble, and that address data are split into a number of component variables: street address, city, state, and five digit zip code. If your data are not split into components, the authors recommend the package [`postmastr`](https://github.com/slu-openGIS/postmastr) for street address parsing. Not all components are required. For example, the sample homicide data included in the package lack zip code data. However, the more components you have, the better your results will be. Both sample data objects in this package present data as they should be formatted for geocoding.
 
 ### Usage
-This package contains a single exported function, `cxy_geocode()`. The only required arguments are `.data` for the `data.frame` or tibble containing address data, and `address` specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.
+This package contains a single exported function, `cxy_geocode()`. The only required arguments are `.data` for the `data.frame` or tibble containing address data, and `address` specifying the column name containing street addresses, you must also specify a directory to store the API returns, for which the authors recommend specifying a temporary directory `dir = tempdir()`. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.
 
 ```r
-results <- cxy_geocode(stl_homicides, address = street_address)
+results <- cxy_geocode(stl_homicides, address = street_address, dir = tempdir())
 ```
 
 However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide data contain city and state data as well, so the preferred call for these data would be:
 
 ```r
-results <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state)
+results <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state, dir = tempdir())
 ```
 
 Finally, two output types are supported. By default, a tibble is returned (`output = "tibble"`) with a minimal set of variables that describe the accuracy of a given observation's geocoding (`style = "minimal"`). A complete set of values returned by the API for each observation can be obtained by using `style = "full"`. Alternatively, an `sf` object can be returned with the geocoded data projected using the [WGS 1984](https://epsg.io/4326) geographic coordinate system:
 
 ```r
-homicide_sf <- cxy_geocode(stl_homicides, id, street_address, city, state, postal_code, output = "sf")
+homicide_sf <- cxy_geocode(stl_homicides, id, street_address, city, state, postal_code, output = "sf", dir = tempdir())
 ```
 
 Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use `output = "tibble"` to return all addresses, including those that are unmatched.

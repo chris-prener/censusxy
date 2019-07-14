@@ -5,7 +5,7 @@
 \title{Geocode Addresses Using the Census Bureau Geocoder}
 \usage{
 cxy_geocode(.data, address, city, state, zip,
-    style = "minimal", output = "tibble", timeout = 30)
+    style = "minimal", output = "tibble", timeout = 30, dir)
 }
 \arguments{
 \item{.data}{Data frame or tibble containing address data}
@@ -23,6 +23,8 @@ cxy_geocode(.data, address, city, state, zip,
 \item{output}{One of either \code{"tibble"} or \code{"sf"}}
 
 \item{timeout}{Maximum number of minutes for each API call to the geocoder.}
+
+\item{dir}{Directory to temporary store API return files}
 }
 \value{
 Either a tibble or sf object containing the census geocoder response.
@@ -40,7 +42,7 @@ data <- stl_homicides_small
 
 # geocode data
 data <- cxy_geocode(data, address = "street_address", city = "city",
-    state = "state", zip = "postal_code")
+    state = "state", zip = "postal_code", dir = tempdir())
 
 # preview data
 data
