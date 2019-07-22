@@ -7,7 +7,7 @@
 #'     for more details
 #'
 #' @usage cxy_geocode(.data, address, city, state, zip,
-#'     style = "minimal", output = "tibble", timeout = 30, dir)
+#'     style = "minimal", output = "tibble", timeout = 30)
 #'
 #' @param .data Data frame or tibble containing address data
 #' @param address Column name containing address
@@ -17,7 +17,6 @@
 #' @param style One of either \code{"minimal"} or \code{"full"}
 #' @param output One of either \code{"tibble"} or \code{"sf"}
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
-#' @param dir Directory to temporary store API return files
 #'
 #' @return Either a tibble or sf object containing the census geocoder response.
 #'
@@ -31,13 +30,13 @@
 #'
 #' # geocode data
 #' data <- cxy_geocode(data, address = "street_address", city = "city",
-#'     state = "state", zip = "postal_code", dir = tempdir())
+#'     state = "state", zip = "postal_code")
 #'
 #' # preview data
 #' data
 #'
 #' @export
-cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30, dir){
+cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){
 
    # global bindings
    lon = lat = NULL
@@ -62,11 +61,6 @@ cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", out
 
    if (output %in% c("tibble", "sf") == FALSE){
      stop("Please choose one of 'tibble' or 'sf' for 'output'.")
-   }
-
-   # check that specified directory exists
-   if(!dir.exists(dir)){
-     stop("The directory specified does not exist.")
    }
 
   # non-standard evaluation
@@ -115,7 +109,7 @@ cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", out
   # iterate over splits
   for (i in seq_along(split)) {
    response[[i]] <- try(
-     cxy_geocoder(split[[i]], timeout, dir)
+     cxy_geocoder(split[[i]], timeout)
      )
   }
 

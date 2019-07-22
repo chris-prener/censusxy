@@ -5,14 +5,15 @@
 #' @importFrom readr write_csv
 #' @importFrom tidyr separate
 #
-cxy_geocoder <- function(.data, timeout, dir){
+cxy_geocoder <- function(.data, timeout){
 
   # global bindings
   zip = city = state = lon = lat = NULL
 
-  # create and store a csv in a specified directory
-  readr::write_csv(.data, path = paste0(dir, "addresses.csv"), col_names = FALSE, na = "")
-  file <- paste0(dir, "addresses.csv")
+  # create and store a csv in a temp dir
+  tmp <- tempdir()
+  readr::write_csv(.data, path = paste0(tmp, "addresses.csv"), col_names = FALSE, na = "")
+  file <- paste0(tmp, "addresses.csv")
 
   # send file as request
   response <- httr::POST("https://geocoding.geo.census.gov/geocoder/locations/addressbatch",
@@ -51,6 +52,9 @@ cxy_geocoder <- function(.data, timeout, dir){
 
   # apply names
   names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "lon", "lat", "TIGER_line_id", "side")
+
+  # clean-up temp directories
+  unlink(tmp, recursive = TRUE)
 
   # return output
   return(df)

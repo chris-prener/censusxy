@@ -57,7 +57,7 @@ There are two possible variable configurations (`minimal` and `full`, specified 
 
 ```r
 homicide_sf <- cxy_geocode(data, address = street_address, city = city, state = state, 
-    style = "minimal", output = "sf", dir = tempdir())
+    style = "minimal", output = "sf")
 ```
 
 If you request an `sf` object, you easily preview the results with the [`mapview` package](https://CRAN.R-project.org/package=mapview):
