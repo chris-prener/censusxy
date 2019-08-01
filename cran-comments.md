@@ -1,5 +1,11 @@
 ## Release summary
-This is the initial version of the `censusxy` package.
+This is the initial version of the `censusxy` package. It was previously submitted (on July 5) and then rejected (on July 9):
+
+> Please ensure that your functions do not write by default or in your examples/vignettes/tests in the user's home filespace (including the  package directory and getwd()). 
+
+We have reviewed the package to be sure - `censusxy` only interacts with the file system in `cxy_geocoder.R`, where a `.csv` is written to the temp directory (lines 14-16), which is subsequently cleaned up (line 57). We thought that this would be permissable according to CRAN policy since we're only working with the temp directory here. 
+
+We are not at all opposed to making changes to ensure we comply with CRAN policy - but are unsure what to change in this instance. Uwe kindly suggested that we could resubmit the package as is and that he would be willing to take a look at the function. Thanks, Uwe, for your offer and help!
 
 ## Test environments
 * local OS X install: R 3.6.0

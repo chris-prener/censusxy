@@ -12,11 +12,12 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Access the U.S. Census Bureau Geocoder">
 <meta property="og:description" content="Provides access to the U.S. Census Bureau's API for batch geocoding 
     American street addresses (&lt;https://geocoding.geo.census.gov/geocoder&gt;).
-    The package offers a vectorized solution for address geocoding. It was also 
-    developed specifically with large data sets in mind - only unique addresses 
-    are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, 
-    it will be automatically subset into appropriately sized API calls, geocoded, and 
-    then put back together so that a single object is returned.">
+    The package offers a batch solution for address geocoding, as opposed to geocoding
+    a single address at a time. It has also been developed specifically with large 
+    data sets in mind - only unique addresses are passed to the API for geocoding. 
+    If a data set exceeds 1,000 unique addresses, it will be automatically subset 
+    into appropriately sized API calls, geocoded, and then put back together so that 
+    a single object is returned.">
 <meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -37,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -87,13 +88,15 @@
 <a href="#censusxy" class="anchor"></a>censusxy <img src="reference/figures/logo.png" align="right">
 </h1></div>
 
-<p>The <code>censusxy</code> package is designed to provide easy and efficient access to the <a href="https://geocoding.geo.census.gov/geocoder/">US Census Bureau Batch Geocoder</a> in <code>R</code>. The package offers a vectorized solution for address geocoding (as opposed to packages like <a href="https://CRAN.R-project.org/package=censusr"><code>censusr</code></a>, which provide functionality for a single address at a time). <code>censusxy</code> was also developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned.</p>
+<p>The <code>censusxy</code> package is designed to provide easy and efficient access to the <a href="https://geocoding.geo.census.gov/geocoder/">U.S. Census Bureau Batch Geocoder</a> in <code>R</code>. The package offers a batch solution for address geocoding (as opposed to packages like <a href="https://CRAN.R-project.org/package=censusr"><code>censusr</code></a>, which provide functionality for a single address at a time). <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
-<p>If the <code>sf</code> package is already installed, the development version of <code>censusxy</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb1-2" title="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/censusxy"</span>)</a></code></pre></div>
+<p>If the <code>sf</code> package is already installed, the easiest way to get <code>censusxy</code> is to install it from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"censusxy"</span>)</span></code></pre></div>
+<p>Alternatively, the development version of <code>censusxy</code> can be accessed from GitHub with <code>remotes</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"slu-openGIS/censusxy"</span>)</span></code></pre></div>
 <p>Additional details, including some tips for installing <code>sf</code>, can be found in the <a href="articles/censusxy.html#installation">Get started article</a>.</p>
 </div>
 <div id="resources" class="section level2">
@@ -101,7 +104,7 @@
 <a href="#resources" class="anchor"></a>Resources</h2>
 <p>The main <a href="articles/censusxy.html">Get started</a> article has:</p>
 <ul>
-<li>some tips on installing <code>compstatr</code> and its dependencies,</li>
+<li>some tips on installing <code>censusxy</code> and its dependencies,</li>
 <li>an overview of the package’s functionality,</li>
 <li>and considerations for handling computer timeout.</li>
 </ul>

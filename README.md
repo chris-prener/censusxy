@@ -14,15 +14,14 @@ status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 
 The `censusxy` package is designed to provide easy and efficient access
-to the [US Census Bureau Batch
+to the [U.S. Census Bureau Batch
 Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. The
-package offers a vectorized solution for address geocoding (as opposed
-to packages like
-[`censusr`](https://CRAN.R-project.org/package=censusr), which provide
-functionality for a single address at a time). `censusxy` was also
-developed specifically with large data sets in mind - only unique
-addresses are passed to the API for geocoding. If a data set exceeds
-1,000 unique addresses, it will be automatically subset into
+package offers a batch solution for address geocoding (as opposed to
+packages like [`censusr`](https://CRAN.R-project.org/package=censusr),
+which provide functionality for a single address at a time). `censusxy`
+has also been developed specifically with large data sets in mind - only
+unique addresses are passed to the API for geocoding. If a data set
+exceeds 1,000 unique addresses, it will be automatically subset into
 appropriately sized API calls, geocoded, and then put back together so
 that a single object is returned.
 
@@ -40,8 +39,15 @@ installed automatically with `censusxy` if they are not already present.
 
 ### Installing censusxy
 
-The package is soon to be on CRAN, but meanwhile, the development
-version of `censusxy` can be accessed from GitHub with `remotes`:
+Once `sf` is installed, the easiest way to get `censusxy` is to install
+it from CRAN:
+
+``` r
+install.packages("censusxy")
+```
+
+Alternatively, the development version of `censusxy` can be accessed
+from GitHub with `remotes`:
 
 ``` r
 # install.packages("remotes")
@@ -81,7 +87,7 @@ If you request an `sf` object, you easily preview the results with the
 > mapview::mapview(homicide_sf)
 ```
 
-<img src="man/figures/homicide_example.png" width="60%" />
+<img src="man/figures/homicide_example.png" width="100%" />
 
 ## Contributor Code of Conduct
 
