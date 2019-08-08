@@ -25,6 +25,7 @@
 #' @importFrom sf st_as_sf
 #'
 #' @examples
+#' \donttest{
 #' # load sample data
 #' data <- stl_homicides_small
 #'
@@ -34,6 +35,7 @@
 #'
 #' # preview data
 #' data
+#' }
 #'
 #' @export
 cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){

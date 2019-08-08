@@ -35,6 +35,7 @@ This is the single function of the censusxy package, allowing
     for more details
 }
 \examples{
+\donttest{
 # load sample data
 data <- stl_homicides_small
 
@@ -44,5 +45,6 @@ data <- cxy_geocode(data, address = "street_address", city = "city",
 
 # preview data
 data
+}
 
 }
