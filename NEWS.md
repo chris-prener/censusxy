@@ -1,3 +1,7 @@
+# censusxy 0.1.2
+
+* Address CRAN policy concerns with how temporary files are saved and removed when uploading batches of addresses to the Census Bureau's website
+
 # censusxy 0.1.1
 
 * CRAN release version of the software.

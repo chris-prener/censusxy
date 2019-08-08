@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -172,18 +172,29 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># load sample data</span>
+    <pre class="examples"><div class='input'><span class='co'># load sample data</span>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>stl_homicides_small</span>
 
 <span class='co'># geocode data</span>
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>cxy_geocode</span>(<span class='no'>data</span>, <span class='kw'>address</span> <span class='kw'>=</span> <span class='st'>"street_address"</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"city"</span>,
-    <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"state"</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>"postal_code"</span>)
-
+    <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"state"</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>"postal_code"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 3 rows [16, 18, 21].</span></div><div class='input'>
 <span class='co'># preview data</span>
-<span class='no'>data</span>
-
-<span class='co'># }</span></pre>
+<span class='no'>data</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24 x 11</span><span>
+#&gt;    street_address  year date  state postal_code city  cxy_status cxy_quality
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'> 1</span><span> 724 Baden Ave   </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 2</span><span> 1707 Billups …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 3</span><span> 3949 Potomac …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 4</span><span> 1513 N 13th St  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Tie        </span><span style='color: #555555;'>""</span><span>         
+#&gt; </span><span style='color: #555555;'> 5</span><span> 4539 Carrie A…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 6</span><span> 4231 Natural …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … No_Match   </span><span style='color: #555555;'>""</span><span>         
+#&gt; </span><span style='color: #555555;'> 7</span><span> 1124 Dillon Dr  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 8</span><span> 5598 Robin Ave  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'> 9</span><span> 4629 Minnesot…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … No_Match   </span><span style='color: #555555;'>""</span><span>         
+#&gt; </span><span style='color: #555555;'>10</span><span> 3215 Bailey A…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
+#&gt; </span><span style='color: #555555;'># … with 14 more rows, and 3 more variables: cxy_match </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, lon </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   lat </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
