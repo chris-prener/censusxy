@@ -14,7 +14,7 @@ Brian Ripley brought an issue to our attention on 8/8/19 about temporary files n
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
 
-There was one NOTE on winbuilder checks:
+There was one NOTE on winbuilder checks (see below). The four words identified are all spelled correctly, and the concersn identified with the temporary directory have been addressed.
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Christopher Prener <chris.prener@slu.edu>'
@@ -23,11 +23,13 @@ New submission
 
 Possibly mis-spelled words in DESCRIPTION:
   Geocoder (2:38)
-  geocoded (15:73)
-  geocoding (10:72, 12:58, 14:31)
-  vectorized (12:26)
+  geocoded (16:41)
+  geocoding (10:72, 12:53, 12:78, 14:73)
 
-The four words identified are all spelled correctly.
+CRAN repository db overrides:
+  X-CRAN-Comment: Removed on 2019-08-08 for policy violation.
+
+  Leaves file in /tmp
 
 ## Reverse dependencies
 Not applicable.
