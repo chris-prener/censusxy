@@ -12,8 +12,8 @@ cxy_geocoder <- function(.data, timeout){
 
   # create and store a csv in a temp dir
   tmp <- tempdir()
-  readr::write_csv(.data, path = paste0(tmp, "addresses.csv"), col_names = FALSE, na = "")
-  file <- paste0(tmp, "addresses.csv")
+  readr::write_csv(.data, path = paste0(tmp, "/addresses.csv"), col_names = FALSE, na = "")
+  file <- paste0(tmp, "/addresses.csv")
 
   # send file as request
   response <- httr::POST("https://geocoding.geo.census.gov/geocoder/locations/addressbatch",
@@ -42,11 +42,11 @@ cxy_geocoder <- function(.data, timeout){
 
   } else {
 
-  # split and coerce class of coords
-  df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",")
-  df <- dplyr::mutate(df,
-                      lon = as.numeric(lon),
-                      lat = as.numeric(lat))
+    # split and coerce class of coords
+    df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",")
+    df <- dplyr::mutate(df,
+                        lon = as.numeric(lon),
+                        lat = as.numeric(lat))
 
   }
 
@@ -54,7 +54,7 @@ cxy_geocoder <- function(.data, timeout){
   names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "lon", "lat", "TIGER_line_id", "side")
 
   # clean-up temp directories
-  unlink(tmp, recursive = TRUE)
+  unlink(paste0(tmp, "/addresses.csv"))
 
   # return output
   return(df)
