@@ -8,7 +8,7 @@
 cxy_geocoder <- function(.data, timeout){
 
   # global bindings
-  zip = city = state = lon = lat = NULL
+  zip = city = state = lon = lat = V6 = NULL
 
   # create and store a csv in a temp dir
   tmp <- tempdir()
