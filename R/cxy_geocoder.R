@@ -63,7 +63,7 @@ cxy_geocoder <- function(.data, timeout){
   }
 
   # apply names
-  names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "lon", "lat", "TIGER_line_id", "side")
+  names(df) <- c("id", "address", "city" ,"state", "zip", "status", "quality", "match_address", "TIGER_line_id", "side", "lon", "lat")
 
   # clean-up temp directories
   unlink(paste0(tmp, "/addresses.csv"))
