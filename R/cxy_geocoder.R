@@ -43,7 +43,7 @@ cxy_geocoder <- function(.data, timeout){
   } else {
 
     # split and coerce class of coords
-    df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",")
+    df <- tidyr::separate(df, "V6", c("lon", "lat"), sep = ",", fill = 'right')
     df <- dplyr::mutate(df,
                         lon = as.numeric(lon),
                         lat = as.numeric(lat))
