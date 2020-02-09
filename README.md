@@ -25,6 +25,16 @@ exceeds 1,000 unique addresses, it will be automatically subset into
 appropriately sized API calls, geocoded, and then put back together so
 that a single object is returned.
 
+## What’s New in v0.1.3?
+
+The `cxy_geocode()` function now includes an option `fill_na`, which is
+enabled by default. Two fields in the original implementation of the
+package, `cxy_quality` and `cxy_match`, were returned as empty strings
+when no match was identified. Now, by default, they will both be
+returned with `NA` values when there is no match. If you want to return
+to the original behavior, simply set `fill_na = FALSE` in your function
+call.
+
 ## Installation
 
 ### Installing Dependencies
