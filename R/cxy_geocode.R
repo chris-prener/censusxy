@@ -6,8 +6,8 @@
 #'     unlimited batch sizes. See the vignette \code{vignette(censusxy)}
 #'     for more details
 #'
-#' @usage cxy_geocode(.data, address, city, state, zip,
-#'     style = "minimal", output = "tibble", timeout = 30)
+#' @usage cxy_geocode(.data, address, city, state, zip, style = "minimal",
+#'     output = "tibble", fill_na = TRUE, timeout = 30)
 #'
 #' @param .data Data frame or tibble containing address data
 #' @param address Column name containing address
@@ -16,6 +16,9 @@
 #' @param zip Optional; column name containing 5-digit zip code
 #' @param style One of either \code{"minimal"} or \code{"full"}
 #' @param output One of either \code{"tibble"} or \code{"sf"}
+#' @param fill_na If \code{TRUE}, fill un-matched values to \code{cxy_quality}
+#'     and \code{exy_status} with \code{NA} values (default); \code{FALSE} returns
+#'     empty strings, which mirrors the original output of this function
 #' @param timeout Maximum number of minutes for each API call to the geocoder.
 #'
 #' @return Either a tibble or sf object containing the census geocoder response.
@@ -38,10 +41,11 @@
 #' }
 #'
 #' @export
-cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble", timeout = 30){
+cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", output = "tibble",
+                        fill_na = TRUE, timeout = 30){
 
    # global bindings
-   lon = lat = NULL
+   lon = lat = quality = match_address = NULL
 
    # check for missing parameters
    if (missing(.data)){
@@ -124,6 +128,17 @@ cxy_geocode <- function(.data, address, city, state, zip, style = "minimal", out
   # error if no matches found for batch
   if(all(response[["status"]] ==  "No_Match")){
     stop("No matches found for any of the supplied addresses. Make sure to include city, state and zip for best results.")
+  }
+
+  # fill NAs
+  if (fill_na == TRUE){
+
+    # fill cxy_quality
+    response <- dplyr::mutate(response, quality = ifelse(quality == "", NA, quality))
+
+    # fill cxy_match
+    response <- dplyr::mutate(response, match_address = ifelse(match_address == "", NA, match_address))
+
   }
 
   # construct output
