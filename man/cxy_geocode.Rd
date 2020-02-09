@@ -4,8 +4,8 @@
 \alias{cxy_geocode}
 \title{Geocode Addresses Using the Census Bureau Geocoder}
 \usage{
-cxy_geocode(.data, address, city, state, zip,
-    style = "minimal", output = "tibble", timeout = 30)
+cxy_geocode(.data, address, city, state, zip, style = "minimal",
+    output = "tibble", fill_na = TRUE, timeout = 30)
 }
 \arguments{
 \item{.data}{Data frame or tibble containing address data}
@@ -21,6 +21,10 @@ cxy_geocode(.data, address, city, state, zip,
 \item{style}{One of either \code{"minimal"} or \code{"full"}}
 
 \item{output}{One of either \code{"tibble"} or \code{"sf"}}
+
+\item{fill_na}{If \code{TRUE}, fill un-matched values to \code{cxy_quality}
+and \code{exy_status} with \code{NA} values (default); \code{FALSE} returns
+empty strings, which mirrors the original output of this function}
 
 \item{timeout}{Maximum number of minutes for each API call to the geocoder.}
 }
