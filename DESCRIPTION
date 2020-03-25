@@ -9,7 +9,7 @@ Authors@R: c(
     )
 Description: Provides access to the U.S. Census Bureau's Geographic APIs. This includes geocoding single and batches of addresses as well as appending census geographies.
 Depends: R (>= 3.3)
-License: GPL-3 + file LICENSE
+License: GPL-3
 URL: https://github.com/slu-openGIS/censusxy
 BugReports: https://github.com/slu-openGIS/censusxy/issues
 Encoding: UTF-8
