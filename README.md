@@ -13,28 +13,44 @@ status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg
 [![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 
-The `censusxy` package is designed to provide easy access to the [U.S.
-Census Bureau Geocoding
-Tools](https://geocoding.geo.census.gov/geocoder/) in `R`. `censusxy`
+The `censusxy` package is designed to provide easy and efficient access
+to the [U.S. Census Bureau Batch
+Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. The
+package offers a batch solution for address geocoding (as opposed to
+packages like [`censusr`](https://CRAN.R-project.org/package=censusr),
+which provide functionality for a single address at a time). `censusxy`
 has also been developed specifically with large data sets in mind - only
 unique addresses are passed to the API for geocoding. If a data set
 exceeds 1,000 unique addresses, it will be automatically subset into
 appropriately sized API calls, geocoded, and then put back together so
-that a single object is returned. There is also support for parallel
-processing on Non-Windows platforms.
+that a single object is returned.
 
-## What’s New in v1.0.0?
+## What’s New in v0.1.3?
 
-  - Full support for all Census Bureau Geographic Tools
-  - The syntax of `cxy_geocode()` has changed slightly to facilitate new
-    options
-  - Non-Standard Evaluation (NSE) Has Been Removed
-  - `censusxy` now only has 1 dependency
-  - Parallel support added for Unix Platforms
+The `cxy_geocode()` function now includes an option `fill_na`, which is
+enabled by default. Two fields in the original implementation of the
+package, `cxy_quality` and `cxy_match`, were returned as empty strings
+when no match was identified. Now, by default, they will both be
+returned with `NA` values when there is no match. If you want to return
+to the original behavior, simply set `fill_na = FALSE` in your function
+call.
 
-## Installing censusxy
+## Installation
 
-The easiest way to get `censusxy` is to install it from CRAN:
+### Installing Dependencies
+
+You should check the [`sf` package
+website](https://r-spatial.github.io/sf/) and the [`censusxy` package
+website](https://slu-openGIS.github.io/censusxy/) for the latest details
+on installing dependencies for that package. Instructions vary
+significantly by operating system. For best results, have `sf` installed
+before you install `censusxy`. Other dependencies, like `dplyr`, will be
+installed automatically with `censusxy` if they are not already present.
+
+### Installing censusxy
+
+Once `sf` is installed, the easiest way to get `censusxy` is to install
+it from CRAN:
 
 ``` r
 install.packages("censusxy")
@@ -65,13 +81,13 @@ library(censusxy)
 data <- stl_homicides
 ```
 
-There are two possible variable configurations (`simple` and `full`,
-specified using the `output` argument), and two possible output class
-types (`dataframe` and `sf`, specified using the `class` argument):
+There are two possible variable configurations (`minimal` and `full`,
+specified using the `style` argument), and two possible output types
+(`tibble` and `sf`, specified using the `output` argument):
 
 ``` r
-homicide_sf <- cxy_geocode(data, street = street_address, city = city, state = state, 
-    output = "simple", class = "sf")
+homicide_sf <- cxy_geocode(data, address = street_address, city = city, state = state, 
+    style = "minimal", output = "sf")
 ```
 
 If you request an `sf` object, you easily preview the results with the
