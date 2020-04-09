@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Geocode Addresses Using the Census Bureau Geocoder — cxy_geocode • censusxy</title>
+<title>Geocode a data.frame of many rows — cxy_geocode • censusxy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -15,13 +15,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -41,16 +39,14 @@
 
 
 
+<meta property="og:title" content="Geocode a data.frame of many rows — cxy_geocode" />
 
-<meta property="og:title" content="Geocode Addresses Using the Census Bureau Geocoder — cxy_geocode" />
-<meta property="og:description" content="This is the single function of the censusxy package, allowing
-    for the easy geocoding of US Addresses using the US Census Bureau
-    Geocoder. This function allows for flexible input and virtually
-    unlimited batch sizes. See the vignette vignette(censusxy)
-    for more details" />
-<meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png" />
+<meta property="og:description" content="Provides access to the US Census Bureau batch endpoints for locations and geographies. 
+The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
+ It also supports multiple outputs, including SF class objects." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
-
 
 
 
@@ -81,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -103,6 +99,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy">
@@ -123,104 +120,115 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Geocode Addresses Using the Census Bureau Geocoder</h1>
-    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/cxy_geocode.R'><code>R/cxy_geocode.R</code></a></small>
+    <h1>Geocode a data.frame of many rows</h1>
+    <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/batch.R'><code>R/batch.R</code></a></small>
     <div class="hidden name"><code>cxy_geocode.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is the single function of the censusxy package, allowing
-    for the easy geocoding of US Addresses using the US Census Bureau
-    Geocoder. This function allows for flexible input and virtually
-    unlimited batch sizes. See the vignette <code>vignette(censusxy)</code>
-    for more details</p>
+    
+    <p>Provides access to the US Census Bureau batch endpoints for locations and geographies. 
+The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
+ It also supports multiple outputs, including SF class objects.</p>
+    
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_geocode</span>(<span class='no'>.data</span>, <span class='no'>address</span>, <span class='no'>city</span>, <span class='no'>state</span>, <span class='no'>zip</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"minimal"</span>,
-    <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"tibble"</span>, <span class='kw'>fill_na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>)</pre>
-
+    <pre class="usage"><span class='fu'>cxy_geocode</span>(
+  <span class='no'>.data</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='no'>street</span>,
+  <span class='kw'>city</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>state</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>zip</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"locations"</span>,
+  <span class='kw'>benchmark</span> <span class='kw'>=</span> <span class='st'>"Public_AR_Current"</span>,
+  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>,
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"simple"</span>
+)</pre>
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>Data frame or tibble containing address data</p></td>
+      <td><p>data.frame containing columns with structured address data</p></td>
     </tr>
     <tr>
-      <th>address</th>
-      <td><p>Column name containing address</p></td>
+      <th>id</th>
+      <td><p>Optional String - Name of column containing unique ID</p></td>
+    </tr>
+    <tr>
+      <th>street</th>
+      <td><p>String - Name of column containing street address</p></td>
     </tr>
     <tr>
       <th>city</th>
-      <td><p>Optional; column name containing city</p></td>
+      <td><p>Optional String - Name of column containing city</p></td>
     </tr>
     <tr>
       <th>state</th>
-      <td><p>Optional; column name containing state</p></td>
+      <td><p>Optional String - Name of column containing state</p></td>
     </tr>
     <tr>
       <th>zip</th>
-      <td><p>Optional; column name containing 5-digit zip code</p></td>
+      <td><p>Optional String - Name of column containing zip code</p></td>
     </tr>
     <tr>
-      <th>style</th>
-      <td><p>One of either <code>"minimal"</code> or <code>"full"</code></p></td>
+      <th>return</th>
+      <td><p>One of 'locations' or 'geographies' denoting returned information from the API</p></td>
     </tr>
     <tr>
-      <th>output</th>
-      <td><p>One of either <code>"tibble"</code> or <code>"sf"</code></p></td>
+      <th>benchmark</th>
+      <td><p>Optional Census Benchmark to geocode against. See Details.</p></td>
     </tr>
     <tr>
-      <th>fill_na</th>
-      <td><p>If <code>TRUE</code>, fill un-matched values to <code>cxy_quality</code>
-and <code>exy_status</code> with <code>NA</code> values (default); <code>FALSE</code> returns
-empty strings, which mirrors the original output of this function</p></td>
+      <th>vintage</th>
+      <td><p>Optional Census Vintage to geocode against. See Details.</p></td>
     </tr>
     <tr>
       <th>timeout</th>
-      <td><p>Maximum number of minutes for each API call to the geocoder.</p></td>
+      <td><p>Numeric, in minutes, how long until request times out</p></td>
+    </tr>
+    <tr>
+      <th>parallel</th>
+      <td><p>Integer, number of cores greater than one if parallel requests are desired. See Details.</p></td>
+    </tr>
+    <tr>
+      <th>class</th>
+      <td><p>One of 'dataframe' or 'sf' denoting the output class. 'sf' will only return matched addresses.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>One of 'simple' or 'full' denoting the returned columns. Simple returns just coordinates.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Either a tibble or sf object containing the census geocoder response.</p>
+    <p>A data.frame or sf object containing geocoded results</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># load sample data</span>
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>stl_homicides_small</span>
+    <p>Parallel requests are not currently supported on Windows.
+You may not specify more cores than the system reports are available
+If you do, the maximum number of available cores will be used.</p>
+<p>If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the <code><a href='cxy_vintages.html'>cxy_vintages()</a></code> function to obtain valid Vintages.
+ See <code><a href='../articles/censusxy.html'>vignette('censusxy')</a></code> for a full walkthrough.</p>
+    
 
-<span class='co'># geocode data</span>
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>cxy_geocode</span>(<span class='no'>data</span>, <span class='kw'>address</span> <span class='kw'>=</span> <span class='st'>"street_address"</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"city"</span>,
-    <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"state"</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>"postal_code"</span>)
-
-<span class='co'># preview data</span>
-<span class='no'>data</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 24 x 11</span><span>
-#&gt;    street_address  year date  state postal_code city  cxy_status cxy_quality
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'> 1</span><span> 724 Baden Ave   </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 2</span><span> 1707 Billups …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 3</span><span> 3949 Potomac …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 4</span><span> 1513 N 13th St  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Tie        </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'> 5</span><span> 4539 Carrie A…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 6</span><span> 4231 Natural …  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … No_Match   </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'> 7</span><span> 1124 Dillon Dr  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 8</span><span> 5598 Robin Ave  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'> 9</span><span> 4629 Minnesot…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … No_Match   </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'>10</span><span> 3215 Bailey A…  </span><span style='text-decoration: underline;'>2</span><span>018 07/0… MO    </span><span style='color: #BB0000;'>NA</span><span>          St. … Match      Exact      
-#&gt; </span><span style='color: #555555;'># … with 14 more rows, and 3 more variables: cxy_match </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, lon </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   lat </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
-
-</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>
@@ -228,7 +236,7 @@ empty strings, which mirrors the original output of this function</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://chris-prener.github.io'>Christopher Prener</a>, <a href='https://bransonf.com'>Branson Fox</a>.</p>
+  <p>Developed by Christopher Prener, Branson Fox.</p>
 </div>
 
 <div class="pkgdown">
