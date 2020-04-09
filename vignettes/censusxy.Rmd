@@ -10,22 +10,19 @@ vignette: >
 ---
 
 ## Overview
-The `censusxy` package is designed to provide easy and efficient access to the [U.S. Census Bureau Batch Geocoder](https://geocoding.geo.census.gov/geocoder/) in `R`. 
+The `censusxy` package is designed to provide easy access to the [U.S. Census Bureau Geocoding Tools](https://geocoding.geo.census.gov/geocoder/) in `R`.
 
 ### Motivation
-The `censusxy` package has been developed specifically with large data sets in mind. There are other implementations for accessing the Census Bureau's API for geocoding in `R` (e.g. the [`censusr` package](https://CRAN.R-project.org/package=censusr)) that require iteration to geocode multiple addresses at once. `censusxy`, on the other hand, is designed to operate on on a column of addresses in a data frame or tibble object. Additionally, the Census Bureau caps the number of addresses that can be sent to the API in a single call at 1,000. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. The package therefore provides an efficient solution to batch geocoding via the Census Bureau's services.
+There do not exist many packages for free or reproducible geocoding in the R environment. However, the Census Bureau Geocoding Tools allow for both unlimited free geocoding as well as an added level of reproducibility compared to commercial geocoders. Many geospatial workflows involve a large quantity of addresses, hence our core focus is on batch geocoding.
 
 ### Responsible Use
 The U.S. Census Bureau makes their geocoding API available without any API key, and this package allows for virtually unlimited batch geocoding. Please use this package responsibly, as others will need use of this API for their research.
 
 ### Installation
-We recommend that users install `sf` before proceeding with the installation of `censusxy`. Windows users should be able to install `sf` without significant issues, but macOS and Linux users will need to install several open source spatial libraries to get `sf` itself up and running. The easiest approach for macOS users is to install the GDAL 2.0 Complete framework from [Kyng Chaos](https://www.kyngchaos.com/software/frameworks/). 
 
-For Linux users, steps will vary based on the flavor being used. Our [configuration file](https://github.com/slu-openGIS/compstatr/blob/master/.travis.yml) for Travis CI and its associated [bash script](https://github.com/slu-openGIS/areal/blob/master/.travis/install.sh) should be useful in determining the necessary components to install.
+The easiest way to get `censusxy` is to install it from CRAN:
 
-Once `sf` is installed, the easiest way to get `censusxy` is to install it from CRAN:
-
-``` r
+```r
 install.packages("censusxy")
 ```
 
@@ -36,33 +33,70 @@ The development version of `censusxy` can be accessed from GitHub with `remotes`
 remotes::install_github("slu-openGIS/censusxy")
 ```
 
-### Tips
-The key function, `cxy_geocode`, supports non-standard evaluation, meaning you can use either quoted or unquoted inputs for arguments that refer to variable names.
- 
 ## Workflow
-### Data
-This implementation assumes that your data are contained in a `data.frame` or tibble, and that address data are split into a number of component variables: street address, city, state, and five digit zip code. If your data are not split into components, the authors recommend the package [`postmastr`](https://github.com/slu-openGIS/postmastr) for street address parsing. Not all components are required. For example, the sample homicide data included in the package lack zip code data. However, the more components you have, the better your results will be. Both sample data objects in this package present data as they should be formatted for geocoding.
-
-### Usage
-This package contains a single exported function, `cxy_geocode()`. The only required arguments are `.data` for the `data.frame` or tibble containing address data, and `address` specifying the column name containing street addresses. The function supports non-standard evaluation, meaning you do not need to quote arguments for column names.
-
+### Importing Data
+If you plan on using the single address geocoding tools, your data do not need to be in any specific class. To use the batch geocoder, your data must be in a data.frame (or equivalent class). This package provides Homicides in St Louis City between 2008-2018 as example data.
 ```r
-results <- cxy_geocode(stl_homicides, address = street_address)
+data("stl_homicides")
 ```
 
-However, it is highly recommended that you include city, state and zip code as well. Doing so will increase speed and accuracy significantly. The homicide data contain city and state data as well, so the preferred call for these data would be:
+### Parsing Addresses
+For use of the batch API, your address data needs to be structured. Meaning, your data contains seperate columns for street address, city, state and zipcode. You may find the [`postmastr`](https://github.com/slu-openGIS/postmastr) package useful for this task. Only street address is mandatory, but omission of city, state and zip drastically lower the speed and accuracy of the batch geocoder.
 
+### Pick A Suitable API
+The Census Geocoder contains 4 primary functions, 3 for single address geocoding, and 1 for batch geocoding. For interactive use cases, a Shiny application for example, the single line geocoder is recommended. For large quantities of addresses, the batch endpoint is favorable.
+
+If your usecase is locating coordinates within census geometries, only a single coordinate function is available for this task.
+
+### Pick a Return Type
+If you are interested in census geometries (composed of FIPS codes for state, county, tract and block), you should specify 'geographies' in the `return` argument. This also necessitates the use of a vintage.
+
+### Consider the Benchmark and Vintage
+Vintage is only important to consider when geocoding census geographies. It has no impact on geocoding coordinates (location). You can obtain a data.frame of valid benchmarks and vintages with their respective functions. For vintages, you must supply the name or ID of the benchmark you have chosen.
 ```r
-results <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state)
+cxy_benchmarks()
+cxy_vintages(benchmark = 'Public_AR_Census2010')
 ```
 
-Finally, two output types are supported. By default, a tibble is returned (`output = "tibble"`) with a minimal set of variables that describe the accuracy of a given observation's geocoding (`style = "minimal"`). A complete set of values returned by the API for each observation can be obtained by using `style = "full"`. Alternatively, an `sf` object can be returned with the geocoded data projected using the [WGS 1984](https://epsg.io/4326) geographic coordinate system:
+### Parallelization (UNIX ONLY)
+If you are on a UNIX platform (macOS, Linux, etc.), you may take advantage of multiple threads to greatly increase performance. This functionality is not currently supported on Windows Operating Systems, however. All you have to do is specify the number of cores you would like to use and the function will automatically distribute the workload in the most efficient manner. The function will not allow you to specify more cores than are available, and will instead default to the maximum number of available cores.
 
+### Class and Output
+When using the batch function, you may specify `class` to "sf" which will return the results as an sf object, allowing for quick preview or export of the spatial data. However, doing this will only return addresses for which the geocoder could successfully match. A helpful message denoting how many rows were removed will print in the console.
+
+You may also specify `output` as "simple" or "full". Simple returns only coordinates (and a GEOID if `return = "geographies"`) and this is suitable for most use cases. If you desire all of the raw output from the geocoder, please specify full instead.
+
+### Timeout
+The function contains an argument for timeout, which specifies how many minutes until the API query ends as an error. In this implementation, it is per 1000 addresses, not the whole batch size. It is set to default at 30 minutes, which should be appropriate for most internet speeds.
+
+If a batch times out, the function will terminate, and you will lose any geocoding progress.
+
+Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app [caffeine](http://lightheadsw.com/caffeine/) useful (Also available as a Command Line Tool).
+
+## Usage
+### Geographies
+If you would like to append census geographies, or have control of the benchmark in order to reproduce geocoding results, you will find it convenient to use the built in functions for doing so. If you are not concerned about reproducibility or geographies, the functions will default to the latest benchmark, and you may ignore this section.
+
+Get the current valid benchmarks, these are used to geocode and show available vintages.
 ```r
-homicide_sf <- cxy_geocode(stl_homicides, id, street_address, city, state, postal_code, output = "sf")
+cxy_benchmarks()
 ```
 
-Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use `output = "tibble"` to return all addresses, including those that are unmatched.
+Once, you've selected a benchmark, and only if you intend to append geographies, you should choose a vintage based on the benchmark you selected (Either by name or ID).
+```r
+cxy_vintages('Public_AR_Census2010')
+cxy_vintages(9) # Same as Above
+```
+Both of these should be supplied as arguments to your geocoding function.
+
+### Batch Geocoding
+In this example, we will use the included `stl_homicides` data to show the full process for batch geocoding.
+
+```r
+homicide_sf <- cxy_geocode(stl_homicides, address = street_address, city = city, state = state, zip = postal_code, class = "sf")
+```
+
+Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use `class = "dataframe"` to return all addresses, including those that are unmatched.
 
 Output returned as an `sf` object can be previewed with a package like [`mapview`](https://cran.r-project.org/package=mapview):
 ```r
@@ -72,15 +106,41 @@ Output returned as an `sf` object can be previewed with a package like [`mapview
 knitr::include_graphics("../man/figures/homicide_example.png")
 ```
 
-### Timeout
-The function contains an argument for timeout, which specifies how many minutes until the API query ends as an error. In this implementation, it is per 1000 addresses, not the whole batch size. It is set to default at 30 minutes, which should be appropriate for most internet speeds.
+### Single Address Tools
+We'll investigate a few other use cases, specifically those involving fewer or single addresses.
 
-If a batch times out, the next 1000 addresses will be attempted.
+You would like to geocode a single structured address:
+```r
+cxy_single('20 N Grand Blvd', 'St. Louis', 'MO', 63103)
+```
 
-Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app [caffeine](http://lightheadsw.com/caffeine/) useful.
+You would like to geocode a single unstructured address and append census geographies:
+```r
+cxy_oneline("3700 Lindell Blvd, St. Louis, MO 63108", return = 'geographies', vintage = 'Current_Current')
+```
+
+You would like to append census geographies to a given coordinate:
+```r
+cxy_geography(-90.23324, 38.63593)
+```
+
+#### Iteration
+For a handful of addresses, you may want to iterate using these functions. Two examples using base R are provided here.
+```r
+addresses <- c("20 N Grand Blvd, St. Louis MO 63103", "3700 Lindell Blvd, St. Louis, MO 63108")
+
+# With A For Loop
+geocodes <- vector("list", length = 2)
+for (i in seq_along(addresses)){
+  geocodes[[i]] <- cxy_oneline(addresses[i])
+}
+
+# With an Apply Function
+geocodes <- lapply(addresses, cxy_oneline)
+```
 
 ## Getting Help
 * If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](http://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `censusxy` is designed to integrate seamlessly with.
 * If you are new to spatial analysis in `R`, we strongly encourage you check out the excellent new [*Geocomputation in R*](https://geocompr.robinlovelace.net) by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
 * If you have questions about using `censusxy`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](http://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `censusxy`.
-* If you think you've found a bug, please create a [`reprex`](http://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/slu-openGIS/compstatr/issues/new/choose).
+* If you think you've found a bug, please create a [`reprex`](http://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/slu-openGIS/censusxy/issues/new/choose).
