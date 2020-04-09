@@ -1,7 +1,7 @@
 #' Geocode a data.frame of many rows
 #'
-#' @description 
-#' Provides access to the US Census Bureau batch endpoints for locations and geographies. 
+#' @description
+#' Provides access to the US Census Bureau batch endpoints for locations and geographies.
 #' The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
 #'  It also supports multiple outputs, including SF class objects.
 #'
@@ -22,11 +22,11 @@
 #'
 #' @return A data.frame or sf object containing geocoded results
 #'
-#' @details 
+#' @details
 #' Parallel requests are not currently supported on Windows.
 #' You may not specify more cores than the system reports are available
 #' If you do, the maximum number of available cores will be used.
-#' 
+#'
 #' If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
 #'  See \code{vignette('censusxy')} for a full walkthrough.
 #'
@@ -34,22 +34,22 @@
 #' @importFrom utils write.table read.csv
 #'
 #' @export
-cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA, return = 'locations', benchmark = 'Public_AR_Current', vintage = NA, timeout = 30, parallel = 1, class = 'dataframe', output = 'simple'){
+cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL, timeout = 30, parallel = 1, class = 'dataframe', output = 'simple'){
 
   # Check Specification of Arguments
   if(missing(.data) | missing(street)){
     stop('`.data` and `street` are required arguments')
   }
-  if(!is.na(id) & any(duplicated(.data[[id]]))){
+  if(!is.null(id) && any(duplicated(.data[[id]]))){
     stop('Rows in the `id` column are not unique')
   }
   if(!return %in% c('locations', 'geographies')){
     stop("`return` must be one of 'locations' or 'geographies'")
   }
-  if(return == 'locations' & !is.na(vintage)){
+  if(return == 'locations' & !is.null(vintage)){
     warning("Vintage ignored for return = 'locations'")
   }
-  if(return == 'geographies' & is.na(vintage)){
+  if(return == 'geographies' & is.null(vintage)){
     stop("`vintage` must be specified for return = 'geographies'")
   }
   if(!class %in% c('dataframe', 'sf')){
@@ -63,7 +63,7 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
   }
 
   # Warn for Omission
-  if(is.na(city) | is.na(state) | is.na(zip)){
+  if(is.null(city) | is.null(state) | is.null(zip)){
     warning('Omission of `city`, `state` or `zip` greatly reduces the speed and accuracy of the geocoder.')
   }
 
@@ -90,7 +90,7 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
   # Handle NA Arguments
   n <- nrow(.data)
 
-  if(!is.na(id)){
+  if(!is.null(id)){
     if(!id %in% names(.data)){
       stop(id, ' is not a defined column name in the data.frame')
     }
@@ -105,7 +105,7 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
     stop(street, ' is not a defined column name in the data.frame')
   }
 
-  if(!is.na(city)){
+  if(!is.null(city)){
     if(!city %in% names(.data)){
       stop(city, ' is not a defined column name in the data.frame')
     }
@@ -114,7 +114,7 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
     city <- rep_len(NA, n)
   }
 
-  if(!is.na(state)){
+  if(!is.null(state)){
     if(!state %in% names(.data)){
       stop(state, ' is not a defined column name in the data.frame')
     }
@@ -123,7 +123,7 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
     state <- rep_len(NA, n)
   }
 
-  if(!is.na(zip)){
+  if(!is.null(zip)){
     if(!zip %in% names(.data)){
       stop(zip, ' is not a defined column name in the data.frame')
     }
@@ -141,11 +141,11 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
     zip = zip,
     stringsAsFactors = FALSE
   )
-  
+
   # Extract unique addresses
   uniq <- df[which(!duplicated(paste(df$street, df$city, df$state, df$zip))),]
-  
-  
+
+
   if(parallel > 1){
     # Split by Core Count, Maximizing the Size of Batches
     # Calculate Split Factor (Halve Batch Sizes until appropriately under threshold)
@@ -167,40 +167,40 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
                       return, timeout, benchmark, vintage)
 
   }
-  
+
   # Row Bind the List of Responses
   api_output <- do.call(rbind, results)
-  
+
   # Join Results with unique
   uniq_join <- merge(uniq, api_output, by = 'id' , all.x = TRUE, sort = TRUE)
-  
+
   # Join Uniq with original df and sort
   all_join <- merge(df, uniq_join, by = c('street', 'city', 'state', 'zip'), all.x = TRUE)
   all_join <- all_join[order(all_join$id.x),]
-  
+
   # Add cxy_ prefix to names
   names(all_join) <- paste0('cxy_', names(all_join))
   # Coerce to Numeric Cooridates
   all_join$cxy_lat <- as.numeric(all_join$cxy_lat)
   all_join$cxy_lon <- as.numeric(all_join$cxy_lon)
-  
-  
+
+
   # Output Type
   if(output == 'simple'){
     if(return == 'geographies'){
       return_df <- cbind(.data, all_join[,c('cxy_lon', 'cxy_lat', 'cxy_state_id', 'cxy_county_id', 'cxy_tract_id', 'cxy_block_id')])
     }else{
       return_df <- cbind(.data, all_join[,c('cxy_lon', 'cxy_lat')])
-    } 
+    }
   }
   else if(output == 'full'){
     if(return == 'geographies'){
       return_df <- cbind(.data, all_join[,c('cxy_address', 'cxy_status', 'cxy_quality', 'cxy_matched_address', 'cxy_tiger_line_id', 'cxy_tiger_side', 'cxy_lon', 'cxy_lat', 'cxy_state_id', 'cxy_county_id', 'cxy_tract_id', 'cxy_block_id')])
     }else{
       return_df <- cbind(.data, all_join[,c('cxy_address', 'cxy_status', 'cxy_quality', 'cxy_matched_address', 'cxy_tiger_line_id', 'cxy_tiger_side', 'cxy_lon', 'cxy_lat')])
-    } 
+    }
   }
-  
+
   # Optionally, Return an SF Object
   if(class == 'sf'){
     valid <- return_df[which(!is.na(return_df$cxy_lat)),]
@@ -209,6 +209,6 @@ cxy_geocode <- function(.data, id = NA, street, city = NA, state = NA, zip = NA,
     message(nrow(return_df) - nrow(valid), ' rows removed to create an sf object. These were addresses that the geocoder could not match.')
     return(sf)
   }
-  
+
   return(return_df)
 }

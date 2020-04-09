@@ -15,7 +15,7 @@
 #' @importFrom httr GET content
 #'
 #' @export
-cxy_single <- function(street, city = NA, state = NA, zip = NA, return = 'locations', benchmark = 'Public_AR_Current', vintage = NA){
+cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
 
   # Check Specification of Arguments
   if(missing(street)){
@@ -26,16 +26,16 @@ cxy_single <- function(street, city = NA, state = NA, zip = NA, return = 'locati
     stop("`return` must be one of 'locations' or 'geographies'")
   }
 
-  if(return == 'locations' & !is.na(vintage)){
+  if(return == 'locations' & !is.null(vintage)){
     warning("Vintage ignored for return = 'locations'")
   }
 
-  if(return == 'geographies' & is.na(vintage)){
+  if(return == 'geographies' & is.null(vintage)){
     stop("`vintage` must be specified for return = 'geographies'")
   }
 
   # Warn for Omission
-  if(is.na(city) | is.na(state) | is.na(zip)){
+  if(is.null(city) | is.null(state) | is.null(zip)){
     warning('Omission of `city`, `state` or `zip` greatly reduces the speed and accuracy of the geocoder.')
   }
 
@@ -82,7 +82,7 @@ cxy_single <- function(street, city = NA, state = NA, zip = NA, return = 'locati
 #'
 #'
 #' @export
-cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Current', vintage = NA){
+cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
 
   # Check Specification of Arguments
   if(missing(address)){
@@ -93,11 +93,11 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
     stop("`return` must be one of 'locations' or 'geographies'")
   }
 
-  if(return == 'locations' & !is.na(vintage)){
+  if(return == 'locations' & !is.null(vintage)){
     warning("Vintage ignored for return = 'locations'")
   }
 
-  if(return == 'geographies' & is.na(vintage)){
+  if(return == 'geographies' & is.null(vintage)){
     stop("`vintage` must be specified for return = 'geographies'")
   }
 

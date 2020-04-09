@@ -6,12 +6,12 @@
 \usage{
 cxy_single(
   street,
-  city = NA,
-  state = NA,
-  zip = NA,
+  city = NULL,
+  state = NULL,
+  zip = NULL,
   return = "locations",
   benchmark = "Public_AR_Current",
-  vintage = NA
+  vintage = NULL
 )
 }
 \arguments{

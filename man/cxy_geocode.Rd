@@ -6,14 +6,14 @@
 \usage{
 cxy_geocode(
   .data,
-  id = NA,
+  id = NULL,
   street,
-  city = NA,
-  state = NA,
-  zip = NA,
+  city = NULL,
+  state = NULL,
+  zip = NULL,
   return = "locations",
   benchmark = "Public_AR_Current",
-  vintage = NA,
+  vintage = NULL,
   timeout = 30,
   parallel = 1,
   class = "dataframe",
@@ -51,7 +51,7 @@ cxy_geocode(
 A data.frame or sf object containing geocoded results
 }
 \description{
-Provides access to the US Census Bureau batch endpoints for locations and geographies. 
+Provides access to the US Census Bureau batch endpoints for locations and geographies.
 The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
  It also supports multiple outputs, including SF class objects.
 }

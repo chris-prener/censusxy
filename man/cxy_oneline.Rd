@@ -8,7 +8,7 @@ cxy_oneline(
   address,
   return = "locations",
   benchmark = "Public_AR_Current",
-  vintage = NA
+  vintage = NULL
 )
 }
 \arguments{

@@ -182,7 +182,7 @@ test_that('Valid batch geocodes execute, and return correctly', {
     names(g_sf_full),
     17
   )
-  
+
 })
 
 
