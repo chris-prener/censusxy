@@ -15,13 +15,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -41,11 +39,10 @@
 
 
 
-
 <meta property="og:title" content="Function reference" />
-<meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png" />
-<meta name="twitter:card" content="summary" />
 
+<meta property="og:image" content="/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -76,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -98,6 +95,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy">
@@ -132,25 +130,47 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-geocoding" class="hasAnchor"><a href="#section-geocoding" class="anchor"></a>Geocoding</h2>
-          <p class="section-desc"><p>Return longitude and latitude of American street addresses</p></p>
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
+          <p><code><a href="cxy_benchmarks.html">cxy_benchmarks()</a></code> </p>
+        </td>
+        <td><p>Get Current Valid Benchmarks</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="cxy_geocode.html">cxy_geocode()</a></code> </p>
         </td>
-        <td><p>Geocode Addresses Using the Census Bureau Geocoder</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-sample-data" class="hasAnchor"><a href="#section-sample-data" class="anchor"></a>Sample Data</h2>
-          <p class="section-desc"><p>Sample data for demonstrating geocoding</p></p>
-        </th>
-      </tr>
-      <tr>
+        <td><p>Geocode a data.frame of many rows</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cxy_geography.html">cxy_geography()</a></code> </p>
+        </td>
+        <td><p>Single GeoLookup</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cxy_oneline.html">cxy_oneline()</a></code> </p>
+        </td>
+        <td><p>Single Unstructured Address</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cxy_single.html">cxy_single()</a></code> </p>
+        </td>
+        <td><p>Geocode Single Structured Address</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cxy_vintages.html">cxy_vintages()</a></code> </p>
+        </td>
+        <td><p>Get Current Valid Vintages</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="stl_homicides.html">stl_homicides</a></code> </p>
@@ -170,8 +190,7 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-geocoding">Geocoding</a></li>
-      <li><a href="#section-sample-data">Sample Data</a></li>
+      <li><a href="#section-all-functions">All functions</a></li>
     </ul>
   </div>
 </div>
@@ -179,7 +198,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://chris-prener.github.io'>Christopher Prener</a>, <a href='https://bransonf.com'>Branson Fox</a>.</p>
+  <p>Developed by Christopher Prener, Branson Fox.</p>
 </div>
 
 <div class="pkgdown">
