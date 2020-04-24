@@ -204,7 +204,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   # Optionally, Return an SF Object
   if(class == 'sf'){
     valid <- return_df[which(!is.na(return_df$cxy_lat)),]
-    sf <- sf::st_as_sf(valid, coords = c('cxy_lat', 'cxy_lon'), crs = 4269) # NAD83
+    sf <- sf::st_as_sf(valid, coords = c('cxy_lon', 'cxy_lat'), crs = 4269) # NAD83
     # Message Number of Rows Removed
     message(nrow(return_df) - nrow(valid), ' rows removed to create an sf object. These were addresses that the geocoder could not match.')
     return(sf)
