@@ -70,7 +70,7 @@ specified using the `output` argument), and two possible output class
 types (`dataframe` and `sf`, specified using the `class` argument):
 
 ``` r
-homicide_sf <- cxy_geocode(data, street = street_address, city = city, state = state, 
+homicide_sf <- cxy_geocode(data, street = "street_address", city = "city", state = "state", 
     output = "simple", class = "sf")
 ```
 
