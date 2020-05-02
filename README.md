@@ -4,6 +4,8 @@
 # censusxy <img src="man/figures/logo.png" align="right" />
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R build
+status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
 [![Travis-CI Build
 Status](https://travis-ci.org/slu-openGIS/censusxy.svg?branch=master)](https://travis-ci.org/slu-openGIS/censusxy)
 [![AppVeyor Build
