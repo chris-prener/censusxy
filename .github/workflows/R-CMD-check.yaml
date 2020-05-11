@@ -61,6 +61,7 @@ jobs:
         run: |
           brew update
           brew install udunits
+          brew install gdal
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
