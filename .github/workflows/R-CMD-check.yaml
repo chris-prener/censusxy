@@ -90,6 +90,12 @@ jobs:
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
+      - name: Test Coverage
+        if: runner.os == 'Windows'
+        run: |
+          Rscript -e 'remotes::install_github("r-lib/covr@gh-actions")'
+          Rscript -e 'covr::codecov()'
+
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
