@@ -28,4 +28,9 @@ Provides access to the GeoLookup API of the US Census Bureau. Returns census geo
 }
 \details{
 This function can be used to locate geographic information given a geographic point. It does not provide an address like a reverse-geocoder
+
+To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
+
+To use this function, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
+ See \code{vignette('censusxy')} for a full walkthrough.
 }

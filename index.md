@@ -4,12 +4,11 @@
 # censusxy <img src="man/figures/logo.png" align="right" />
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis-CI Build
-Status](https://travis-ci.org/slu-openGIS/censusxy.svg?branch=master)](https://travis-ci.org/slu-openGIS/censusxy)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/slu-openGIS/censusxy?branch=master&svg=true)](https://ci.appveyor.com/project/chris-prener/censusxy)
+[![R build
+status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
 [![Coverage
 status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
+[![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 
 The `censusxy` package is designed to provide easy access to the [U.S.
