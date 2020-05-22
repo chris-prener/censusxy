@@ -4,7 +4,8 @@
 \name{stl_homicides}
 \alias{stl_homicides}
 \title{Homicides in the City of St. Louis, 2008 - 2018}
-\format{A tibble with 1822 rows and 6 variables:
+\format{
+A tibble with 1822 rows and 6 variables:
 \describe{
   \item{street_address}{number, street and street suffix where homicide occured}
   \item{year}{year homicide occurred}
@@ -12,7 +13,8 @@
   \item{state}{state abbreviation of location, in these data, all "MO"}
   \item{postal_code}{zipcode/postal code of location, in these data all NA}
   \item{city}{city of location, in these data all "St. Louis"}
-  }}
+  }
+}
 \source{
 \href{http://www.slmpd.org/Crimereports.shtml}{St. Louis Metropolitan Police Department}
 }

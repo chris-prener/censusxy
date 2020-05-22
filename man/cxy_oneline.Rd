@@ -26,3 +26,9 @@ A data.frame containing matched address or NULL if not matches
 \description{
 Provides access to the oneline single address geocoding API from the US Census Bureau.
 }
+\details{
+To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
+
+If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
+ See \code{vignette('censusxy')} for a full walkthrough.
+}

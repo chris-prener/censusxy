@@ -27,6 +27,8 @@
 #' You may not specify more cores than the system reports are available
 #' If you do, the maximum number of available cores will be used.
 #'
+#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
+#'
 #' If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
 #'  See \code{vignette('censusxy')} for a full walkthrough.
 #'

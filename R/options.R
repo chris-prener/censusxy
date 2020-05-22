@@ -4,13 +4,14 @@
 #'
 #' @return A data.frame containing valid Census Benchmarks
 #'
-#' @importFrom httr GET content
+#' @importFrom httr GET content timeout
 #'
 #' @examples cxy_benchmarks()
 #'
 #' @export
 cxy_benchmarks <- function(){
-  req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks')
+  req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
+                   httr::timeout(30))
   cnt <- httr::content(req)
   df <- do.call(rbind.data.frame, cnt$benchmarks)
   return(df)
@@ -24,7 +25,7 @@ cxy_benchmarks <- function(){
 #'
 #' @return A data.frame containing valid Census Vintages for a given benchmark
 #'
-#' @importFrom httr GET content
+#' @importFrom httr GET content timeout
 #'
 #' @examples cxy_vintages('Public_AR_Census2010')
 #'
@@ -38,7 +39,8 @@ cxy_vintages <- function(benchmark){
     httr::GET('https://geocoding.geo.census.gov/geocoder/vintages',
               query = list(
                 benchmark = benchmark
-              )
+              ),
+              httr::timeout(30)
     )
   cnt <- httr::content(req)
   if(length(cnt) < 1){
