@@ -4,7 +4,22 @@
     <loc>https://slu-openGIS.github.io/censusxy//index.html</loc>
   </url>
   <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_benchmarks.html</loc>
+  </url>
+  <url>
     <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_geocode.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_geography.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_oneline.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_single.html</loc>
+  </url>
+  <url>
+    <loc>https://slu-openGIS.github.io/censusxy//reference/cxy_vintages.html</loc>
   </url>
   <url>
     <loc>https://slu-openGIS.github.io/censusxy//reference/stl_homicides.html</loc>

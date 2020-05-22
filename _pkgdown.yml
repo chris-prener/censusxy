@@ -7,10 +7,23 @@ authors:
     href: https://bransonf.com
 
 reference:
-  - title: "Geocoding"
-    desc: "Return longitude and latitude of American street addresses"
+  - title: "Core Geocoding Functions"
+    desc: "Return coordinates and Census geography of American street addresses"
     contents:
     - cxy_geocode
+    - cxy_single
+    - cxy_oneline
+
+  - title: "Census Geography Geocoding"
+    desc: "Return Census Geography for coordinates"
+    contents:
+    - cxy_geography
+
+  - title: "Additional Functions"
+    desc: "Extra functions for working with the Census API"
+    contents:
+    - cxy_benchmarks
+    - cxy_vintages
 
   - title: "Sample Data"
     desc: "Sample data for demonstrating geocoding"

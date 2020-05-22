@@ -1,6 +1,10 @@
-pandoc: 2.7.1
-pkgdown: 1.4.1
+pandoc: 2.3.1
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   censusxy: censusxy.html
+last_built: 2020-05-22T17:45Z
+urls:
+  reference: https://slu-openGIS.github.io/censusxy//reference
+  article: https://slu-openGIS.github.io/censusxy//articles
 
