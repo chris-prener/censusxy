@@ -20,7 +20,7 @@ reference:
     - cxy_geography
 
   - title: "Additional Functions"
-    desc: "Extra functions for working with the Census API"
+    desc: "Functions for increasing reproducibility with the Census API"
     contents:
     - cxy_benchmarks
     - cxy_vintages

@@ -1,4 +1,4 @@
-#' Geocode a data.frame of many rows
+#' Batch Geocode Parsed Addresses
 #'
 #' @description
 #' Provides access to the US Census Bureau batch endpoints for locations and geographies.

@@ -1,4 +1,4 @@
-#' Geocode Single Structured Address
+#' Geocode Single Parsed Address
 #'
 #' @description Provides access to the structured single address geocoding API from the US Census Bureau.
 #'
@@ -74,9 +74,10 @@ cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = '
   return(df)
 }
 
-#' Single Unstructured Address
+#' Geocode Single One Line Address
 #'
 #' @description Provides access to the oneline single address geocoding API from the US Census Bureau.
+#'   This can be used with an address that is not parsed.
 #'
 #' @param address String containing a single line address
 #' @param return One of 'locations' or 'geographies' See Details.
@@ -140,7 +141,7 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
 }
 
 
-#' Single GeoLookup
+#' Geocode Single Coordinate Pair
 #'
 #' @description Provides access to the GeoLookup API of the US Census Bureau. Returns census geographies for a single geographic point.
 #'
