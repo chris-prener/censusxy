@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Single GeoLookup — cxy_geography • censusxy</title>
+<title>Geocode Single Coordinate Pair — cxy_geography • censusxy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Single GeoLookup — cxy_geography" />
-<meta property="og:description" content="Provides access to the GeoLookup API of the US Census Bureau. Returns census geographies for a single geographic point." />
+<meta property="og:title" content="Geocode Single Coordinate Pair — cxy_geography" />
+<meta property="og:description" content="Provides access to the GeoLookup API of the US Census Bureau. Returns census
+    geographies for a single geographic point." />
 <meta property="og:image" content="https://slu-openGIS.github.io/censusxy/logo.png" />
 
 
@@ -122,13 +123,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Single GeoLookup</h1>
+    <h1>Geocode Single Coordinate Pair</h1>
     <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/single.R'><code>R/single.R</code></a></small>
     <div class="hidden name"><code>cxy_geography.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Provides access to the GeoLookup API of the US Census Bureau. Returns census geographies for a single geographic point.</p>
+    <p>Provides access to the GeoLookup API of the US Census Bureau. Returns census
+    geographies for a single geographic point.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cxy_geography</span>(
@@ -164,11 +166,65 @@
     <p>A data.frame containing matched address or NULL if not matches</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function can be used to locate geographic information given a geographic point. It does not provide an address like a reverse-geocoder</p>
+    <p>This function can be used to locate geographic information given a geographic point.
+    It does not provide an address like a reverse-geocoder</p>
 <p>To obtain current valid benchmarks, use the <code><a href='cxy_benchmarks.html'>cxy_benchmarks()</a></code> function</p>
-<p>To use this function, you must specify a valid vintage for your benchmark. You may use the <code><a href='cxy_vintages.html'>cxy_vintages()</a></code> function to obtain valid Vintages for a given benchmark.
- See <code><a href='../articles/censusxy.html'>vignette('censusxy')</a></code> for a full walkthrough.</p>
+<p>To use this function, you must specify a valid vintage for your benchmark. You may use
+    the <code><a href='cxy_vintages.html'>cxy_vintages()</a></code> function to obtain valid Vintages for a given benchmark.
+    See <code><a href='../articles/censusxy.html'>vignette('censusxy')</a></code> for a full walkthrough.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>cxy_geography</span>(<span class='kw'>lon</span> <span class='kw'>=</span> -<span class='fl'>90.23324</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='fl'>38.63593</span>)</div><div class='output co'>#&gt;   X2010.Census.Blocks.SUFFIX X2010.Census.Blocks.GEOID
+#&gt; 1                                      295101211001066
+#&gt;   X2010.Census.Blocks.CENTLAT X2010.Census.Blocks.BLOCK
+#&gt; 1                 +38.6362480                      1066
+#&gt;   X2010.Census.Blocks.AREAWATER X2010.Census.Blocks.STATE
+#&gt; 1                             0                        29
+#&gt;   X2010.Census.Blocks.BASENAME X2010.Census.Blocks.OID
+#&gt; 1                         1066             2.10404e+14
+#&gt;   X2010.Census.Blocks.LSADC X2010.Census.Blocks.FUNCSTAT
+#&gt; 1                        BK                            S
+#&gt;   X2010.Census.Blocks.INTPTLAT X2010.Census.Blocks.NAME
+#&gt; 1                  +38.6362480               Block 1066
+#&gt;   X2010.Census.Blocks.OBJECTID X2010.Census.Blocks.TRACT
+#&gt; 1                       530743                    121100
+#&gt;   X2010.Census.Blocks.CENTLON X2010.Census.Blocks.BLKGRP
+#&gt; 1                -090.2318925                          1
+#&gt;   X2010.Census.Blocks.AREALAND X2010.Census.Blocks.INTPTLON
+#&gt; 1                        36036                 -090.2318925
+#&gt;   X2010.Census.Blocks.MTFCC X2010.Census.Blocks.LWBLKTYP
+#&gt; 1                     G5040                            L
+#&gt;   X2010.Census.Blocks.COUNTY States.STATENS States.GEOID States.CENTLAT
+#&gt; 1                        510       01779791           29    +38.3569819
+#&gt;   States.AREAWATER States.STATE States.BASENAME States.STUSAB   States.OID
+#&gt; 1       2486372732           29        Missouri            MO 2.749047e+12
+#&gt;   States.LSADC States.FUNCSTAT States.INTPTLAT States.DIVISION States.NAME
+#&gt; 1           00               A     +38.3507500               4    Missouri
+#&gt;   States.REGION States.OBJECTID States.CENTLON States.AREALAND States.INTPTLON
+#&gt; 1             2              46   -092.4580631    178052865028    -092.4567826
+#&gt;   States.MTFCC Counties.GEOID Counties.CENTLAT Counties.AREAWATER
+#&gt; 1        G4000          29510      +38.6356970           11003791
+#&gt;   Counties.STATE Counties.BASENAME Counties.OID Counties.LSADC
+#&gt; 1             29         St. Louis 2.759033e+13             25
+#&gt;   Counties.FUNCSTAT Counties.INTPTLAT  Counties.NAME Counties.OBJECTID
+#&gt; 1                 F       +38.6356988 St. Louis city              3142
+#&gt;   Counties.CENTLON Counties.COUNTYCC Counties.COUNTYNS Counties.AREALAND
+#&gt; 1     -090.2452565                C7          00767557         159917886
+#&gt;   Counties.INTPTLON Counties.MTFCC Counties.COUNTY Census.Tracts.GEOID
+#&gt; 1      -090.2445816          G4020             510         29510127800
+#&gt;   Census.Tracts.CENTLAT Census.Tracts.AREAWATER Census.Tracts.STATE
+#&gt; 1           +38.6319521                       0                  29
+#&gt;   Census.Tracts.BASENAME Census.Tracts.OID Census.Tracts.LSADC
+#&gt; 1                   1278      2.079015e+15                  CT
+#&gt;   Census.Tracts.FUNCSTAT Census.Tracts.INTPTLAT Census.Tracts.NAME
+#&gt; 1                      S            +38.6319521  Census Tract 1278
+#&gt;   Census.Tracts.OBJECTID Census.Tracts.TRACT Census.Tracts.CENTLON
+#&gt; 1                  42724              127800          -090.2259200
+#&gt;   Census.Tracts.AREALAND Census.Tracts.INTPTLON Census.Tracts.MTFCC
+#&gt; 1                2546611           -090.2259200               G5020
+#&gt;   Census.Tracts.COUNTY
+#&gt; 1                  510</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

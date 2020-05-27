@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Geocode a data.frame of many rows — cxy_geocode • censusxy</title>
+<title>Batch Geocode Parsed Addresses — cxy_geocode • censusxy</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Geocode a data.frame of many rows — cxy_geocode" />
+<meta property="og:title" content="Batch Geocode Parsed Addresses — cxy_geocode" />
 <meta property="og:description" content="Provides access to the US Census Bureau batch endpoints for locations and geographies.
 The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
  It also supports multiple outputs, including SF class objects." />
@@ -124,7 +124,7 @@ The function implements iteration and optional parallelization in order to geoco
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Geocode a data.frame of many rows</h1>
+    <h1>Batch Geocode Parsed Addresses</h1>
     <small class="dont-index">Source: <a href='https://github.com/slu-openGIS/censusxy/blob/master/R/batch.R'><code>R/batch.R</code></a></small>
     <div class="hidden name"><code>cxy_geocode.Rd</code></div>
     </div>
@@ -220,6 +220,35 @@ If you do, the maximum number of available cores will be used.</p>
 <p>If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the <code><a href='cxy_vintages.html'>cxy_vintages()</a></code> function to obtain valid Vintages.
  See <code><a href='../articles/censusxy.html'>vignette('censusxy')</a></code> for a full walkthrough.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>stl_homicides</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,]
+
+<span class='co'># geocode</span>
+<span class='fu'>cxy_geocode</span>(<span class='no'>x</span>, <span class='kw'>street</span> <span class='kw'>=</span> <span class='st'>'street_address'</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>'city'</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>'state'</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>'postal_code'</span>,
+   <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'locations'</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>'dataframe'</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>'simple'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: sf</span></div><div class='output co'>#&gt;              street_address year             date state postal_code      city
+#&gt; 9            5738 Terry Ave 2008 01/12/2008 12:37    MO          NA St. Louis
+#&gt; 7            5356 Page Blvd 2008 01/17/2008 04:00    MO          NA St. Louis
+#&gt; 10        5826 Roosevelt Pl 2008 01/20/2008 21:19    MO          NA St. Louis
+#&gt; 4             3859 Ohio Ave 2008 01/21/2008 17:38    MO          NA St. Louis
+#&gt; 5      4100 Saint Louis Ave 2008 01/30/2008 15:34    MO          NA St. Louis
+#&gt; 3         2418 N Euclid Ave 2008 01/30/2008 19:19    MO          NA St. Louis
+#&gt; 2            1646 S 39th St 2008 02/04/2008 17:45    MO          NA St. Louis
+#&gt; 8          5617 Enright Ave 2008 02/09/2008 17:30    MO          NA St. Louis
+#&gt; 6  5001 N Kingshighway Blvd 2008 02/09/2008 22:59    MO          NA St. Louis
+#&gt; 1             1500 Cass Ave 2008 02/11/2008 21:50    MO          NA St. Louis
+#&gt;      cxy_lon  cxy_lat
+#&gt; 9  -90.27376 38.67769
+#&gt; 7  -90.27331 38.66157
+#&gt; 10 -90.27593 38.67959
+#&gt; 4  -90.22941 38.58544
+#&gt; 5  -90.23151 38.66029
+#&gt; 3  -90.25564 38.66613
+#&gt; 2  -90.24488 38.61817
+#&gt; 8  -90.28238 38.65493
+#&gt; 6  -90.24467 38.68689
+#&gt; 1  -90.19770 38.64189</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
