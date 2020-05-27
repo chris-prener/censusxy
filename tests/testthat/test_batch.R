@@ -42,6 +42,9 @@ test_that('Invalid Argument Specifications fail', {
 })
 
 test_that('Warnings for specified arguments are triggered', {
+  skip_on_cran()
+  skip_if_offline(host = "r-project.org")
+
   expect_warning(
     cxy_geocode(stl_homicides_small, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code', vintage = 'Current_Current'),
     "Vintage ignored for return = 'locations'"
@@ -85,39 +88,42 @@ test_that('Invalid column names error', {
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## Execute Valid Geocodes
-# Batch Testing of Different Kinds
-x <- stl_homicides[1:100,]
 
-## LOCATION
-df_simple <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'locations', class = 'dataframe', output = 'simple')
-df_full <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'locations', class = 'dataframe', output = 'full')
-sf_simple <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'locations', class = 'sf', output = 'simple')
-sf_full <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'locations', class = 'sf', output = 'full')
-
-## GEOGRAPHY
-g_df_simple <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'geographies', class = 'dataframe', output = 'simple', vintage = 'Current_Current')
-g_df_full <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'geographies', class = 'dataframe', output = 'full', vintage = 'Current_Current')
-g_sf_simple <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'geographies', class = 'sf', output = 'simple', vintage = 'Current_Current')
-g_sf_full <-
-  cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
-            return = 'geographies', class = 'sf', output = 'full', vintage = 'Current_Current')
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 test_that('Valid batch geocodes execute, and return correctly', {
+  skip_on_cran()
+  skip_if_offline(host = "r-project.org")
+
+  # Batch Testing of Different Kinds
+  x <- stl_homicides[1:10,]
+
+  ## LOCATION
+  df_simple <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'locations', class = 'dataframe', output = 'simple')
+  df_full <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'locations', class = 'dataframe', output = 'full')
+  sf_simple <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'locations', class = 'sf', output = 'simple')
+  sf_full <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'locations', class = 'sf', output = 'full')
+
+  ## GEOGRAPHY
+  g_df_simple <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'geographies', class = 'dataframe', output = 'simple', vintage = 'Current_Current')
+  g_df_full <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'geographies', class = 'dataframe', output = 'full', vintage = 'Current_Current')
+  g_sf_simple <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'geographies', class = 'sf', output = 'simple', vintage = 'Current_Current')
+  g_sf_full <-
+    cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+                return = 'geographies', class = 'sf', output = 'full', vintage = 'Current_Current')
+
   expect_s3_class(
     df_simple,
     'data.frame'
