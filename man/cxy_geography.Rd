@@ -37,3 +37,7 @@ To use this function, you must specify a valid vintage for your benchmark. You m
     the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
     See \code{vignette('censusxy')} for a full walkthrough.
 }
+\examples{
+cxy_geography(lon = -90.23324, lat = 38.63593)
+
+}

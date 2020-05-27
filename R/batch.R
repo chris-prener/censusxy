@@ -34,6 +34,14 @@
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom utils write.table read.csv
 #'
+#' @examples
+#' # load data
+#' x <- stl_homicides[1:10,]
+#'
+#' # geocode
+#' cxy_geocode(x, street = 'street_address', city = 'city', state = 'state', zip = 'postal_code',
+#'    return = 'locations', class = 'dataframe', output = 'simple')
+#'
 #' @export
 cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL, timeout = 30, parallel = 1, class = 'dataframe', output = 'simple'){
 

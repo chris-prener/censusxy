@@ -34,3 +34,7 @@ If you want to append census geographies, you must specify a valid vintage for y
     You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
     for a full walkthrough.
 }
+\examples{
+cxy_oneline(address = "20 N Grand Blvd, St Louis, MO 63108", return = "locations")
+
+}

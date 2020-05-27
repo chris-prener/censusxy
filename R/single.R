@@ -21,6 +21,9 @@
 #'     You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
 #'     for a full walkthrough.
 #'
+#' @examples
+#' cxy_single(street = "20 N Grand Blvd", city = "St Louis", state = "MO", zip = "63108", return = "locations")
+#'
 #' @export
 cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
 
@@ -95,6 +98,9 @@ cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = '
 #'     You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
 #'     for a full walkthrough.
 #'
+#' @examples
+#' cxy_oneline(address = "20 N Grand Blvd, St Louis, MO 63108", return = "locations")
+#'
 #' @export
 cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
 
@@ -164,6 +170,9 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
 #'     See \code{vignette('censusxy')} for a full walkthrough.
 #'
 #' @importFrom httr GET content
+#'
+#' @examples
+#' cxy_geography(lon = -90.23324, lat = 38.63593)
 #'
 #' @export
 cxy_geography <- function(lon, lat, benchmark = 'Public_AR_Current', vintage = 'Current_Current'){
