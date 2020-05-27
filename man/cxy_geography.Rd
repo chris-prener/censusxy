@@ -2,7 +2,7 @@
 % Please edit documentation in R/single.R
 \name{cxy_geography}
 \alias{cxy_geography}
-\title{Single GeoLookup}
+\title{Geocode Single Coordinate Pair}
 \usage{
 cxy_geography(
   lon,
@@ -24,13 +24,16 @@ cxy_geography(
 A data.frame containing matched address or NULL if not matches
 }
 \description{
-Provides access to the GeoLookup API of the US Census Bureau. Returns census geographies for a single geographic point.
+Provides access to the GeoLookup API of the US Census Bureau. Returns census
+    geographies for a single geographic point.
 }
 \details{
-This function can be used to locate geographic information given a geographic point. It does not provide an address like a reverse-geocoder
+This function can be used to locate geographic information given a geographic point.
+    It does not provide an address like a reverse-geocoder
 
 To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
 
-To use this function, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
- See \code{vignette('censusxy')} for a full walkthrough.
+To use this function, you must specify a valid vintage for your benchmark. You may use
+    the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
+    See \code{vignette('censusxy')} for a full walkthrough.
 }

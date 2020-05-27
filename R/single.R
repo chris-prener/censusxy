@@ -15,11 +15,11 @@
 #' @importFrom httr GET content
 #'
 #' @details
+#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function.
 #'
-#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
-#'
-#' If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
-#'  See \code{vignette('censusxy')} for a full walkthrough.
+#' If you want to append census geographies, you must specify a valid vintage for your benchmark.
+#'     You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
+#'     for a full walkthrough.
 #'
 #' @export
 cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
@@ -89,11 +89,11 @@ cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = '
 #' @importFrom httr GET content
 #'
 #' @details
+#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function.
 #'
-#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
-#'
-#' If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
-#'  See \code{vignette('censusxy')} for a full walkthrough.
+#' If you want to append census geographies, you must specify a valid vintage for your benchmark.
+#'     You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
+#'     for a full walkthrough.
 #'
 #' @export
 cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
@@ -143,7 +143,8 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
 
 #' Geocode Single Coordinate Pair
 #'
-#' @description Provides access to the GeoLookup API of the US Census Bureau. Returns census geographies for a single geographic point.
+#' @description Provides access to the GeoLookup API of the US Census Bureau. Returns census
+#'     geographies for a single geographic point.
 #'
 #' @param lon Numeric or String Containing Longitude (x) of Point
 #' @param lat Numeric or String Containing Latitude (y) of Point
@@ -152,12 +153,15 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
 #'
 #' @return A data.frame containing matched address or NULL if not matches
 #'
-#' @details This function can be used to locate geographic information given a geographic point. It does not provide an address like a reverse-geocoder
+#' @details
+#' This function can be used to locate geographic information given a geographic point.
+#'     It does not provide an address like a reverse-geocoder
 #'
 #' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
 #'
-#' To use this function, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
-#'  See \code{vignette('censusxy')} for a full walkthrough.
+#' To use this function, you must specify a valid vintage for your benchmark. You may use
+#'     the \code{cxy_vintages()} function to obtain valid Vintages for a given benchmark.
+#'     See \code{vignette('censusxy')} for a full walkthrough.
 #'
 #' @importFrom httr GET content
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/single.R
 \name{cxy_oneline}
 \alias{cxy_oneline}
-\title{Single Unstructured Address}
+\title{Geocode Single One Line Address}
 \usage{
 cxy_oneline(
   address,
@@ -25,10 +25,12 @@ A data.frame containing matched address or NULL if not matches
 }
 \description{
 Provides access to the oneline single address geocoding API from the US Census Bureau.
+  This can be used with an address that is not parsed.
 }
 \details{
-To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
+To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function.
 
-If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
- See \code{vignette('censusxy')} for a full walkthrough.
+If you want to append census geographies, you must specify a valid vintage for your benchmark.
+    You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
+    for a full walkthrough.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/batch.R
 \name{cxy_geocode}
 \alias{cxy_geocode}
-\title{Geocode a data.frame of many rows}
+\title{Batch Geocode Parsed Addresses}
 \usage{
 cxy_geocode(
   .data,

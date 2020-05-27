@@ -2,7 +2,7 @@
 % Please edit documentation in R/single.R
 \name{cxy_single}
 \alias{cxy_single}
-\title{Geocode Single Structured Address}
+\title{Geocode Single Parsed Address}
 \usage{
 cxy_single(
   street,
@@ -36,8 +36,9 @@ A data.frame containing matched address or NULL if not matches
 Provides access to the structured single address geocoding API from the US Census Bureau.
 }
 \details{
-To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
+To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function.
 
-If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
- See \code{vignette('censusxy')} for a full walkthrough.
+If you want to append census geographies, you must specify a valid vintage for your benchmark.
+    You may use the \code{cxy_vintages()} function to obtain valid Vintages. See \code{vignette('censusxy')}
+    for a full walkthrough.
 }

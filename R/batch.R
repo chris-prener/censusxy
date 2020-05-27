@@ -5,7 +5,6 @@
 #' The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
 #'  It also supports multiple outputs, including SF class objects.
 #'
-#'
 #' @param .data data.frame containing columns with structured address data
 #' @param id Optional String - Name of column containing unique ID
 #' @param street String - Name of column containing street address
