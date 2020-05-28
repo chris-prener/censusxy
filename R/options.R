@@ -4,7 +4,7 @@
 #'
 #' @return A data.frame containing valid Census Benchmarks
 #'
-#' @importFrom httr GET content timeout
+#' @importFrom httr GET content timeout config
 #'
 #' @examples cxy_benchmarks()
 #'
@@ -28,7 +28,7 @@ cxy_benchmarks <- function(){
 #'
 #' @return A data.frame containing valid Census Vintages for a given benchmark
 #'
-#' @importFrom httr GET content timeout
+#' @importFrom httr GET content timeout config
 #'
 #' @examples cxy_vintages('Public_AR_Census2010')
 #'
