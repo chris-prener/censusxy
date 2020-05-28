@@ -13,5 +13,12 @@ This release brings full functionality to the package, including not just the ba
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
 
+On Winbuilder, there is 1 NOTE:
+
+Possibly mis-spelled words in DESCRIPTION:
+  Geocoding (2:40)
+  
+This is spelled correctly.
+
 ## Reverse dependencies
 Not applicable.
