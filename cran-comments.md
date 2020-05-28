@@ -1,35 +1,17 @@
 ## Release summary
-Brian Ripley brought an issue to our attention on 8/8/19 about temporary files not being properly removed from the temp directory. This release addresses this concern by fixing a typo in line 15 of `cxy_geocoder.R` to clarify where in the temporary directory `addresses.csv` is saved to. Additionally, `addresses.csv` is now explicitly removed using `unlink()` on line 57 of `cxy_geocoder.R` to ensure that it is removed.
+This release brings full functionality to the package, including not just the batch geocoding offered in earlier versions but also single line and reverse geocoding. It is now possible to return Census Bureau geographies as well.
 
 ## Test environments
-* local OS X install: R 3.6.0
-* Linux xenial distribution (on Travis CI): R-release, R-oldrel, R-devel, R-3.4.4, and R-3.3.3
-* macOS (on Travis CI): R-release, R-oldrel, R-3.4.4, and R-3.3.3
-* windows x64 (on Appveyor): R-release, R-patched, R-oldrel, R-devel, R-3.4.4, and R-3.3.3
-* windows i386 (on Appveyor): R-patched
+* local OS X install: R 4.0.0
+* Ubuntu (via GitHub Actions): R-4.0, R-3.6, R-3.5, R-3.4, and R-3.3
+* macOS (via GitHub Actions): R-devel, R-4.0, R-3.6
+* windows (via GitHub Actions): R-4.0, R-3.6
 * winbuilder, R-release, R-oldrel, R-devel
 
 * r-hub not used because it lacks dependencies needed to build `sf` on Debian
 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
-
-There was one NOTE on winbuilder checks (see below). The four words identified are all spelled correctly, and the concersn identified with the temporary directory have been addressed.
-
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Christopher Prener <chris.prener@slu.edu>'
-
-New submission
-
-Possibly mis-spelled words in DESCRIPTION:
-  Geocoder (2:38)
-  geocoded (16:41)
-  geocoding (10:72, 12:53, 12:78, 14:73)
-
-CRAN repository db overrides:
-  X-CRAN-Comment: Removed on 2019-08-08 for policy violation.
-
-  Leaves file in /tmp
 
 ## Reverse dependencies
 Not applicable.
