@@ -11,9 +11,8 @@
 #' @export
 cxy_benchmarks <- function(){
   req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
-                   config(
-                     connecttimeout = 30,
-                     accepttimeout_ms = 30
+                   httr::config(
+                     connecttimeout = 30
                    ),
                    httr::timeout(30))
   cnt <- httr::content(req)
@@ -44,9 +43,8 @@ cxy_vintages <- function(benchmark){
               query = list(
                 benchmark = benchmark
               ),
-              config(
-                connecttimeout = 30,
-                accepttimeout_ms = 30
+              httr::config(
+                connecttimeout = 30
               ),
               httr::timeout(30)
     )
