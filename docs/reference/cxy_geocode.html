@@ -135,21 +135,21 @@ The function implements iteration and optional parallelization in order to geoco
  It also supports multiple outputs, including SF class objects.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_geocode</span>(
-  <span class='no'>.data</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>street</span>,
-  <span class='kw'>city</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>zip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"locations"</span>,
-  <span class='kw'>benchmark</span> <span class='kw'>=</span> <span class='st'>"Public_AR_Current"</span>,
-  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"simple"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cxy_geocode</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>street</span>,
+  city <span class='op'>=</span> <span class='cn'>NULL</span>,
+  state <span class='op'>=</span> <span class='cn'>NULL</span>,
+  zip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return <span class='op'>=</span> <span class='st'>"locations"</span>,
+  benchmark <span class='op'>=</span> <span class='st'>"Public_AR_Current"</span>,
+  vintage <span class='op'>=</span> <span class='cn'>NULL</span>,
+  timeout <span class='op'>=</span> <span class='fl'>30</span>,
+  parallel <span class='op'>=</span> <span class='fl'>1</span>,
+  class <span class='op'>=</span> <span class='st'>"dataframe"</span>,
+  output <span class='op'>=</span> <span class='st'>"simple"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -222,11 +222,12 @@ If you do, the maximum number of available cores will be used.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>stl_homicides</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,]
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>stl_homicides</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,<span class='op'>]</span>
 
 <span class='co'># geocode</span>
-<span class='fu'>cxy_geocode</span>(<span class='no'>x</span>, <span class='kw'>street</span> <span class='kw'>=</span> <span class='st'>'street_address'</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>'city'</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>'state'</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>'postal_code'</span>,
-   <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'locations'</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>'dataframe'</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>'simple'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: sf</span></div><div class='output co'>#&gt;              street_address year             date state postal_code      city
+<span class='fu'>cxy_geocode</span><span class='op'>(</span><span class='va'>x</span>, street <span class='op'>=</span> <span class='st'>'street_address'</span>, city <span class='op'>=</span> <span class='st'>'city'</span>, state <span class='op'>=</span> <span class='st'>'state'</span>, zip <span class='op'>=</span> <span class='st'>'postal_code'</span>,
+   return <span class='op'>=</span> <span class='st'>'locations'</span>, class <span class='op'>=</span> <span class='st'>'dataframe'</span>, output <span class='op'>=</span> <span class='st'>'simple'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: sf</span></div><div class='output co'>#&gt;              street_address year             date state postal_code      city
 #&gt; 9            5738 Terry Ave 2008 01/12/2008 12:37    MO          NA St. Louis
 #&gt; 7            5356 Page Blvd 2008 01/17/2008 04:00    MO          NA St. Louis
 #&gt; 10        5826 Roosevelt Pl 2008 01/20/2008 21:19    MO          NA St. Louis
@@ -264,7 +265,7 @@ If you do, the maximum number of available cores will be used.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

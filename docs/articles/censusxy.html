@@ -77,13 +77,14 @@
 
       
 
-      </header><div class="row">
+      </header><script src="censusxy_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="censusxy_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="censusxy_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using the censusxy Package</h1>
                         <h4 class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 class="date">2020-05-27</h4>
+            <h4 class="date">2020-12-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/master/vignettes/censusxy.Rmd"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -110,10 +111,12 @@
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
 <p>The easiest way to get <code>censusxy</code> is to install it from CRAN:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"censusxy"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"censusxy"</span><span class="op">)</span></code></pre></div>
 <p>The development version of <code>censusxy</code> can be accessed from GitHub with <code>remotes</code>:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># install.packages("remotes")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"slu-openGIS/censusxy"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"slu-openGIS/censusxy"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="workflow" class="section level2">
@@ -123,7 +126,8 @@
 <h3 class="hasAnchor">
 <a href="#importing-data" class="anchor"></a>Importing Data</h3>
 <p>If you plan on using the single address geocoding tools, your data do not need to be in any specific class. To use the batch geocoder, your data must be in a data.frame (or equivalent class). This package provides Homicides in St Louis City between 2008-2018 as example data.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"stl_homicides"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"stl_homicides"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="parsing-addresses" class="section level3">
 <h3 class="hasAnchor">
@@ -145,8 +149,9 @@
 <h3 class="hasAnchor">
 <a href="#consider-the-benchmark-and-vintage" class="anchor"></a>Consider the Benchmark and Vintage</h3>
 <p>Vintage is only important to consider when geocoding census geographies. It has no impact on geocoding coordinates (location). You can obtain a data.frame of valid benchmarks and vintages with their respective functions. For vintages, you must supply the name or ID of the benchmark you have chosen.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_benchmarks.html">cxy_benchmarks</a></span>()
-<span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span>(<span class="kw">benchmark</span> <span class="kw">=</span> <span class="st">'Public_AR_Census2010'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_benchmarks.html">cxy_benchmarks</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span><span class="op">(</span>benchmark <span class="op">=</span> <span class="st">'Public_AR_Census2010'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="parallelization-unix-only" class="section level3">
 <h3 class="hasAnchor">
@@ -175,20 +180,23 @@
 <a href="#geographies" class="anchor"></a>Geographies</h3>
 <p>If you would like to append census geographies, or have control of the benchmark in order to reproduce geocoding results, you will find it convenient to use the built in functions for doing so. If you are not concerned about reproducibility or geographies, the functions will default to the latest benchmark, and you may ignore this section.</p>
 <p>Get the current valid benchmarks, these are used to geocode and show available vintages.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_benchmarks.html">cxy_benchmarks</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_benchmarks.html">cxy_benchmarks</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Once, you’ve selected a benchmark, and only if you intend to append geographies, you should choose a vintage based on the benchmark you selected (Either by name or ID).</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span>(<span class="st">'Public_AR_Census2010'</span>)
-<span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span>(<span class="fl">9</span>) <span class="co"># Same as Above</span></pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span><span class="op">(</span><span class="st">'Public_AR_Census2010'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/cxy_vintages.html">cxy_vintages</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span> <span class="co"># Same as Above</span></code></pre></div>
 <p>Both of these should be supplied as arguments to your geocoding function.</p>
 </div>
 <div id="batch-geocoding" class="section level3">
 <h3 class="hasAnchor">
 <a href="#batch-geocoding" class="anchor"></a>Batch Geocoding</h3>
 <p>In this example, we will use the included <code>stl_homicides</code> data to show the full process for batch geocoding.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">homicide_sf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span>(<span class="no">stl_homicides</span>, <span class="kw">address</span> <span class="kw">=</span> <span class="no">street_address</span>, <span class="kw">city</span> <span class="kw">=</span> <span class="no">city</span>, <span class="kw">state</span> <span class="kw">=</span> <span class="no">state</span>, <span class="kw">zip</span> <span class="kw">=</span> <span class="no">postal_code</span>, <span class="kw">class</span> <span class="kw">=</span> <span class="st">"sf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">homicide_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span><span class="op">(</span><span class="va">stl_homicides</span>, address <span class="op">=</span> <span class="va">street_address</span>, city <span class="op">=</span> <span class="va">city</span>, state <span class="op">=</span> <span class="va">state</span>, zip <span class="op">=</span> <span class="va">postal_code</span>, class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>class = "dataframe"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">&gt; mapview::mapview(homicide_sf)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
 <p><img src="../man/figures/homicide_example.png" width="100%"></p>
 </div>
 <div id="single-address-tools" class="section level3">
@@ -196,25 +204,29 @@
 <a href="#single-address-tools" class="anchor"></a>Single Address Tools</h3>
 <p>We’ll investigate a few other use cases, specifically those involving fewer or single addresses.</p>
 <p>You would like to geocode a single structured address:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_single.html">cxy_single</a></span>(<span class="st">'20 N Grand Blvd'</span>, <span class="st">'St. Louis'</span>, <span class="st">'MO'</span>, <span class="fl">63103</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_single.html">cxy_single</a></span><span class="op">(</span><span class="st">'20 N Grand Blvd'</span>, <span class="st">'St. Louis'</span>, <span class="st">'MO'</span>, <span class="fl">63103</span><span class="op">)</span></code></pre></div>
 <p>You would like to geocode a single unstructured address and append census geographies:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_oneline.html">cxy_oneline</a></span>(<span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span>, <span class="kw">return</span> <span class="kw">=</span> <span class="st">'geographies'</span>, <span class="kw">vintage</span> <span class="kw">=</span> <span class="st">'Current_Current'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_oneline.html">cxy_oneline</a></span><span class="op">(</span><span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span>, return <span class="op">=</span> <span class="st">'geographies'</span>, vintage <span class="op">=</span> <span class="st">'Current_Current'</span><span class="op">)</span></code></pre></div>
 <p>You would like to append census geographies to a given coordinate:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/cxy_geography.html">cxy_geography</a></span>(-<span class="fl">90.23324</span>, <span class="fl">38.63593</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/cxy_geography.html">cxy_geography</a></span><span class="op">(</span><span class="op">-</span><span class="fl">90.23324</span>, <span class="fl">38.63593</span><span class="op">)</span></code></pre></div>
 <div id="iteration" class="section level4">
 <h4 class="hasAnchor">
 <a href="#iteration" class="anchor"></a>Iteration</h4>
 <p>For a handful of addresses, you may want to iterate using these functions. Two examples using base R are provided here.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">addresses</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"20 N Grand Blvd, St. Louis MO 63103"</span>, <span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20 N Grand Blvd, St. Louis MO 63103"</span>, <span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span><span class="op">)</span>
 
 <span class="co"># With A For Loop</span>
-<span class="no">geocodes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>(<span class="st">"list"</span>, <span class="kw">length</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(<span class="no">addresses</span>)){
-  <span class="no">geocodes</span><span class="kw">[[</span><span class="no">i</span>]] <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cxy_oneline.html">cxy_oneline</a></span>(<span class="no">addresses</span>[<span class="no">i</span>])
-}
+<span class="va">geocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">addresses</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">geocodes</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_oneline.html">cxy_oneline</a></span><span class="op">(</span><span class="va">addresses</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
 
 <span class="co"># With an Apply Function</span>
-<span class="no">geocodes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">addresses</span>, <span class="no">cxy_oneline</span>)</pre></body></html></div>
+<span class="va">geocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">addresses</span>, <span class="va">cxy_oneline</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -245,7 +257,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
