@@ -33,6 +33,9 @@
 #'
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom utils write.table read.csv
+#' @importFrom foreach %dopar% foreach
+#' @importFrom parallel makeCluster stopCluster
+#' @importFrom doParallel registerDoParallel
 #'
 #' @examples
 #' # load data
@@ -78,10 +81,6 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
 
   # Check Parallel Configuration
   if(parallel > 1){
-    # Check OS
-    if(.Platform$OS.type != 'unix'){
-      stop('Parallelization is only available on Unix Platforms')
-    }
     # Check if Available
     if(!requireNamespace('parallel')){
       stop('Please install the `parallel` package to use parallel functionality')
@@ -165,9 +164,15 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
 
     batches <- split(uniq, rep_len(seq(splt_fac), nrow(uniq)) )
 
-    results <- parallel::mclapply(batches, batch_geocoder,
-                                  return, timeout, benchmark, vintage,
-                                  mc.cores = core_count)
+    cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
+    doParallel::registerDoParallel(cl)
+    
+    
+    results <- foreach::foreach(i = 1:length(batches)) %dopar% {
+      batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
+    }
+    
+    parallel::stopCluster(cl)
 
   }else{ # Non Parallel
     # Split and Iterate
@@ -221,3 +226,5 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
 
   return(return_df)
 }
+
+globalVariables('i')
