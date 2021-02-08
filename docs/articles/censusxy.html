@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -77,13 +77,13 @@
 
       
 
-      </header><script src="censusxy_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="censusxy_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using the censusxy Package</h1>
                         <h4 class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 class="date">2021-02-07</h4>
+            <h4 class="date">2021-02-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/master/vignettes/censusxy.Rmd"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -195,7 +195,7 @@
 <code class="sourceCode R"><span class="va">homicide_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span><span class="op">(</span><span class="va">stl_homicides</span>, address <span class="op">=</span> <span class="va">street_address</span>, city <span class="op">=</span> <span class="va">city</span>, state <span class="op">=</span> <span class="va">state</span>, zip <span class="op">=</span> <span class="va">postal_code</span>, class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>class = "dataframe"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(homicide_sf)</span></code></pre></div>
 <p><img src="../man/figures/homicide_example.png" width="100%"></p>
 </div>
 <div id="single-address-tools" class="section level3">

@@ -10,6 +10,7 @@ status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)
 status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
 [![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
 [![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
+[![Downloads](http://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen)](http://www.r-pkg.org/pkg/censusxy)
 
 The `censusxy` package is designed to provide easy access to the [U.S.
 Census Bureau Geocoding
@@ -21,14 +22,10 @@ appropriately sized API calls, geocoded, and then put back together so
 that a single object is returned. There is also support for parallel
 processing on Non-Windows platforms.
 
-## What’s New in v1.0.0?
+## What’s New in v1.0.1?
 
-  - Full support for all Census Bureau Geographic Tools
-  - The syntax of `cxy_geocode()` has changed slightly to facilitate new
-    options
-  - Non-Standard Evaluation (NSE) Has Been Removed
-  - `censusxy` now only has 1 dependency
-  - Parallel support added for Unix Platforms
+-   Changes to the default geocoding options to mirror updates to the
+    API for the 2020 Decennial Census
 
 ## Installing censusxy
 
@@ -50,9 +47,9 @@ remotes::install_github("slu-openGIS/censusxy")
 
 The main [Get started](articles/censusxy.html) article has:
 
-  - some tips on using `censusxy` in different workflows
-  - an overview of the package’s functionality,
-  - and considerations for handling computer timeout.
+-   some tips on using `censusxy` in different workflows
+-   an overview of the package’s functionality,
+-   and considerations for handling computer timeout.
 
 ## Contributor Code of Conduct
 

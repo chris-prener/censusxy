@@ -1,3 +1,7 @@
+# censusxy 1.0.1
+
+* Fix issue related to current vintages and benchmarks in `options.R` that changed due to the 2020 Decennial Census
+
 # censusxy 1.0.0
 
 Version 1.0.0 brings breaking changes, but adds a ton of new functionality. 
