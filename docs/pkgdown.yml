@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   censusxy: censusxy.html
-last_built: 2021-02-08T16:16Z
+last_built: 2021-02-09T16:43Z
 urls:
   reference: https://slu-openGIS.github.io/censusxy//reference
   article: https://slu-openGIS.github.io/censusxy//articles
