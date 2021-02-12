@@ -13,12 +13,9 @@ This release fixes defaults to align with changes to the API's defaults for the 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
 
-On Winbuilder, there is 1 NOTE:
+## revdepcheck results
 
-Possibly mis-spelled words in DESCRIPTION:
-  Geocoding (2:40)
-  
-This is spelled correctly.
+We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
-## Reverse dependencies
-Not applicable.
+ * We saw 0 new problems
+ * We failed to check 0 packages
