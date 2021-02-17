@@ -102,7 +102,9 @@ cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = '
 #'     for a full walkthrough.
 #'
 #' @examples
+#' \dontrun{
 #' cxy_oneline(address = "20 N Grand Blvd, St Louis, MO 63108", return = "locations")
+#' }
 #'
 #' @export
 cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
