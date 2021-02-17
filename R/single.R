@@ -22,8 +22,10 @@
 #'     for a full walkthrough.
 #'
 #' @examples
+#' \dontrun{
 #' cxy_single(street = "20 N Grand Blvd", city = "St Louis", state = "MO", zip = "63108",
 #'     return = "locations")
+#' }
 #'
 #' @export
 cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = 'locations', benchmark = 'Public_AR_Current', vintage = NULL){
