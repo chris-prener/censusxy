@@ -1,5 +1,5 @@
 ## Release summary
-This release fixes defaults to align with changes to the API's defaults for the 2020 Decennial Census.
+This is a resubmission of a release that fixes defaults to align with changes to the API's defaults for the 2020 Decennial Census. It also makes several changes from Uwe Liggs, including wrapping two examples where the API takes time to respond in `\donttest{}` and converting all URLs from `http://` to `https://`.
 
 ## Test environments
 * local OS X install: R 4.0.3

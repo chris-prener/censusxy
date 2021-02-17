@@ -35,7 +35,7 @@ If you want to append census geographies, you must specify a valid vintage for y
     for a full walkthrough.
 }
 \examples{
-\dontrun{
+\donttest{
 cxy_oneline(address = "20 N Grand Blvd, St Louis, MO 63108", return = "locations")
 }
 
