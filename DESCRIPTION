@@ -24,10 +24,10 @@ Imports:
 Suggests: 
     covr,
     knitr,
+    parallel,
     rmarkdown,
     sf,
     testthat,
-    parallel,
     doParallel,
     foreach
 VignetteBuilder: knitr
