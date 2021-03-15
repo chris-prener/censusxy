@@ -176,7 +176,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     doParallel::registerDoParallel(cl)
     
     # replace foreach + dopar gives you a parallel workflow, like mclapply
-    results <- foreach::foreach(i = 1:length(batches)) %dopar% {
+    results <- foreach::foreach(i = 1:length(batches), .export = 'batch_geocoder') %dopar% {
       batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
     }
     
