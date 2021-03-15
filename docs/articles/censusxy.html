@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -63,7 +63,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,14 +77,13 @@
 
       
 
-      </header><script src="censusxy_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="censusxy_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="censusxy_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="censusxy_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using the censusxy Package</h1>
                         <h4 class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 class="date">2020-12-12</h4>
+            <h4 class="date">2021-02-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/master/vignettes/censusxy.Rmd"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -169,7 +168,7 @@
 <a href="#timeout" class="anchor"></a>Timeout</h3>
 <p>The function contains an argument for timeout, which specifies how many minutes until the API query ends as an error. In this implementation, it is per 1000 addresses, not the whole batch size. It is set to default at 30 minutes, which should be appropriate for most internet speeds.</p>
 <p>If a batch times out, the function will terminate, and you will lose any geocoding progress.</p>
-<p>Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app <a href="http://lightheadsw.com/caffeine/">caffeine</a> useful (Also available as a Command Line Tool).</p>
+<p>Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app <a href="https://apps.apple.com/us/app/amphetamine/id937984704?mt=12">amphetamine</a> useful.</p>
 </div>
 </div>
 <div id="usage" class="section level2">
@@ -196,7 +195,7 @@
 <code class="sourceCode R"><span class="va">homicide_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span><span class="op">(</span><span class="va">stl_homicides</span>, address <span class="op">=</span> <span class="va">street_address</span>, city <span class="op">=</span> <span class="va">city</span>, state <span class="op">=</span> <span class="va">state</span>, zip <span class="op">=</span> <span class="va">postal_code</span>, class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></code></pre></div>
 <p>Note, however, that it returns only matched addresses, including those approximated by street length. If there are unmatched addresses, they will be dropped from the output. Use <code>class = "dataframe"</code> to return all addresses, including those that are unmatched.</p>
 <p>Output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview"><code>mapview</code></a>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">&gt;</span><span class="st"> </span>mapview<span class="op">::</span><span class="kw">mapview</span>(homicide_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(homicide_sf)</span></code></pre></div>
 <p><img src="../man/figures/homicide_example.png" width="100%"></p>
 </div>
 <div id="single-address-tools" class="section level3">
@@ -234,10 +233,10 @@
 <h2 class="hasAnchor">
 <a href="#getting-help" class="anchor"></a>Getting Help</h2>
 <ul>
-<li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s <a href="http://r4ds.had.co.nz"><em>R for Data Science</em></a> is an excellent way to get started with data manipulation in the tidyverse, which <code>censusxy</code> is designed to integrate seamlessly with.</li>
+<li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s <a href="https://r4ds.had.co.nz"><em>R for Data Science</em></a> is an excellent way to get started with data manipulation in the tidyverse, which <code>censusxy</code> is designed to integrate seamlessly with.</li>
 <li>If you are new to spatial analysis in <code>R</code>, we strongly encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net"><em>Geocomputation in R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
-<li>If you have questions about using <code>censusxy</code>, you are encouraged to use the <a href="https://community.rstudio.com">RStudio Community forums</a>. Please create a <a href="http://reprex.tidyverse.org/"><code>reprex</code></a> before posting. Feel free to tag Chris (<code>@chris.prener</code>) in any posts about <code>censusxy</code>.</li>
-<li>If you think you’ve found a bug, please create a <a href="http://reprex.tidyverse.org/"><code>reprex</code></a> and then open an issue on <a href="https://github.com/slu-openGIS/censusxy/issues/new/choose">GitHub</a>.</li>
+<li>If you have questions about using <code>censusxy</code>, you are encouraged to use the <a href="https://community.rstudio.com">RStudio Community forums</a>. Please create a <a href="https://reprex.tidyverse.org/"><code>reprex</code></a> before posting. Feel free to tag Chris (<code>@chris.prener</code>) in any posts about <code>censusxy</code>.</li>
+<li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/index.html"><code>reprex</code></a> and then open an issue on <a href="https://github.com/slu-openGIS/censusxy/issues/new/choose">GitHub</a>.</li>
 </ul>
 </div>
   </div>

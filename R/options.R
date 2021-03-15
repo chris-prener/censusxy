@@ -30,7 +30,7 @@ cxy_benchmarks <- function(){
 #'
 #' @importFrom httr GET content timeout config
 #'
-#' @examples cxy_vintages('Public_AR_Census2010')
+#' @examples cxy_vintages('Public_AR_Current')
 #'
 #' @export
 cxy_vintages <- function(benchmark){

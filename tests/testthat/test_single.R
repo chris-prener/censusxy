@@ -32,53 +32,53 @@ test_that('Invalid Argument Specifications fail', {
 
 test_that('Warnings for specified arguments are triggered', {
   skip_on_cran()
-  skip_if_offline(host = "r-project.org")
+  skip_if_offline()
 
   expect_warning(
-    cxy_single('20 N Grand Blvd', 'St Louis', 'MO', 63108, return = 'locations', vintage = 'ACS2017_Current'),
+    cxy_single('101 Marietta St', 'Atlanta', 'GA', 30303, return = 'locations', vintage = 'Current_Current'),
     "Vintage ignored for return = 'locations'"
   )
   expect_warning(
-    cxy_single('20 N Grand Blvd', 'St Louis', 'MO'),
+    cxy_single('101 Marietta St', 'Atlanta', 'GA'),
     'Omission of `city`, `state` or `zip` greatly reduces the speed and accuracy of the geocoder.'
   )
   expect_warning(
-    cxy_oneline('20 N Grand Blvd, St Louis, MO 63108', return = 'locations', vintage = 'ACS2017_Current'),
+    cxy_oneline('101 Marietta St, Atlanta, GA 30303', return = 'locations', vintage = 'Current_Current'),
     "Vintage ignored for return = 'locations'"
   )
 })
 
 test_that('Valid Structured Geocodes Work', {
   skip_on_cran()
-  skip_if_offline(host = "r-project.org")
+  skip_if_offline()
 
   expect_s3_class(
-    cxy_single('20 N Grand Blvd', 'St Louis', 'MO', 63108),
+    cxy_single('101 Marietta St', 'Atlanta', 'GA', 30303),
     'data.frame'
   )
   expect_s3_class(
-    cxy_single('20 N Grand Blvd', 'St Louis', 'MO', 63108, return = 'geographies', vintage = 'Current_Current'),
+    cxy_single('101 Marietta St', 'Atlanta', 'GA', 30303, return = 'geographies', vintage = 'Current_Current'),
     'data.frame'
   )
 })
 
 test_that('Valid Oneline Geocodes Work', {
   skip_on_cran()
-  skip_if_offline(host = "r-project.org")
+  skip_if_offline()
 
   expect_s3_class(
-    cxy_oneline('20 N Grand Blvd, St Louis, MO 63108'),
+    cxy_oneline('101 Marietta St, Atlanta, GA 30303'),
     'data.frame'
   )
   expect_s3_class(
-    cxy_oneline('20 N Grand Blvd, St Louis, MO 63108', return = 'geographies', vintage = 'Current_Current'),
+    cxy_oneline('101 Marietta St, Atlanta, GA 30303', return = 'geographies', vintage = 'Current_Current'),
     'data.frame'
   )
 })
 
 test_that('Valid Geography Geocode works', {
   skip_on_cran()
-  skip_if_offline(host = "r-project.org")
+  skip_if_offline()
 
   expect_s3_class(
     cxy_geography(-90.23324, 38.63593),

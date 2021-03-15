@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,13 +147,14 @@
     <p>A data.frame containing valid Census Vintages for a given benchmark</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>cxy_vintages</span><span class='op'>(</span><span class='st'>'Public_AR_Census2010'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     id           vintageName                        vintageDescription
-#&gt; 2  910 Census2010_Census2010 Census2010 Vintage - Census2010 Benchmark
-#&gt; 21 900 Census2000_Census2010 Census2000 Vintage - Census2010 Benchmark
-#&gt;    isDefault
-#&gt; 2       TRUE
-#&gt; 21     FALSE</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>cxy_vintages</span><span class='op'>(</span><span class='st'>'Public_AR_Current'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     id        vintageName                     vintageDescription isDefault
+#&gt; 2    4    Current_Current    Current Vintage - Current Benchmark      TRUE
+#&gt; 21 410 Census2010_Current Census2010 Vintage - Current Benchmark     FALSE
+#&gt; 3  417    ACS2017_Current    ACS2017 Vintage - Current Benchmark     FALSE
+#&gt; 4  418    ACS2018_Current    ACS2018 Vintage - Current Benchmark     FALSE
+#&gt; 5  419    ACS2019_Current    ACS2019 Vintage - Current Benchmark     FALSE
+#&gt; 6  420 Census2020_Current Census2020 Vintage - Current Benchmark     FALSE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

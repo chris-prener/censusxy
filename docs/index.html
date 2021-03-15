@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -67,7 +67,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -89,16 +89,11 @@
 </h1></div>
 
 <p>The <code>censusxy</code> package is designed to provide easy access to the <a href="https://geocoding.geo.census.gov/geocoder/">U.S. Census Bureau Geocoding Tools</a> in <code>R</code>. <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing on Non-Windows platforms.</p>
-<div id="whats-new-in-v100" class="section level2">
+<div id="whats-new-in-v101" class="section level2">
 <h2 class="hasAnchor">
-<a href="#whats-new-in-v100" class="anchor"></a>What’s New in v1.0.0?</h2>
+<a href="#whats-new-in-v101" class="anchor"></a>What’s New in v1.0.1?</h2>
 <ul>
-<li>Full support for all Census Bureau Geographic Tools</li>
-<li>The syntax of <code><a href="reference/cxy_geocode.html">cxy_geocode()</a></code> has changed slightly to facilitate new options</li>
-<li>Non-Standard Evaluation (NSE) Has Been Removed</li>
-<li>
-<code>censusxy</code> now only has 1 dependency</li>
-<li>Parallel support added for Unix Platforms</li>
+<li>Changes to the default geocoding options to mirror updates to the API for the 2020 Decennial Census</li>
 </ul>
 </div>
 <div id="installing-censusxy" class="section level2">
@@ -173,6 +168,7 @@
 <li><a href="https://codecov.io/github/slu-openGIS/censusxy?branch=master"><img src="https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/165924122"><img src="https://zenodo.org/badge/165924122.svg" alt="DOI"></a></li>
 <li><a href="https://cran.r-project.org/package=censusxy"><img src="http://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a></li>
+<li><a href="http://www.r-pkg.org/pkg/censusxy"><img src="http://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a></li>
 </ul>
 </div>
 </div>

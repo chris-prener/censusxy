@@ -71,7 +71,7 @@ The function contains an argument for timeout, which specifies how many minutes 
 
 If a batch times out, the function will terminate, and you will lose any geocoding progress.
 
-Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app [caffeine](http://lightheadsw.com/caffeine/) useful (Also available as a Command Line Tool).
+Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app [amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) useful.
 
 ## Usage
 ### Geographies
@@ -140,7 +140,7 @@ geocodes <- lapply(addresses, cxy_oneline)
 ```
 
 ## Getting Help
-* If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](http://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `censusxy` is designed to integrate seamlessly with.
+* If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](https://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `censusxy` is designed to integrate seamlessly with.
 * If you are new to spatial analysis in `R`, we strongly encourage you check out the excellent new [*Geocomputation in R*](https://geocompr.robinlovelace.net) by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
-* If you have questions about using `censusxy`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](http://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `censusxy`.
-* If you think you've found a bug, please create a [`reprex`](http://reprex.tidyverse.org/) and then open an issue on [GitHub](https://github.com/slu-openGIS/censusxy/issues/new/choose).
+* If you have questions about using `censusxy`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](https://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `censusxy`.
+* If you think you've found a bug, please create a [`reprex`](https://reprex.tidyverse.org/index.html) and then open an issue on [GitHub](https://github.com/slu-openGIS/censusxy/issues/new/choose).
