@@ -33,9 +33,6 @@
 #'
 #' @importFrom httr POST upload_file timeout content
 #' @importFrom utils write.table read.csv
-#' @importFrom foreach %dopar% foreach
-#' @importFrom parallel makeCluster stopCluster
-#' @importFrom doParallel registerDoParallel
 #'
 #' @examples
 #' # load data
@@ -85,6 +82,13 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     if(!requireNamespace('parallel')){
       stop('Please install the `parallel` package to use parallel functionality')
     }
+    if(!requireNamespace('doParallel')){
+      stop('Please install the `doParallel` package to use parallel functionality')
+    }
+    if(!requireNamespace('foreach')){
+      stop('Please install the `foreach` package to use parallel functionality')
+    }
+    
     # Check Number of Cores
     avail_cores <- parallel::detectCores()
     if(parallel > avail_cores){
@@ -227,4 +231,4 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   return(return_df)
 }
 
-globalVariables('i')
+globalVariables(c('i', '%dopar%'))
