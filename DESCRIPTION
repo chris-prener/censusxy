@@ -27,5 +27,7 @@ Suggests:
     parallel,
     rmarkdown,
     sf,
-    testthat
+    testthat,
+    doParallel,
+    foreach
 VignetteBuilder: knitr

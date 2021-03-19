@@ -22,7 +22,7 @@
 #' @return A data.frame or sf object containing geocoded results
 #'
 #' @details
-#' Parallel requests are not currently supported on Windows.
+#' Parallel requests are supported accross platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
 #' You may not specify more cores than the system reports are available
 #' If you do, the maximum number of available cores will be used.
 #'
@@ -78,14 +78,25 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
 
   # Check Parallel Configuration
   if(parallel > 1){
-    # Check OS
-    if(.Platform$OS.type != 'unix'){
-      stop('Parallelization is only available on Unix Platforms')
+
+    # Check if Available by Platform
+    if(.Platform$OS.type == 'unix'){
+      if(!requireNamespace('parallel')){
+        stop('Please install the `parallel` package to use parallel functionality')
+      }
+    }else{
+      if(
+        !requireNamespace('parallel') | 
+        !requireNamespace('doParallel') |
+        !requireNamespace('foreach')
+      ){
+        stop('Please install the `parallel`, `doParallel` and `foreach` packages to use parallel functionality')
+      }
+
+      # this gets around calling it as foreach::%dopar% below which sometimes errors
+      `%dopar%` <- foreach::`%dopar%`
     }
-    # Check if Available
-    if(!requireNamespace('parallel')){
-      stop('Please install the `parallel` package to use parallel functionality')
-    }
+    
     # Check Number of Cores
     avail_cores <- parallel::detectCores()
     if(parallel > avail_cores){
@@ -94,6 +105,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     }else{
       core_count <- parallel
     }
+    
   }
 
   # Handle NA Arguments
@@ -164,10 +176,25 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     }
 
     batches <- split(uniq, rep_len(seq(splt_fac), nrow(uniq)) )
-
-    results <- parallel::mclapply(batches, batch_geocoder,
+    
+    if(.Platform$OS.type == 'unix'){
+      results <- parallel::mclapply(batches, batch_geocoder,
                                   return, timeout, benchmark, vintage,
                                   mc.cores = core_count)
+    }else{
+      i = NULL # Prevent Warning for Undeclared Global Variable
+      # create and register a cluster to run - sequential is safer, though not necessary
+      cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
+      doParallel::registerDoParallel(cl)
+      
+      # replace foreach + dopar gives you a parallel workflow, like mclapply
+      results <- foreach::foreach(i = 1:length(batches), .export = 'batch_geocoder') %dopar% {
+        batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
+      }
+      
+      # however, you do need to stop the cluster.
+      parallel::stopCluster(cl)
+    }
 
   }else{ # Non Parallel
     # Split and Iterate
