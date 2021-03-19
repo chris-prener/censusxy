@@ -1,4 +1,5 @@
 test_that('batch parallel works', {
+  skip_on_cran()
   skip_if_offline()
   
   data('stl_homicides_small')
