@@ -3,13 +3,16 @@
 
 # censusxy <img src="man/figures/logo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build
 status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
 [![Coverage
 status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
+[![CRAN\_status\_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
+[![cran
+checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen)](https://www.r-pkg.org/pkg/censusxy)
 [![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
-[![CRAN\_status\_badge](http://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 
 The `censusxy` package is designed to provide easy access to the [U.S.
 Census Bureau Geocoding
@@ -21,14 +24,10 @@ appropriately sized API calls, geocoded, and then put back together so
 that a single object is returned. There is also support for parallel
 processing on Non-Windows platforms.
 
-## What’s New in v1.0.0?
+## What’s New in v1.0.1?
 
-  - Full support for all Census Bureau Geographic Tools
-  - The syntax of `cxy_geocode()` has changed slightly to facilitate new
-    options
-  - Non-Standard Evaluation (NSE) Has Been Removed
-  - `censusxy` now only has 1 dependency
-  - Parallel support added for Unix Platforms
+-   Changes to the default geocoding options to mirror updates to the
+    API for the 2020 Decennial Census
 
 ## Installing censusxy
 

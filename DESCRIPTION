@@ -1,22 +1,24 @@
 Package: censusxy
 Title: Access the U.S. Census Bureau's Geocoding A.P.I. System
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
     comment = c(ORCID = "0000-0002-4361-2811"))
     )
-Description: Provides access to the U.S. Census Bureau's Geocoding A.P.I. system. This includes geocoding 
-    single addresses as well as batch geocoding. Census geographies can be appended to addresses if
-    desired, and reverse geocoding of point locations to census geographies is also supported. 
+Description: Provides access to the U.S. Census Bureau's A.P.I for matching American
+    street addresses with their longitude and latitude. This includes both single address matching
+    as well as batch functionality for multiple addresses. Census geographies can be appended to 
+    addresses if desired, and reverse geocoding of point locations to census geographies is also 
+    supported. 
 Depends: R (>= 3.3)
 License: GPL-3
 URL: https://github.com/slu-openGIS/censusxy
 BugReports: https://github.com/slu-openGIS/censusxy/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: 
     httr
 Suggests: 
@@ -25,5 +27,7 @@ Suggests:
     parallel,
     rmarkdown,
     sf,
-    testthat
+    testthat,
+    doParallel,
+    foreach
 VignetteBuilder: knitr

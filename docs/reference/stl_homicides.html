@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,12 +131,12 @@
     <p>An example data set containing the addresses for homicides reported by the Saint Louis Metropolitan Police Department</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>stl_homicides</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>stl_homicides</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 1822 rows and 6 variables:</p><dl'>
+    <p>A tibble with 1822 rows and 6 variables:</p><dl>
   <dt>street_address</dt><dd><p>number, street and street suffix where homicide occured</p></dd>
   <dt>year</dt><dd><p>year homicide occurred</p></dd>
   <dt>date</dt><dd><p>data homicide occurred</p></dd>
@@ -151,21 +151,23 @@
     <p><a href='http://www.slmpd.org/Crimereports.shtml'>St. Louis Metropolitan Police Department</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>stl_homicides</span>)</div><div class='output co'>#&gt; tibble [1,822 × 6] (S3: tbl_df/tbl/data.frame)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>stl_homicides</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; tibble [1,822 × 6] (S3: tbl_df/tbl/data.frame)
 #&gt;  $ street_address: chr [1:1822] "5738 Terry Ave" "5356 Page Blvd" "5826 Roosevelt Pl" "3859 Ohio Ave" ...
 #&gt;  $ year          : num [1:1822] 2008 2008 2008 2008 2008 ...
 #&gt;  $ date          : chr [1:1822] "01/12/2008 12:37" "01/17/2008 04:00" "01/20/2008 21:19" "01/21/2008 17:38" ...
 #&gt;  $ state         : chr [1:1822] "MO" "MO" "MO" "MO" ...
 #&gt;  $ postal_code   : logi [1:1822] NA NA NA NA NA NA ...
-#&gt;  $ city          : chr [1:1822] "St. Louis" "St. Louis" "St. Louis" "St. Louis" ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>stl_homicides</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 6</span><span>
+#&gt;  $ city          : chr [1:1822] "St. Louis" "St. Louis" "St. Louis" "St. Louis" ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>stl_homicides</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
 #&gt;   street_address        year date             state postal_code city     
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'>1</span><span> 5738 Terry Ave        </span><span style='text-decoration: underline;'>2</span><span>008 01/12/2008 12:37 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
-#&gt; </span><span style='color: #555555;'>2</span><span> 5356 Page Blvd        </span><span style='text-decoration: underline;'>2</span><span>008 01/17/2008 04:00 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
-#&gt; </span><span style='color: #555555;'>3</span><span> 5826 Roosevelt Pl     </span><span style='text-decoration: underline;'>2</span><span>008 01/20/2008 21:19 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
-#&gt; </span><span style='color: #555555;'>4</span><span> 3859 Ohio Ave         </span><span style='text-decoration: underline;'>2</span><span>008 01/21/2008 17:38 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
-#&gt; </span><span style='color: #555555;'>5</span><span> 4100 Saint Louis Ave  </span><span style='text-decoration: underline;'>2</span><span>008 01/30/2008 15:34 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
-#&gt; </span><span style='color: #555555;'>6</span><span> 2418 N Euclid Ave     </span><span style='text-decoration: underline;'>2</span><span>008 01/30/2008 19:19 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis</div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 5738 Terry Ave        </span><span style='text-decoration: underline;'>2</span><span>008 01/12/2008 12:37 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 5356 Page Blvd        </span><span style='text-decoration: underline;'>2</span><span>008 01/17/2008 04:00 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 5826 Roosevelt Pl     </span><span style='text-decoration: underline;'>2</span><span>008 01/20/2008 21:19 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 3859 Ohio Ave         </span><span style='text-decoration: underline;'>2</span><span>008 01/21/2008 17:38 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 4100 Saint Louis Ave  </span><span style='text-decoration: underline;'>2</span><span>008 01/30/2008 15:34 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 2418 N Euclid Ave     </span><span style='text-decoration: underline;'>2</span><span>008 01/30/2008 19:19 MO    </span><span style='color: #BB0000;'>NA</span><span>          St. Louis</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -182,7 +184,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

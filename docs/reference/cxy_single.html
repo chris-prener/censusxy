@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,15 +131,15 @@
     <p>Provides access to the structured single address geocoding API from the US Census Bureau.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_single</span>(
-  <span class='no'>street</span>,
-  <span class='kw'>city</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>zip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"locations"</span>,
-  <span class='kw'>benchmark</span> <span class='kw'>=</span> <span class='st'>"Public_AR_Current"</span>,
-  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cxy_single</span><span class='op'>(</span>
+  <span class='va'>street</span>,
+  city <span class='op'>=</span> <span class='cn'>NULL</span>,
+  state <span class='op'>=</span> <span class='cn'>NULL</span>,
+  zip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return <span class='op'>=</span> <span class='st'>"locations"</span>,
+  benchmark <span class='op'>=</span> <span class='st'>"Public_AR_Current"</span>,
+  vintage <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,13 +185,15 @@
     for a full walkthrough.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>cxy_single</span>(<span class='kw'>street</span> <span class='kw'>=</span> <span class='st'>"20 N Grand Blvd"</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>"St Louis"</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"MO"</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>"63108"</span>,
-    <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"locations"</span>)</div><div class='output co'>#&gt;                            matchedAddress coordinates.x coordinates.y
-#&gt; 1 20 N GRAND BLVD, SAINT LOUIS, MO, 63103     -90.23324      38.63593
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'>cxy_single</span><span class='op'>(</span>street <span class='op'>=</span> <span class='st'>"20 N Grand Blvd"</span>, city <span class='op'>=</span> <span class='st'>"St Louis"</span>, state <span class='op'>=</span> <span class='st'>"MO"</span>, zip <span class='op'>=</span> <span class='st'>"63108"</span>,
+    return <span class='op'>=</span> <span class='st'>"locations"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                            matchedAddress coordinates.x coordinates.y
+#&gt; 1 20 N GRAND BLVD, SAINT LOUIS, MO, 63103     -90.23371      38.63463
 #&gt;   tigerLine.tigerLineId tigerLine.side addressComponents.fromAddress
-#&gt; 1             107607932              R                             2
+#&gt; 1             107607933              R                             2
 #&gt;   addressComponents.toAddress addressComponents.preQualifier
-#&gt; 1                         298                               
+#&gt; 1                         198                               
 #&gt;   addressComponents.preDirection addressComponents.preType
 #&gt; 1                              N                          
 #&gt;   addressComponents.streetName addressComponents.suffixType
@@ -199,7 +201,8 @@
 #&gt;   addressComponents.suffixDirection addressComponents.suffixQualifier
 #&gt; 1                                                                    
 #&gt;   addressComponents.city addressComponents.state addressComponents.zip
-#&gt; 1            SAINT LOUIS                      MO                 63103</div><div class='input'>
+#&gt; 1            SAINT LOUIS                      MO                 63103</div><div class='input'><span class='co'># }</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -216,7 +219,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

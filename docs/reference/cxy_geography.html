@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,7 +106,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -133,12 +133,12 @@
     geographies for a single geographic point.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_geography</span>(
-  <span class='no'>lon</span>,
-  <span class='no'>lat</span>,
-  <span class='kw'>benchmark</span> <span class='kw'>=</span> <span class='st'>"Public_AR_Current"</span>,
-  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='st'>"Current_Current"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cxy_geography</span><span class='op'>(</span>
+  <span class='va'>lon</span>,
+  <span class='va'>lat</span>,
+  benchmark <span class='op'>=</span> <span class='st'>"Public_AR_Current"</span>,
+  vintage <span class='op'>=</span> <span class='st'>"Current_Current"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,56 +174,55 @@
     See <code><a href='../articles/censusxy.html'>vignette('censusxy')</a></code> for a full walkthrough.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>cxy_geography</span>(<span class='kw'>lon</span> <span class='kw'>=</span> -<span class='fl'>90.23324</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='fl'>38.63593</span>)</div><div class='output co'>#&gt;   X2010.Census.Blocks.SUFFIX X2010.Census.Blocks.GEOID
-#&gt; 1                                      295101211001066
-#&gt;   X2010.Census.Blocks.CENTLAT X2010.Census.Blocks.BLOCK
-#&gt; 1                 +38.6362480                      1066
-#&gt;   X2010.Census.Blocks.AREAWATER X2010.Census.Blocks.STATE
+    <pre class="examples"><div class='input'><span class='fu'>cxy_geography</span><span class='op'>(</span>lon <span class='op'>=</span> <span class='op'>-</span><span class='fl'>90.23324</span>, lat <span class='op'>=</span> <span class='fl'>38.63593</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   States.STATENS States.GEOID States.CENTLAT States.AREAWATER States.STATE
+#&gt; 1       01779791           29    +38.3569829       2487215790           29
+#&gt;   States.BASENAME States.STUSAB   States.OID States.LSADC States.FUNCSTAT
+#&gt; 1        Missouri            MO 2.749047e+12           00               A
+#&gt;   States.INTPTLAT States.DIVISION States.NAME States.REGION States.OBJECTID
+#&gt; 1     +38.3507500               4    Missouri             2              46
+#&gt;   States.CENTLON States.AREALAND States.INTPTLON States.MTFCC Counties.GEOID
+#&gt; 1   -092.4580564    178052563675    -092.4567826        G4000          29510
+#&gt;   Counties.CENTLAT Counties.AREAWATER Counties.STATE Counties.BASENAME
+#&gt; 1      +38.6358185           11563208             29         St. Louis
+#&gt;   Counties.OID Counties.LSADC Counties.FUNCSTAT Counties.INTPTLAT
+#&gt; 1 2.759033e+13             25                 F       +38.6356988
+#&gt;    Counties.NAME Counties.OBJECTID Counties.CENTLON Counties.COUNTYCC
+#&gt; 1 St. Louis city              3142     -090.2451165                C7
+#&gt;   Counties.COUNTYNS Counties.AREALAND Counties.INTPTLON Counties.MTFCC
+#&gt; 1          00767557         159895650      -090.2445816          G4020
+#&gt;   Counties.COUNTY X2020.Census.Blocks.SUFFIX X2020.Census.Blocks.GEOID
+#&gt; 1             510                                      295101278001042
+#&gt;   X2020.Census.Blocks.CENTLAT X2020.Census.Blocks.BLOCK
+#&gt; 1                 +38.6362480                      1042
+#&gt;   X2020.Census.Blocks.AREAWATER X2020.Census.Blocks.STATE
 #&gt; 1                             0                        29
-#&gt;   X2010.Census.Blocks.BASENAME X2010.Census.Blocks.OID
-#&gt; 1                         1066             2.10404e+14
-#&gt;   X2010.Census.Blocks.LSADC X2010.Census.Blocks.FUNCSTAT
+#&gt;   X2020.Census.Blocks.BASENAME X2020.Census.Blocks.OID
+#&gt; 1                         1042             2.10701e+14
+#&gt;   X2020.Census.Blocks.LSADC X2020.Census.Blocks.FUNCSTAT
 #&gt; 1                        BK                            S
-#&gt;   X2010.Census.Blocks.INTPTLAT X2010.Census.Blocks.NAME
-#&gt; 1                  +38.6362480               Block 1066
-#&gt;   X2010.Census.Blocks.OBJECTID X2010.Census.Blocks.TRACT
-#&gt; 1                       530743                    121100
-#&gt;   X2010.Census.Blocks.CENTLON X2010.Census.Blocks.BLKGRP
+#&gt;   X2020.Census.Blocks.INTPTLAT X2020.Census.Blocks.NAME
+#&gt; 1                  +38.6362480               Block 1042
+#&gt;   X2020.Census.Blocks.OBJECTID X2020.Census.Blocks.TRACT
+#&gt; 1                      4862904                    127800
+#&gt;   X2020.Census.Blocks.CENTLON X2020.Census.Blocks.BLKGRP
 #&gt; 1                -090.2318925                          1
-#&gt;   X2010.Census.Blocks.AREALAND X2010.Census.Blocks.INTPTLON
+#&gt;   X2020.Census.Blocks.AREALAND X2020.Census.Blocks.INTPTLON
 #&gt; 1                        36036                 -090.2318925
-#&gt;   X2010.Census.Blocks.MTFCC X2010.Census.Blocks.LWBLKTYP
+#&gt;   X2020.Census.Blocks.MTFCC X2020.Census.Blocks.LWBLKTYP
 #&gt; 1                     G5040                            L
-#&gt;   X2010.Census.Blocks.COUNTY States.STATENS States.GEOID States.CENTLAT
-#&gt; 1                        510       01779791           29    +38.3569819
-#&gt;   States.AREAWATER States.STATE States.BASENAME States.STUSAB   States.OID
-#&gt; 1       2486372732           29        Missouri            MO 2.749047e+12
-#&gt;   States.LSADC States.FUNCSTAT States.INTPTLAT States.DIVISION States.NAME
-#&gt; 1           00               A     +38.3507500               4    Missouri
-#&gt;   States.REGION States.OBJECTID States.CENTLON States.AREALAND States.INTPTLON
-#&gt; 1             2              46   -092.4580631    178052865028    -092.4567826
-#&gt;   States.MTFCC Counties.GEOID Counties.CENTLAT Counties.AREAWATER
-#&gt; 1        G4000          29510      +38.6356970           11003791
-#&gt;   Counties.STATE Counties.BASENAME Counties.OID Counties.LSADC
-#&gt; 1             29         St. Louis 2.759033e+13             25
-#&gt;   Counties.FUNCSTAT Counties.INTPTLAT  Counties.NAME Counties.OBJECTID
-#&gt; 1                 F       +38.6356988 St. Louis city              3142
-#&gt;   Counties.CENTLON Counties.COUNTYCC Counties.COUNTYNS Counties.AREALAND
-#&gt; 1     -090.2452565                C7          00767557         159917886
-#&gt;   Counties.INTPTLON Counties.MTFCC Counties.COUNTY Census.Tracts.GEOID
-#&gt; 1      -090.2445816          G4020             510         29510127800
-#&gt;   Census.Tracts.CENTLAT Census.Tracts.AREAWATER Census.Tracts.STATE
-#&gt; 1           +38.6319521                       0                  29
-#&gt;   Census.Tracts.BASENAME Census.Tracts.OID Census.Tracts.LSADC
-#&gt; 1                   1278      2.079015e+15                  CT
-#&gt;   Census.Tracts.FUNCSTAT Census.Tracts.INTPTLAT Census.Tracts.NAME
-#&gt; 1                      S            +38.6319521  Census Tract 1278
-#&gt;   Census.Tracts.OBJECTID Census.Tracts.TRACT Census.Tracts.CENTLON
-#&gt; 1                  42724              127800          -090.2259200
-#&gt;   Census.Tracts.AREALAND Census.Tracts.INTPTLON Census.Tracts.MTFCC
-#&gt; 1                2546611           -090.2259200               G5020
-#&gt;   Census.Tracts.COUNTY
-#&gt; 1                  510</div><div class='input'>
+#&gt;   X2020.Census.Blocks.COUNTY Census.Tracts.GEOID Census.Tracts.CENTLAT
+#&gt; 1                        510         29510127800           +38.6319521
+#&gt;   Census.Tracts.AREAWATER Census.Tracts.STATE Census.Tracts.BASENAME
+#&gt; 1                       0                  29                   1278
+#&gt;   Census.Tracts.OID Census.Tracts.LSADC Census.Tracts.FUNCSTAT
+#&gt; 1      2.079015e+15                  CT                      S
+#&gt;   Census.Tracts.INTPTLAT Census.Tracts.NAME Census.Tracts.OBJECTID
+#&gt; 1            +38.6319521  Census Tract 1278                  23417
+#&gt;   Census.Tracts.TRACT Census.Tracts.CENTLON Census.Tracts.AREALAND
+#&gt; 1              127800          -090.2259200                2546610
+#&gt;   Census.Tracts.INTPTLON Census.Tracts.MTFCC Census.Tracts.COUNTY
+#&gt; 1           -090.2259200               G5020                  510</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -240,7 +239,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

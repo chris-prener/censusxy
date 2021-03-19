@@ -82,7 +82,7 @@ The function implements iteration and optional parallelization in order to geoco
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ The function implements iteration and optional parallelization in order to geoco
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@ The function implements iteration and optional parallelization in order to geoco
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/slu-openGIS/censusxy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,21 +135,21 @@ The function implements iteration and optional parallelization in order to geoco
  It also supports multiple outputs, including SF class objects.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cxy_geocode</span>(
-  <span class='no'>.data</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>street</span>,
-  <span class='kw'>city</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>zip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>"locations"</span>,
-  <span class='kw'>benchmark</span> <span class='kw'>=</span> <span class='st'>"Public_AR_Current"</span>,
-  <span class='kw'>vintage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"dataframe"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"simple"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cxy_geocode</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>street</span>,
+  city <span class='op'>=</span> <span class='cn'>NULL</span>,
+  state <span class='op'>=</span> <span class='cn'>NULL</span>,
+  zip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return <span class='op'>=</span> <span class='st'>"locations"</span>,
+  benchmark <span class='op'>=</span> <span class='st'>"Public_AR_Current"</span>,
+  vintage <span class='op'>=</span> <span class='cn'>NULL</span>,
+  timeout <span class='op'>=</span> <span class='fl'>30</span>,
+  parallel <span class='op'>=</span> <span class='fl'>1</span>,
+  class <span class='op'>=</span> <span class='st'>"dataframe"</span>,
+  output <span class='op'>=</span> <span class='st'>"simple"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -222,11 +222,12 @@ If you do, the maximum number of available cores will be used.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>stl_homicides</span>[<span class='fl'>1</span>:<span class='fl'>10</span>,]
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>stl_homicides</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,<span class='op'>]</span>
 
 <span class='co'># geocode</span>
-<span class='fu'>cxy_geocode</span>(<span class='no'>x</span>, <span class='kw'>street</span> <span class='kw'>=</span> <span class='st'>'street_address'</span>, <span class='kw'>city</span> <span class='kw'>=</span> <span class='st'>'city'</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>'state'</span>, <span class='kw'>zip</span> <span class='kw'>=</span> <span class='st'>'postal_code'</span>,
-   <span class='kw'>return</span> <span class='kw'>=</span> <span class='st'>'locations'</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>'dataframe'</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>'simple'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: sf</span></div><div class='output co'>#&gt;              street_address year             date state postal_code      city
+<span class='fu'>cxy_geocode</span><span class='op'>(</span><span class='va'>x</span>, street <span class='op'>=</span> <span class='st'>'street_address'</span>, city <span class='op'>=</span> <span class='st'>'city'</span>, state <span class='op'>=</span> <span class='st'>'state'</span>, zip <span class='op'>=</span> <span class='st'>'postal_code'</span>,
+   return <span class='op'>=</span> <span class='st'>'locations'</span>, class <span class='op'>=</span> <span class='st'>'dataframe'</span>, output <span class='op'>=</span> <span class='st'>'simple'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: sf</span></div><div class='output co'>#&gt;              street_address year             date state postal_code      city
 #&gt; 9            5738 Terry Ave 2008 01/12/2008 12:37    MO          NA St. Louis
 #&gt; 7            5356 Page Blvd 2008 01/17/2008 04:00    MO          NA St. Louis
 #&gt; 10        5826 Roosevelt Pl 2008 01/20/2008 21:19    MO          NA St. Louis
@@ -238,7 +239,7 @@ If you do, the maximum number of available cores will be used.</p>
 #&gt; 6  5001 N Kingshighway Blvd 2008 02/09/2008 22:59    MO          NA St. Louis
 #&gt; 1             1500 Cass Ave 2008 02/11/2008 21:50    MO          NA St. Louis
 #&gt;      cxy_lon  cxy_lat
-#&gt; 9  -90.27376 38.67769
+#&gt; 9  -90.27412 38.67785
 #&gt; 7  -90.27331 38.66157
 #&gt; 10 -90.27593 38.67959
 #&gt; 4  -90.22941 38.58544
@@ -247,7 +248,7 @@ If you do, the maximum number of available cores will be used.</p>
 #&gt; 2  -90.24488 38.61817
 #&gt; 8  -90.28238 38.65493
 #&gt; 6  -90.24467 38.68689
-#&gt; 1  -90.19770 38.64189</div><div class='input'>
+#&gt; 1  -90.19743 38.64184</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -264,7 +265,7 @@ If you do, the maximum number of available cores will be used.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
