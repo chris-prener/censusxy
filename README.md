@@ -22,12 +22,14 @@ unique addresses are passed to the API for geocoding. If a data set
 exceeds 1,000 unique addresses, it will be automatically subset into
 appropriately sized API calls, geocoded, and then put back together so
 that a single object is returned. There is also support for parallel
-processing on Non-Windows platforms.
+processing of requests, which can significantly shorten the time it
+takes to batch geocode large numbers of addresses.
 
-## What’s New in v1.0.1?
+## What’s New in v1.0.2.9000?
 
--   Changes to the default geocoding options to mirror updates to the
-    API for the 2020 Decennial Census
+-   `censusxy` now supports parallelization on Windows (macOS and Linux
+    had support for this since `v1.0.0`), thanks to a PR from
+    [Christopher Kenny](https://github.com/christopherkenny)!
 
 ## Installing censusxy
 

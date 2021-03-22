@@ -3,7 +3,7 @@
 #' @description
 #' Provides access to the US Census Bureau batch endpoints for locations and geographies.
 #' The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
-#'  It also supports multiple outputs, including SF class objects.
+#' It also supports multiple outputs, including SF class objects.
 #'
 #' @param .data data.frame containing columns with structured address data
 #' @param id Optional String - Name of column containing unique ID
@@ -22,7 +22,7 @@
 #' @return A data.frame or sf object containing geocoded results
 #'
 #' @details
-#' Parallel requests are supported accross platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
+#' Parallel requests are supported across platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
 #' You may not specify more cores than the system reports are available
 #' If you do, the maximum number of available cores will be used.
 #'
@@ -86,7 +86,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
       }
     }else{
       if(
-        !requireNamespace('parallel') | 
+        !requireNamespace('parallel') |
         !requireNamespace('doParallel') |
         !requireNamespace('foreach')
       ){
@@ -96,7 +96,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
       # this gets around calling it as foreach::%dopar% below which sometimes errors
       `%dopar%` <- foreach::`%dopar%`
     }
-    
+
     # Check Number of Cores
     avail_cores <- parallel::detectCores()
     if(parallel > avail_cores){
@@ -105,7 +105,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     }else{
       core_count <- parallel
     }
-    
+
   }
 
   # Handle NA Arguments
@@ -176,7 +176,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     }
 
     batches <- split(uniq, rep_len(seq(splt_fac), nrow(uniq)) )
-    
+
     if(.Platform$OS.type == 'unix'){
       results <- parallel::mclapply(batches, batch_geocoder,
                                   return, timeout, benchmark, vintage,
@@ -186,12 +186,12 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
       # create and register a cluster to run - sequential is safer, though not necessary
       cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
       doParallel::registerDoParallel(cl)
-      
+
       # replace foreach + dopar gives you a parallel workflow, like mclapply
       results <- foreach::foreach(i = 1:length(batches), .export = 'batch_geocoder') %dopar% {
         batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
       }
-      
+
       # however, you do need to stop the cluster.
       parallel::stopCluster(cl)
     }

@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.9000</span>
       </span>
     </div>
 
@@ -88,12 +88,13 @@
 <a href="#censusxy-" class="anchor"></a>censusxy <img src="reference/figures/logo.png" align="right">
 </h1></div>
 
-<p>The <code>censusxy</code> package is designed to provide easy access to the <a href="https://geocoding.geo.census.gov/geocoder/">U.S. Census Bureau Geocoding Tools</a> in <code>R</code>. <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing on Non-Windows platforms.</p>
-<div id="whats-new-in-v101" class="section level2">
+<p>The <code>censusxy</code> package is designed to provide easy access to the <a href="https://geocoding.geo.census.gov/geocoder/">U.S. Census Bureau Geocoding Tools</a> in <code>R</code>. <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing of requests, which can significantly shorten the time it takes to batch geocode large numbers of addresses.</p>
+<div id="whats-new-in-v1029000" class="section level2">
 <h2 class="hasAnchor">
-<a href="#whats-new-in-v101" class="anchor"></a>What’s New in v1.0.1?</h2>
+<a href="#whats-new-in-v1029000" class="anchor"></a>What’s New in v1.0.2.9000?</h2>
 <ul>
-<li>Changes to the default geocoding options to mirror updates to the API for the 2020 Decennial Census</li>
+<li>
+<code>censusxy</code> now supports parallel processing on Windows (macOS and Linux had support for this since <code>v1.0.0</code>), thanks to a PR from <a href="https://github.com/christopherkenny">Christopher Kenny</a>!</li>
 </ul>
 </div>
 <div id="installing-censusxy" class="section level2">
@@ -157,18 +158,20 @@
 <a href="https://chris-prener.github.io">Christopher Prener</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4310-9888" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
 <a href="https://bransonf.com">Branson Fox</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-4361-2811" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
 <li><a href="https://github.com/slu-openGIS/censusxy/actions"><img src="https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/github/slu-openGIS/censusxy?branch=master"><img src="https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://cran.r-project.org/package=censusxy"><img src="https://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_censusxy.html"><img src="https://cranchecks.info/badges/worst/censusxy" alt="cran checks"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/censusxy"><img src="https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/165924122"><img src="https://zenodo.org/badge/165924122.svg" alt="DOI"></a></li>
-<li><a href="https://cran.r-project.org/package=censusxy"><img src="http://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a></li>
-<li><a href="http://www.r-pkg.org/pkg/censusxy"><img src="http://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a></li>
 </ul>
 </div>
 </div>

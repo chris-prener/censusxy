@@ -1,11 +1,12 @@
 Package: censusxy
 Title: Access the U.S. Census Bureau's Geocoding A.P.I. System
-Version: 1.0.1
+Version: 1.0.2.9000
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
-    comment = c(ORCID = "0000-0002-4361-2811"))
+    comment = c(ORCID = "0000-0002-4361-2811")),
+    person("Christopher", "Kenny", ,"ctk44@cornell.edu", c("ctb"))
     )
 Description: Provides access to the U.S. Census Bureau's A.P.I for matching American
     street addresses with their longitude and latitude. This includes both single address matching

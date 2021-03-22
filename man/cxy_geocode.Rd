@@ -53,10 +53,10 @@ A data.frame or sf object containing geocoded results
 \description{
 Provides access to the US Census Bureau batch endpoints for locations and geographies.
 The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
- It also supports multiple outputs, including SF class objects.
+It also supports multiple outputs, including SF class objects.
 }
 \details{
-Parallel requests are supported accross platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
+Parallel requests are supported across platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
 You may not specify more cores than the system reports are available
 If you do, the maximum number of available cores will be used.
 
