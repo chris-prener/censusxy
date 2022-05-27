@@ -209,7 +209,7 @@ cxy_geography(lon = -90.23324, lat = 38.63593)
 
 This function is useful for a small number of addresses, but returns a *significant* amount of data for each point location. If you have a large number of points and need a specific value like county or congressional district, using `tigris` to obtain those data and then `sf::st_intersection()` to perform a spatial join will be a more effective solution that performs this task faster and results in clearer output.
 
-#### Iteration
+### Iteration
 For a handful of addresses, you may want to iterate using these functions. Two examples using base R are provided here:
 
 ```r
