@@ -1,0 +1,14 @@
+citHeader("To cite package censusxy in publications, please use:")
+
+citEntry(entry="Article",
+  author = "Prener, Christopher G and Fox, Branson",
+  title = "Creating open source composite geocoders: Pitfalls and opportunities",
+  journal = "Transactions in GIS",
+  volume = 25,
+  number = 4,
+  pages = "1868--1887",
+  year = 2021,
+  doi = "10.1111/tgis.12741",
+  url = "https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741",
+  textVersion = "Prener, C. and B. Fox, 2021. Creating open source composite geocoders: Pitfalls and opportunities. Transactions in GIS 25(4), 1868-1887. https://doi.org/10.1111/tgis.12741"
+)
