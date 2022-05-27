@@ -87,20 +87,18 @@ knitr::include_graphics("man/figures/homicide_example.png")
 ```
 
 ## Issues with Parallel Processing on macOS
-Users on macOS should note that there have been [issues reported](https://github.com/slu-openGIS/censusxy/issues/42) with using the `parallel` argument on macOS v12.4. Users with this specific operating system version may experience the following error if `parallel` is greater than `1`:
+Users on macOS should note that there have been [issues reported](https://github.com/slu-openGIS/censusxy/issues/42) with using the `parallel` argument on macOS v12.4. Users with this specific operating system version *may* experience the following error if `parallel` is greater than `1`:
 
 ```
 The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
 The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
 Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
 Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Error in fix.by(by.y, y) : 'by' must specify a uniquely valid column
-In addition: Warning messages:
-1: In parallel::mclapply(batches, batch_geocoder, return, timeout,  :
-  scheduled cores 1, 2 did not deliver results, all values of the jobs will be affected
+Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  : 
+  The operating system returned a parallel processing error - see censusxy's website for more information.
 ```
 
-We will update the package documentation again if this issue persists beyond macOS v12.4 and/or the next release of `R` (which includes the `parallel` package).
+We will update the package documentation again if this issue persists beyond macOS v12.4 and/or the next release of `R` (which includes the `parallel` package). In our testing, we have noticed that this behavior occurs inconsistency, and we have been able to successfully execute our code after restarting our `R` session.
 
 ## Contributor Code of Conduct
 Please note that this project is released with a [Contributor Code of Conduct](https://slu-opengis.github.io/censusxy/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.

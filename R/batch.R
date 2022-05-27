@@ -188,7 +188,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
           stop(c)
         },
         warning = function(c) {
-          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information.r"
+          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information."
           stop(c)})
 
     } else{
