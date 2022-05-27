@@ -2,6 +2,7 @@
 context("test censusxy options functions")
 
 # Test Benchmarks -------------------------------------------------------------
+
 test_that('Valid Benchmarks are returned', {
   skip_if_offline()
 
@@ -12,18 +13,19 @@ test_that('Valid Benchmarks are returned', {
 })
 
 # Test Vintages ---------------------------------------------------------------
-test_that('Valid Vintages are returned', {
-  skip_if_offline()
 
-  expect_s3_class(
-    cxy_vintages(cxy_benchmarks()$benchmarkName[1]),
-    'data.frame'
-  )
-  expect_s3_class(
-    cxy_vintages(cxy_benchmarks()$id[1]),
-    'data.frame'
-  )
-})
+# test_that('Valid Vintages are returned', {
+#  skip_if_offline()
+#
+#  expect_s3_class(
+#    cxy_vintages(cxy_benchmarks()$benchmarkName[1]),
+#    'data.frame'
+#  )
+#  expect_s3_class(
+#    cxy_vintages(cxy_benchmarks()$id[1]),
+#    'data.frame'
+#  )
+# })
 
 test_that('Invalid Vintages Error Correctly', {
   expect_error(
@@ -32,8 +34,8 @@ test_that('Invalid Vintages Error Correctly', {
   )
 
   skip_if_offline()
-  expect_error(
-    cxy_vintages('Bad Input'),
-    'Not a Valid Benchmark'
-  )
+    expect_error(
+      cxy_vintages('Bad Input'),
+      'Not a Valid Benchmark'
+    )
 })

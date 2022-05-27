@@ -30,10 +30,12 @@ cxy_benchmarks <- function(){
 #'
 #' @importFrom httr GET content timeout config
 #'
-#' @examples cxy_vintages('Public_AR_Current')
+#' @examples
+#' \dontrun{cxy_vintages('Public_AR_Current')}
 #'
 #' @export
 cxy_vintages <- function(benchmark){
+
   if(missing(benchmark)){
     stop('`benchmark` is a required argument')
   }
@@ -48,10 +50,19 @@ cxy_vintages <- function(benchmark){
               ),
               httr::timeout(30)
     )
+
   cnt <- httr::content(req)
-  if(length(cnt) < 1){
+
+  if("errors" %in% names(cnt) == TRUE){
     stop('Not a Valid Benchmark')
   }
+
+  if ("benchmarks" %in% names(x) == TRUE){
+    stop("Vintage API is currently down - please try again later.")
+  }
+
   df <- do.call(rbind.data.frame, cnt$vintages)
+
   return(df)
+
 }
