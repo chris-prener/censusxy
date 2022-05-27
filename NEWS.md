@@ -1,6 +1,7 @@
 # censusxy 1.0.2.9000
 
 * Expand support for parallel processing to Windows
+* Miscellaneous documentation updates
 
 # censusxy 1.0.1
 
