@@ -178,10 +178,20 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     batches <- split(uniq, rep_len(seq(splt_fac), nrow(uniq)) )
 
     if(.Platform$OS.type == 'unix'){
-      results <- parallel::mclapply(batches, batch_geocoder,
+
+      results <- tryCatch(
+        expr = parallel::mclapply(batches, batch_geocoder,
                                   return, timeout, benchmark, vintage,
-                                  mc.cores = core_count)
-    }else{
+                                  mc.cores = core_count),
+        error = function(c) {
+          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information."
+          stop(c)
+        },
+        warning = function(c) {
+          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information.r"
+          stop(c)})
+
+    } else{
       i = NULL # Prevent Warning for Undeclared Global Variable
       # create and register a cluster to run - sequential is safer, though not necessary
       cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
@@ -241,8 +251,12 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   if(class == 'sf'){
     valid <- return_df[which(!is.na(return_df$cxy_lat)),]
     sf <- sf::st_as_sf(valid, coords = c('cxy_lon', 'cxy_lat'), crs = 4269) # NAD83
+
     # Message Number of Rows Removed
-    message(nrow(return_df) - nrow(valid), ' rows removed to create an sf object. These were addresses that the geocoder could not match.')
+    if (nrow(return_df) - nrow(valid) > 0){
+      message(nrow(return_df) - nrow(valid), ' rows removed to create an sf object. These were addresses that the geocoder could not match.')
+    }
+
     return(sf)
   }
 
