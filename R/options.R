@@ -10,13 +10,27 @@
 #'
 #' @export
 cxy_benchmarks <- function(){
-  req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
-                   httr::config(
-                     connecttimeout = 30
-                   ),
-                   httr::timeout(30))
+
+  try(
+    expr = req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
+                            httr::config(
+                              connecttimeout = 30
+                            ),
+                            httr::timeout(30)),
+    silent = TRUE
+  )
+
   cnt <- httr::content(req)
-  df <- do.call(rbind.data.frame, cnt$benchmarks)
+
+  if (inherits(cnt, what = "list") == TRUE){
+
+    df <- do.call(rbind.data.frame, cnt$benchmarks)
+
+  } else if (inherits(cnt, what = "try-error") == TRUE) {
+    df <- data.frame()
+    message("Census API currently unavailable")
+  }
+
   return(df)
 }
 
@@ -30,7 +44,7 @@ cxy_benchmarks <- function(){
 #'
 #' @importFrom httr GET content timeout config
 #'
-#' @examples cxy_vintages('Public_AR_Current')
+#' @examples cxy_vintages("Public_AR_Current")
 #'
 #' @export
 cxy_vintages <- function(benchmark){
@@ -39,29 +53,35 @@ cxy_vintages <- function(benchmark){
     stop('`benchmark` is a required argument')
   }
 
-  req <-
-    httr::GET('https://geocoding.geo.census.gov/geocoder/vintages',
-              query = list(
-                benchmark = benchmark
-              ),
-              httr::config(
-                connecttimeout = 30
-              ),
-              httr::timeout(30)
-    )
+  req <- try(
+    expr = httr::GET('https://geocoding.geo.census.gov/geocoder/vintages',
+                     query = list(
+                       benchmark = benchmark
+                     ),
+                     httr::config(
+                       connecttimeout = 30
+                     ),
+                     httr::timeout(30)),
+    silent = TRUE
+  )
 
   cnt <- httr::content(req)
 
-  if("errors" %in% names(cnt) == TRUE){
-    stop('Not a Valid Benchmark')
-  }
+  if (inherits(cnt, what = "list") == TRUE){
 
-  if ("benchmarks" %in% names(cnt) == TRUE){
-    df <- data.frame(
-      error = c("Vintages not returned by the API")
-    )
-  } else {
+    if("errors" %in% names(cnt) == TRUE){
+      stop('Not a Valid Benchmark')
+    }
+
     df <- do.call(rbind.data.frame, cnt$vintages)
+
+    if (length(df) == 0){
+      message("Census API issue detected - vintages not returned by the API")
+    }
+
+  } else if (inherits(cnt, what = "try-error") == TRUE) {
+    df <- data.frame()
+    message("Census API currently unavailable")
   }
 
   return(df)
