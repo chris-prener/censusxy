@@ -25,11 +25,11 @@ Imports:
     httr
 Suggests: 
     covr,
+    doParallel,
+    foreach,
     knitr,
     parallel,
     rmarkdown,
     sf,
-    testthat,
-    doParallel,
-    foreach
+    testthat
 VignetteBuilder: knitr
