@@ -33,7 +33,9 @@ takes to batch geocode large numbers of addresses.
     GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) -
     please cite the paper if you use `censusxy` in your work
 
-## Installing censusxy
+## Installation
+
+### Installing censusxy
 
 The easiest way to get `censusxy` is to install it from CRAN:
 
@@ -47,6 +49,36 @@ from GitHub with `remotes`:
 ``` r
 # install.packages("remotes")
 remotes::install_github("slu-openGIS/censusxy")
+```
+
+### Installing Suggested Dependencies
+
+Since the package does not need `sf` for its basic functionality, it is
+a suggested dependency rather than a required one. However, many users
+will want to map these data as `sf` objects, and we therefore recommend
+users install `sf`. Windows and macOS users should be able to install
+`sf` without significant issues unless they are building from source.
+Linux users will need to install several open source spatial libraries
+to get `sf` itself up and running.
+
+The other suggested dependencies that users may want to consider
+installing have to do with parallel processing. As with `sf`, it is not
+necessary for users to take advantage of this functionality to use
+`censusxy`. If you do want make requests to the Census Bureau’s API in
+parallel, you will need `doParallel` as well as `foreach`.
+
+If you want to use these packages, you can either install them
+individually (faster) or install all of the suggested dependencies at
+once (slower, will also give you a number of other packages you may or
+may not want):
+
+``` r
+## install sf and/or parallel packages
+install.packages("sf")
+install.packages(c("doParallel","foreach"))
+
+## install all suggested dependencies
+install.packages("censusxy", dependencies = TRUE)
 ```
 
 ## Usage
@@ -83,6 +115,27 @@ If you request an `sf` object, you easily preview the results with the
 ```
 
 <img src="man/figures/homicide_example.png" width="100%" />
+
+## Issues with Parallel Processing on macOS
+
+Users on macOS should note that there have been [issues
+reported](https://github.com/slu-openGIS/censusxy/issues/42) with using
+the `parallel` argument on macOS v12.4. Users with this specific
+operating system version may experience the following error if
+`parallel` is greater than `1`:
+
+    The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
+    The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
+    Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
+    Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
+    Error in fix.by(by.y, y) : 'by' must specify a uniquely valid column
+    In addition: Warning messages:
+    1: In parallel::mclapply(batches, batch_geocoder, return, timeout,  :
+      scheduled cores 1, 2 did not deliver results, all values of the jobs will be affected
+
+We will update the package documentation again if this issue persists
+beyond macOS v12.4 and/or the next release of `R` (which includes the
+`parallel` package).
 
 ## Contributor Code of Conduct
 
