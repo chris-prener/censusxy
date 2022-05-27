@@ -2,7 +2,7 @@ Package: censusxy
 Title: Access the U.S. Census Bureau's Geocoding A.P.I. System
 Version: 1.0.2.9000
 Authors@R: c(
-    person("Christopher", "Prener", ,"chris.prener@slu.edu", c("aut", "cre"),
+    person("Christopher", "Prener", ,"chris.prener@gmail.com", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
     person("Branson", "Fox", ,"branson.fox@slu.edu", c("aut"),
     comment = c(ORCID = "0000-0002-4361-2811")),
