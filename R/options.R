@@ -30,8 +30,7 @@ cxy_benchmarks <- function(){
 #'
 #' @importFrom httr GET content timeout config
 #'
-#' @examples
-#' \dontrun{cxy_vintages('Public_AR_Current')}
+#' @examples cxy_vintages('Public_AR_Current')
 #'
 #' @export
 cxy_vintages <- function(benchmark){
@@ -57,11 +56,13 @@ cxy_vintages <- function(benchmark){
     stop('Not a Valid Benchmark')
   }
 
-  if ("benchmarks" %in% names(x) == TRUE){
-    stop("Vintage API is currently down - please try again later.")
+  if ("benchmarks" %in% names(cnt) == TRUE){
+    df <- data.frame(
+      error = c("Vintages not returned by the API")
+    )
+  } else {
+    df <- do.call(rbind.data.frame, cnt$vintages)
   }
-
-  df <- do.call(rbind.data.frame, cnt$vintages)
 
   return(df)
 
