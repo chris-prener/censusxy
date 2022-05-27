@@ -3,12 +3,11 @@
 
 # censusxy <img src="man/figures/logo.png" align="right" />
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build
 status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
 [![Coverage
 status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
-[![CRAN\_status\_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
+[![CRAN_status_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 [![cran
 checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen)](https://www.r-pkg.org/pkg/censusxy)
@@ -29,7 +28,10 @@ takes to batch geocode large numbers of addresses.
 
 -   `censusxy` now supports parallelization on Windows (macOS and Linux
     had support for this since `v1.0.0`), thanks to a PR from
-    [Christopher Kenny](https://github.com/christopherkenny)!
+    [Christopher Kenny](https://github.com/christopherkenny)
+-   `censusxy` is described in a 2021 paper in [*Transactions in
+    GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) -
+    please cite the paper if you use `censusxy` in your work
 
 ## Installing censusxy
 
