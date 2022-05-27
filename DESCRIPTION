@@ -14,7 +14,7 @@ Description: Provides access to the U.S. Census Bureau's A.P.I for matching Amer
     as well as batch functionality for multiple addresses. Census geographies can be appended to 
     addresses if desired, and reverse geocoding of point locations to census geographies is also 
     supported. 
-Depends: R (>= 3.3)
+Depends: R (>= 3.4)
 License: GPL-3
 URL: https://github.com/slu-openGIS/censusxy
 BugReports: https://github.com/slu-openGIS/censusxy/issues

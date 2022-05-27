@@ -1,17 +1,29 @@
 ## Release summary
-This is a resubmission of a release that fixes defaults to align with changes to the API's defaults for the 2020 Decennial Census. It also makes several changes from Uwe Liggs, including wrapping two examples where the API takes time to respond in `\donttest{}` and converting all URLs from `http://` to `https://`.
+...
+
+update R to v 3.5
 
 ## Test environments
-* local OS X install: R 4.0.3
-* Ubuntu (via GitHub Actions): R-4.0.3, R-3.6, R-3.5, R-3.4, and R-3.3
-* macOS (via GitHub Actions): R-devel, R-4.0.3, R-3.6
-* windows (via GitHub Actions): R-4.0.3, R-3.6
-* winbuilder, R-release, R-oldrel, R-devel
-
-* r-hub not used because it lacks dependencies needed to build `sf` on Debian
+* local OS X install: R 4.1.2
+* Linux ubuntu distribution (via GitHub Actions): R-devel, R-release, past four R-oldrel (4.1.3, 4.0.5, 3.6.3, 3.5.3)
+* macOS (via GitHub Actions): R-release
+* windows (via GitHub Actions): R-release
+* winbuilder: R-release, R-oldrel, R-devel
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, or NOTEs with local or CI checks.
+There were no ERRORs, WARNINGs, or NOTEs with local or CI checks. There is one NOTE on winbuilder:
+
+```r
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Christopher Prener <chris.prener@gmail.com>'
+
+New maintainer:
+  Christopher Prener <chris.prener@gmail.com>
+Old maintainer(s):
+  Christopher Prener <chris.prener@slu.edu>
+```
+
+I am still the maintainer - I have just changed my contact information due to new employment!
 
 ## revdepcheck results
 
