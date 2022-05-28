@@ -32,6 +32,9 @@ takes to batch geocode large numbers of addresses.
 -   `censusxy` is described in a 2021 paper in [*Transactions in
     GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) -
     please cite the paper if you use `censusxy` in your work
+-   `R` version 3.4 is now the minimum version supported
+-   We’ve made some internal changes to ensure that API issues fail
+    gracefully and to improve the documentation
 
 ## Installation
 

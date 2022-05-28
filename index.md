@@ -15,6 +15,8 @@ The `censusxy` package is designed to provide easy access to the [U.S. Census Bu
 ## What's New in v1.0.2.9000?
 * `censusxy` now supports parallelization on Windows (macOS and Linux had support for this since `v1.0.0`), thanks to a PR from [Christopher Kenny](https://github.com/christopherkenny)
 * `censusxy` is described in a 2021 paper in [*Transactions in GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) - please cite the paper if you use `censusxy` in your work
+* `R` version 3.4 is now the minimum version supported
+* We've made some internal changes to ensure that API issues fail gracefully and to improve the documentation
 
 ## Installation
 ### Installing censusxy
