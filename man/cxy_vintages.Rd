@@ -16,6 +16,6 @@ A data.frame containing valid Census Vintages for a given benchmark
 Get Current Valid Vintages
 }
 \examples{
-cxy_vintages('Public_AR_Current')
+cxy_vintages("Public_AR_Current")
 
 }
