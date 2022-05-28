@@ -64,8 +64,8 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   if(!class %in% c('dataframe', 'sf')){
     stop("`class` must be one of 'dataframe' or 'sf'")
   }
-  if(class == 'sf' & "sf" %in% rownames(utils::installed.packages()) == FALSE){
-    stop('Please install the `sf` package to use the sf output feature')
+  if(class == 'sf' & (nzchar(find.package(package = "sf", quiet = TRUE)) != TRUE)){
+    stop("Please install the 'sf' package to use the sf output feature")
   }
   if(!output %in% c('simple', 'full')){
     stop("`output` must be one of 'simple' or 'full'")
