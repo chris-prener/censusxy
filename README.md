@@ -119,27 +119,6 @@ If you request an `sf` object, you easily preview the results with the
 
 <img src="man/figures/homicide_example.png" width="100%" />
 
-## Issues with Parallel Processing on macOS
-
-Users on macOS should note that there have been [issues
-reported](https://github.com/slu-openGIS/censusxy/issues/42) with using
-the `parallel` argument on macOS v12.4. Users with this specific
-operating system version *may* experience the following error if
-`parallel` is greater than `1`:
-
-    The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-    The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-    Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-    Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-    Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  : 
-      The operating system returned a parallel processing error - see censusxy's website for more information.
-
-We will update the package documentation again if this issue persists
-beyond macOS v12.4 and/or the next release of `R` (which includes the
-`parallel` package). In our testing, we have noticed that this behavior
-occurs inconsistency, and we have been able to successfully execute our
-code after restarting our `R` session.
-
 ## Contributor Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
