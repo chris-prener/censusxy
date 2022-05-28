@@ -64,7 +64,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   if(!class %in% c('dataframe', 'sf')){
     stop("`class` must be one of 'dataframe' or 'sf'")
   }
-  if(class == 'sf' & !requireNamespace('sf')){
+  if(class == 'sf' & "sf" %in% rownames(installed.packages()) == FALSE){
     stop('Please install the `sf` package to use the sf output feature')
   }
   if(!output %in% c('simple', 'full')){
@@ -80,21 +80,19 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   if(parallel > 1){
 
     # Check if Available by Platform
-    if(.Platform$OS.type == 'unix'){
-      if(!requireNamespace('parallel')){
-        stop('Please install the `parallel` package to use parallel functionality')
+    if(.Platform$OS.type != 'unix'){
+
+      if ("doParallel" %in% rownames(installed.packages() == FALSE)) {
+        stop('Please install the `doParallel` package to use parallel functionality')
       }
-    }else{
-      if(
-        !requireNamespace('parallel') |
-        !requireNamespace('doParallel') |
-        !requireNamespace('foreach')
-      ){
-        stop('Please install the `parallel`, `doParallel` and `foreach` packages to use parallel functionality')
+
+      if ("foreach" %in% rownames(installed.packages() == FALSE)) {
+        stop('Please install the `foreach` package to use parallel functionality')
       }
 
       # this gets around calling it as foreach::%dopar% below which sometimes errors
       `%dopar%` <- foreach::`%dopar%`
+
     }
 
     # Check Number of Cores
