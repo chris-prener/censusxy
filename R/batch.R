@@ -82,14 +82,12 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     # Check if Available by Platform
     if(.Platform$OS.type != 'unix'){
 
-      pkgs <- rownames(utils::installed.packages())
-
-      if ("doParallel" %in% pkgs) {
-        stop('Please install the `doParallel` package to use parallel functionality')
+      if (nzchar(find.package(package = "doParallel", quiet = TRUE)) != TRUE) {
+        stop("Please install the 'doParallel' package to use parallel functionality")
       }
 
-      if ("foreach" %in% pkgs) {
-        stop('Please install the `foreach` package to use parallel functionality')
+      if (nzchar(find.package(package = "foreach", quiet = TRUE)) != TRUE) {
+        stop("Please install the 'foreach' package to use parallel functionality")
       }
 
       # this gets around calling it as foreach::%dopar% below which sometimes errors
