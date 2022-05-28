@@ -82,11 +82,13 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     # Check if Available by Platform
     if(.Platform$OS.type != 'unix'){
 
-      if ("doParallel" %in% rownames(utils::installed.packages() == FALSE)) {
+      pkgs <- rownames(utils::installed.packages())
+
+      if ("doParallel" %in% pkgs) {
         stop('Please install the `doParallel` package to use parallel functionality')
       }
 
-      if ("foreach" %in% rownames(utils::installed.packages() == FALSE)) {
+      if ("foreach" %in% pkgs) {
         stop('Please install the `foreach` package to use parallel functionality')
       }
 
