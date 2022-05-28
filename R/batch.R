@@ -79,29 +79,28 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   # Check Parallel Configuration
   if(parallel > 1){
 
-    # Check if Available by Platform
-    if(.Platform$OS.type != 'unix'){
-
-      if (nzchar(find.package(package = "doParallel", quiet = TRUE)) != TRUE) {
-        stop("Please install the 'doParallel' package to use parallel functionality")
-      }
-
-      if (nzchar(find.package(package = "foreach", quiet = TRUE)) != TRUE) {
-        stop("Please install the 'foreach' package to use parallel functionality")
-      }
-
-      # this gets around calling it as foreach::%dopar% below which sometimes errors
-      `%dopar%` <- foreach::`%dopar%`
-
+    if (nzchar(find.package(package = "doParallel", quiet = TRUE)) != TRUE) {
+      stop("Please install the 'doParallel' package to use parallel functionality")
     }
+
+    if (nzchar(find.package(package = "foreach", quiet = TRUE)) != TRUE) {
+      stop("Please install the 'foreach' package to use parallel functionality")
+    }
+
+    # this gets around calling it as foreach::%dopar% below which sometimes errors
+    `%dopar%` <- foreach::`%dopar%`
 
     # Check Number of Cores
     avail_cores <- parallel::detectCores()
     if(parallel > avail_cores){
+
       warning('More cores specified than are available, using ', avail_cores, ' cores instead')
       core_count <- avail_cores
-    }else{
+
+    } else {
+
       core_count <- parallel
+
     }
 
   }
@@ -175,36 +174,22 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
 
     batches <- split(uniq, rep_len(seq(splt_fac), nrow(uniq)) )
 
-    if(.Platform$OS.type == 'unix'){
+    # Prevent Warning for Undeclared Global Variable
+    i = NULL
 
-      results <- tryCatch(
-        expr = parallel::mclapply(batches, batch_geocoder,
-                                  return, timeout, benchmark, vintage,
-                                  mc.cores = core_count),
-        error = function(c) {
-          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information."
-          stop(c)
-        },
-        warning = function(c) {
-          c$message <- "The operating system returned a parallel processing error - see censusxy's website for more information."
-          stop(c)})
+    # create and register a cluster to run - sequential is safer, though not necessary
+    cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
+    doParallel::registerDoParallel(cl)
 
-    } else{
-      i = NULL # Prevent Warning for Undeclared Global Variable
-      # create and register a cluster to run - sequential is safer, though not necessary
-      cl <- parallel::makeCluster(core_count, setup_strategy = 'sequential')
-      doParallel::registerDoParallel(cl)
-
-      # replace foreach + dopar gives you a parallel workflow, like mclapply
-      results <- foreach::foreach(i = 1:length(batches), .export = 'batch_geocoder') %dopar% {
-        batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
-      }
-
-      # however, you do need to stop the cluster.
-      parallel::stopCluster(cl)
+    # replace foreach + dopar gives you a parallel workflow, like mclapply
+    results <- foreach::foreach(i = 1:length(batches), .export = 'batch_geocoder') %dopar% {
+      batch_geocoder(batches[[i]], return, timeout, benchmark, vintage)
     }
 
-  }else{ # Non Parallel
+    # however, you do need to stop the cluster.
+    parallel::stopCluster(cl)
+
+  } else { # Non Parallel
     # Split and Iterate
     batches <- split(uniq, (seq(nrow(uniq))-1) %/% 1000 )
     results <- lapply(batches, batch_geocoder,
