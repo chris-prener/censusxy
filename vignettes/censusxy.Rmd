@@ -112,19 +112,6 @@ This is an *optional* set of tools to take advantage of multiple threads if your
 
 Since this is *optional*, there are additional dependencies that are not automatically installed. See the installation instructions above for details on ensuring your `R` environment is ready for parallel processing.
 
-Users on macOS should note that there have been [issues reported](https://github.com/slu-openGIS/censusxy/issues/42) with using the `parallel` argument on macOS v12.4. Users with this specific operating system version *may* experience the following error if `parallel` is greater than `1`:
-
-```
-The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  : 
-  The operating system returned a parallel processing error - see censusxy's website for more information.
-```
-
-We will update the package documentation again if this issue persists beyond macOS v12.4 and/or the next release of `R` (which includes the `parallel` package). In our testing, we have noticed that this behavior occurs inconsistency, and we have been able to successfully execute our code after restarting our `R` session.
-
 ### Selection a Class and Output
 There are two options for `class`, which governs the type of object `censusxy` returns. By default, a `"dataframe"` is returned. However, users may *optionally* set `class` to `"sf"`, which will return the results as an `sf` object. Doing so allows for an immediate preview of your data on a map and for these data to be exported in a geospatial format, like `.geojson` or `.shp`. However, returning an `sf` object will mean that `censusxy` can only return addresses successfully matched by the geocoder. A helpful message denoting how many rows were removed will print in the console.
 
