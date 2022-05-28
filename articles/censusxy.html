@@ -195,14 +195,6 @@
 </h3>
 <p>This is an <em>optional</em> set of tools to take advantage of multiple threads if your computer has a multi-core processor. The <code>parallel</code> argument can be used to specify the number of cores you would like to dedicate to geocoding tasks. Once you execute the function, your batch geocoding request will be automatically distributed across your cores to return results faster. The function will not allow you to specify more cores than are available, and will instead default to the maximum number of available cores.</p>
 <p>Since this is <em>optional</em>, there are additional dependencies that are not automatically installed. See the installation instructions above for details on ensuring your <code>R</code> environment is ready for parallel processing.</p>
-<p>Users on macOS should note that there have been <a href="https://github.com/slu-openGIS/censusxy/issues/42" class="external-link">issues reported</a> with using the <code>parallel</code> argument on macOS v12.4. Users with this specific operating system version <em>may</em> experience the following error if <code>parallel</code> is greater than <code>1</code>:</p>
-<pre><code>The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  : 
-  The operating system returned a parallel processing error - see censusxy's website for more information.</code></pre>
-<p>We will update the package documentation again if this issue persists beyond macOS v12.4 and/or the next release of <code>R</code> (which includes the <code>parallel</code> package). In our testing, we have noticed that this behavior occurs inconsistency, and we have been able to successfully execute our code after restarting our <code>R</code> session.</p>
 </div>
 <div class="section level3">
 <h3 id="selection-a-class-and-output">Selection a Class and Output<a class="anchor" aria-label="anchor" href="#selection-a-class-and-output"></a>
@@ -226,7 +218,7 @@ Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  :
 <h3 id="importing-data">Importing Data<a class="anchor" aria-label="anchor" href="#importing-data"></a>
 </h3>
 <p>If you plan on using the single address geocoding tools, your data do not need to be in any specific class. To use the batch geocoder, your data must be in a data.frame (or equivalent class). This package provides data on homicides in St Louis City between 2008-2018 as example data in two forms - a small table with 24 addresses (<code>stl_homicides_small</code>) and a larger table with more records (<code>stl_homicides</code>)</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slu-openGIS/censusxy" class="external-link">censusxy</a></span><span class="op">)</span>
 
@@ -242,21 +234,21 @@ Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  :
 <h3 id="batch-geocoding">Batch Geocoding<a class="anchor" aria-label="anchor" href="#batch-geocoding"></a>
 </h3>
 <p>In this example, we will use the included <code>stl_homicides_small</code> data, which we loaded above and assigned to the object <code>df</code>, show the full process for batch geocoding with <code><a href="../reference/cxy_geocode.html">cxy_geocode()</a></code>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span><span class="op">(</span><span class="va">df</span>, address <span class="op">=</span> <span class="st">"street_address"</span>, 
                      city <span class="op">=</span> <span class="st">"city"</span>, 
                      state <span class="op">=</span> <span class="st">"state"</span>, 
                      zip <span class="op">=</span> <span class="st">"postal_code"</span>, 
                      class <span class="op">=</span> <span class="st">"dataframe"</span><span class="op">)</span></code></pre></div>
 <p>Since we have selected <code>"dataframe"</code> for our <code>class</code>, all input addressed will be returned. If you use <code>class = "sf"</code> (and have <code>sf</code> installed), you will receive only matched addresses.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cxy_geocode.html">cxy_geocode</a></span><span class="op">(</span><span class="va">df</span>, address <span class="op">=</span> <span class="st">"street_address"</span>, 
                      city <span class="op">=</span> <span class="st">"city"</span>, 
                      state <span class="op">=</span> <span class="st">"state"</span>, 
                      zip <span class="op">=</span> <span class="st">"postal_code"</span>, 
                      class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></code></pre></div>
 <p>Though <code>sf</code> objects only returned matched addresses, one advantage of using this <em>optional</em> set of features is that output returned as an <code>sf</code> object can be previewed with a package like <a href="https://cran.r-project.org/package=mapview" class="external-link"><code>mapview</code></a>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mapview</span><span class="fu">::</span><span class="fu">mapview</span><span class="op">(</span><span class="va">df_sf</span><span class="op">)</span></code></pre></div>
 <p><img src="../reference/figures/homicide_example.png" width="100%"></p>
 <p>Note that, like <code>sf</code> and the parallel processing dependencies, <code>mapview</code> is a suggested package and must be installed separately (or by using <code>install.packages("censusxy", dependencies = TRUE)</code>).</p>
@@ -265,17 +257,17 @@ Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  :
 <h3 id="single-address-tools">Single Address Tools<a class="anchor" aria-label="anchor" href="#single-address-tools"></a>
 </h3>
 <p>If you have individual addresses you would like to geocode, there are two additional functions to be aware. <code><a href="../reference/cxy_single.html">cxy_single()</a></code> can geocode a single address that has already been parsed into separate entries for <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cxy_single.html">cxy_single</a></span><span class="op">(</span>street <span class="op">=</span> <span class="st">"20 N Grand Blvd"</span>, city <span class="op">=</span> <span class="st">"St. Louis"</span>, state <span class="op">=</span> <span class="st">"MO"</span>, zip <span class="op">=</span> <span class="fl">63103</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, you can pass un-parsed addresses using <code><a href="../reference/cxy_oneline.html">cxy_oneline()</a></code>. This example returns Census geography data along with the default location information:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cxy_oneline.html">cxy_oneline</a></span><span class="op">(</span>address <span class="op">=</span> <span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span>, return <span class="op">=</span> <span class="st">"geographies"</span>, vintage <span class="op">=</span> <span class="st">"Current_Current"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="coordinate-pairs">Coordinate Pairs<a class="anchor" aria-label="anchor" href="#coordinate-pairs"></a>
 </h3>
 <p>Finally, if you know pairs of coordinates but would like to find out what Census geographies they fall within, you can use <code><a href="../reference/cxy_geography.html">cxy_geography()</a></code>:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cxy_geography.html">cxy_geography</a></span><span class="op">(</span>lon <span class="op">=</span> <span class="op">-</span><span class="fl">90.23324</span>, lat <span class="op">=</span> <span class="fl">38.63593</span><span class="op">)</span></code></pre></div>
 <p>This function is useful for a small number of addresses, but returns a <em>significant</em> amount of data for each point location. If you have a large number of points and need a specific value like county or congressional district, using <code>tigris</code> to obtain those data and then <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html" class="external-link">sf::st_intersection()</a></code> to perform a spatial join will be a more effective solution that performs this task faster and results in clearer output.</p>
 </div>
@@ -283,7 +275,7 @@ Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  :
 <h3 id="iteration">Iteration<a class="anchor" aria-label="anchor" href="#iteration"></a>
 </h3>
 <p>For a handful of addresses, you may want to iterate using these functions. Two examples using base R are provided here:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20 N Grand Blvd, St. Louis MO 63103"</span>, <span class="st">"3700 Lindell Blvd, St. Louis, MO 63108"</span><span class="op">)</span>
 
 <span class="co"># with a loop</span>

@@ -138,18 +138,6 @@
 </ul>
 </div>
 <div class="section level2">
-<h2 id="issues-with-parallel-processing-on-macos">Issues with Parallel Processing on macOS<a class="anchor" aria-label="anchor" href="#issues-with-parallel-processing-on-macos"></a>
-</h2>
-<p>Users on macOS should note that there have been <a href="https://github.com/slu-openGIS/censusxy/issues/42" class="external-link">issues reported</a> with using the <code>parallel</code> argument on macOS v12.4. Users with this specific operating system version <em>may</em> experience the following error if <code>parallel</code> is greater than <code>1</code>:</p>
-<pre><code>The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Break on __THE_PROCESS_HAS_FORKED_AND_YOU_CANNOT_USE_THIS_COREFOUNDATION_FUNCTIONALITY___YOU_MUST_EXEC__() to debug.
-Error in parallel::mclapply(batches, batch_geocoder, return, timeout,  : 
-  The operating system returned a parallel processing error - see censusxy's website for more information.</code></pre>
-<p>We will update the package documentation again if this issue persists beyond macOS v12.4 and/or the next release of <code>R</code> (which includes the <code>parallel</code> package). In our testing, we have noticed that this behavior occurs inconsistency, and we have been able to successfully execute our code after restarting our <code>R</code> session.</p>
-</div>
-<div class="section level2">
 <h2 id="contributor-code-of-conduct">Contributor Code of Conduct<a class="anchor" aria-label="anchor" href="#contributor-code-of-conduct"></a>
 </h2>
 <p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
