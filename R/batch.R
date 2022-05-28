@@ -64,7 +64,7 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   if(!class %in% c('dataframe', 'sf')){
     stop("`class` must be one of 'dataframe' or 'sf'")
   }
-  if(class == 'sf' & "sf" %in% rownames(installed.packages()) == FALSE){
+  if(class == 'sf' & "sf" %in% rownames(utils::installed.packages()) == FALSE){
     stop('Please install the `sf` package to use the sf output feature')
   }
   if(!output %in% c('simple', 'full')){
@@ -82,11 +82,11 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     # Check if Available by Platform
     if(.Platform$OS.type != 'unix'){
 
-      if ("doParallel" %in% rownames(installed.packages() == FALSE)) {
+      if ("doParallel" %in% rownames(utils::installed.packages() == FALSE)) {
         stop('Please install the `doParallel` package to use parallel functionality')
       }
 
-      if ("foreach" %in% rownames(installed.packages() == FALSE)) {
+      if ("foreach" %in% rownames(utils::installed.packages() == FALSE)) {
         stop('Please install the `foreach` package to use parallel functionality')
       }
 
