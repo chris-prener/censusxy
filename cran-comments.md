@@ -36,7 +36,7 @@ Found the following (possibly) invalid DOIs:
 
 I am still the maintainer - I have just changed my contact information due to new employment! I also double checked the citation links and found both to work correctly.
 
-## reverse dependency checked
+## revdepcheck results
 
 We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
