@@ -25,7 +25,8 @@ Imports:
     doParallel,
     foreach,
     httr,
-    parallel
+    parallel,
+    utils
 Suggests: 
     covr,
     knitr,

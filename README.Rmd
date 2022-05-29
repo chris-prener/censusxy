@@ -48,14 +48,11 @@ remotes::install_github("slu-openGIS/censusxy")
 ### Installing Suggested Dependencies
 Since the package does not need `sf` for its basic functionality, it is a suggested dependency rather than a required one. However, many users will want to map these data as `sf` objects, and we therefore recommend users install `sf`. Windows and macOS users should be able to install `sf` without significant issues unless they are building from source. Linux users will need to install several open source spatial libraries to get `sf` itself up and running. 
 
-The other suggested dependencies that users may want to consider installing have to do with parallel processing. As with `sf`, it is not necessary for users to take advantage of this functionality to use `censusxy`. If you do want make requests to the Census Bureau's API in parallel, you will need `doParallel` as well as `foreach`.
-
-If you want to use these packages, you can either install them individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):
+If you want to use these `sf`, you can either install it individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):
 
 ```r
-## install sf and/or parallel packages
+## install sf only
 install.packages("sf")
-install.packages(c("doParallel","foreach"))
 
 ## install all suggested dependencies
 install.packages("censusxy", dependencies = TRUE)

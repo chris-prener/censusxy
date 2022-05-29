@@ -33,15 +33,24 @@ cxy_geocode(
 
 \item{zip}{Optional String - Name of column containing zip code}
 
-\item{return}{One of 'locations' or 'geographies' denoting returned information from the API}
+\item{return}{One of 'locations' or 'geographies' denoting returned information
+from the API. If you would like Census geography data, you must specify
+a valid vintage for your benchmark.}
 
-\item{benchmark}{Optional Census Benchmark to geocode against. See Details.}
+\item{benchmark}{Optional Census benchmark to geocode against. To obtain current
+valid benchmarks, use the \code{cxy_benchmarks()} function.}
 
-\item{vintage}{Optional Census Vintage to geocode against. See Details.}
+\item{vintage}{Optional Census vintage to geocode against. You may use the
+\code{cxy_vintages()} function to obtain valid vintages.}
 
 \item{timeout}{Numeric, in minutes, how long until request times out}
 
-\item{parallel}{Integer, number of cores greater than one if parallel requests are desired. See Details.}
+\item{parallel}{Integer, number of cores greater than one if parallel requests
+are desired. All operating systems now use a SOCK cluster, and the
+dependencies are not longer suggested packages. Instead, they are
+installed by default. Note that this value may not represent more cores
+than the system reports are available. If it is larger, the maximum number
+of available cores will be used.}
 
 \item{class}{One of 'dataframe' or 'sf' denoting the output class. 'sf' will only return matched addresses.}
 
@@ -51,19 +60,15 @@ cxy_geocode(
 A data.frame or sf object containing geocoded results
 }
 \description{
-Provides access to the US Census Bureau batch endpoints for locations and geographies.
-The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
-It also supports multiple outputs, including SF class objects.
+Provides access to the US Census Bureau batch endpoints for locations and
+geographies. The function implements iteration and optional parallelization
+in order to geocode datasets larger than the API limit of 1,000 and more
+efficiently than sending 10,000 per request. It also supports multiple outputs,
+including (optionally, if \code{sf} is installed,) \code{sf} class objects.
 }
 \details{
 Parallel requests are supported across platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
 You may not specify more cores than the system reports are available
-If you do, the maximum number of available cores will be used.
-
-To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
-
-If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
- See \code{vignette('censusxy')} for a full walkthrough.
 }
 \examples{
 # load data

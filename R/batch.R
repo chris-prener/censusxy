@@ -1,9 +1,11 @@
 #' Batch Geocode Parsed Addresses
 #'
 #' @description
-#' Provides access to the US Census Bureau batch endpoints for locations and geographies.
-#' The function implements iteration and optional parallelization in order to geocode datasets larger than the API limit of 10,000 and more efficiently than sending 10,000 per request.
-#' It also supports multiple outputs, including SF class objects.
+#' Provides access to the US Census Bureau batch endpoints for locations and
+#' geographies. The function implements iteration and optional parallelization
+#' in order to geocode datasets larger than the API limit of 1,000 and more
+#' efficiently than sending 10,000 per request. It also supports multiple outputs,
+#' including (optionally, if \code{sf} is installed,) \code{sf} class objects.
 #'
 #' @param .data data.frame containing columns with structured address data
 #' @param id Optional String - Name of column containing unique ID
@@ -11,11 +13,20 @@
 #' @param city Optional String - Name of column containing city
 #' @param state Optional String - Name of column containing state
 #' @param zip Optional String - Name of column containing zip code
-#' @param return One of 'locations' or 'geographies' denoting returned information from the API
-#' @param benchmark Optional Census Benchmark to geocode against. See Details.
-#' @param vintage Optional Census Vintage to geocode against. See Details.
+#' @param return One of 'locations' or 'geographies' denoting returned information
+#'     from the API. If you would like Census geography data, you must specify
+#'     a valid vintage for your benchmark.
+#' @param benchmark Optional Census benchmark to geocode against. To obtain current
+#'     valid benchmarks, use the \code{cxy_benchmarks()} function.
+#' @param vintage Optional Census vintage to geocode against. You may use the
+#'     \code{cxy_vintages()} function to obtain valid vintages.
 #' @param timeout Numeric, in minutes, how long until request times out
-#' @param parallel Integer, number of cores greater than one if parallel requests are desired. See Details.
+#' @param parallel Integer, number of cores greater than one if parallel requests
+#'     are desired. All operating systems now use a SOCK cluster, and the
+#'     dependencies are not longer suggested packages. Instead, they are
+#'     installed by default. Note that this value may not represent more cores
+#'     than the system reports are available. If it is larger, the maximum number
+#'     of available cores will be used.
 #' @param class One of 'dataframe' or 'sf' denoting the output class. 'sf' will only return matched addresses.
 #' @param output One of 'simple' or 'full' denoting the returned columns. Simple returns just coordinates.
 #'
@@ -24,15 +35,6 @@
 #' @details
 #' Parallel requests are supported across platforms. If supported (POSIX platforms) the process is forked, otherwise a SOCK cluster is used (Windows).
 #' You may not specify more cores than the system reports are available
-#' If you do, the maximum number of available cores will be used.
-#'
-#' To obtain current valid benchmarks, use the \code{cxy_benchmarks()} function
-#'
-#' If you want to append census geographies, you must specify a valid vintage for your benchmark. You may use the \code{cxy_vintages()} function to obtain valid Vintages.
-#'  See \code{vignette('censusxy')} for a full walkthrough.
-#'
-#' @importFrom httr POST upload_file timeout content
-#' @importFrom utils write.table read.csv
 #'
 #' @examples
 #' # load data

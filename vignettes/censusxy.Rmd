@@ -36,14 +36,11 @@ remotes::install_github("slu-openGIS/censusxy")
 ### Installing Suggested Dependencies
 Since the package does not need `sf` for its basic functionality, it is a suggested dependency rather than a required one. However, many users will want to map these data as `sf` objects, and we therefore recommend users install `sf`. Windows and macOS users should be able to install `sf` without significant issues unless they are building from source. Linux users will need to install several open source spatial libraries to get `sf` itself up and running. 
 
-The other suggested dependencies that users may want to consider installing have to do with parallel processing. As with `sf`, it is not necessary for users to take advantage of this functionality to use `censusxy`. If you do want make requests to the Census Bureau's API in parallel, you will need `doParallel` as well as `foreach`.
-
-If you want to use these packages, you can either install them individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):
+If you want to use these `sf`, you can either install it individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):
 
 ```r
-## install sf and/or parallel packages
+## install sf only
 install.packages("sf")
-install.packages(c("doParallel","foreach"))
 
 ## install all suggested dependencies
 install.packages("censusxy", dependencies = TRUE)
@@ -57,7 +54,7 @@ One of the biggest drawbacks of the Census Bureau's geocoders is their availabil
 #### Processing Speed
 Another performance issue with `censusxy` relates to speed. The issue, generally speaking, is not within the package itself but rather with external factors. These include your computer's processing power, the quality of your internet connection, and - most importantly - the speed that the Census Bureau's servers process your request. We have taken two steps to improve `censusxy`'s performance over using the Census Bureau's geocoding web interface. The first is that we extract unique addresses in your data and only send those for geocoding. Thus, a large geocoding job may shrink considerably if it contains repetitive addresses. 
 
-The second step we take is to break your data into "chunks" if you have more than 1,000 records. This is below the maximum number of rows that the Census Bureau accepts for geocoding. `censusxy` sends these as separate geocoding requests before putting your data back together when geocoding is completed. One of the biggest things you can do to improve the performance of `censusxy` is to utilize our *optional* parallel processing features, which may require the installation of extra packages (see the Installation section above and the description of parallel processing below). When parallel processing is used, these chunks of data can be sent out simultaneously for geocoding.
+The second step we take is to break your data into "chunks" if you have more than 1,000 records. This is below the maximum number of rows that the Census Bureau accepts for geocoding. `censusxy` sends these as separate geocoding requests before putting your data back together when geocoding is completed. One of the biggest things you can do to improve the performance of `censusxy` is to utilize our *optional* parallel processing features. When parallel processing is used, these chunks of data can be sent out simultaneously for geocoding.
 
 #### Data Quality
 A third performance issue with `censusxy` relates to the quality of input data. Street addresses that are not formatted according to USPS standards may cause an entire "chunk" of data to be returned without being geocoded. If you notice many `NA` values for location, check a few with the single line geocoder:
@@ -124,7 +121,7 @@ The function contains an argument for timeout, which specifies how many minutes 
 
 If a batch times out, the function will terminate, and you will lose any geocoding progress.
 
-Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app [amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) useful.
+Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. Turning off sleep behavior for your operating system while geocoding is recommended.
 
 ## Usage
 ### Importing Data
