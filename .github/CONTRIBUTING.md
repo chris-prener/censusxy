@@ -87,5 +87,5 @@ abide by its terms.
 ## Acknowledgements
 These contributing guidelines are modified from those used by [Jenny Bryan](https://github.com/jennybc).
 
-[repoLink]: https://github.com/slu-openGIS/censusxy
-[issuesLink]: https://github.com/slu-openGIS/censusxy/issues
+[repoLink]: https://github.com/chris-prener/censusxy
+[issuesLink]: https://github.com/chris-prener/censusxy/issues
