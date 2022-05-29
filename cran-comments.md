@@ -21,20 +21,14 @@ Old maintainer(s):
   Christopher Prener <chris.prener@slu.edu>
   
 Found the following (possibly) invalid URLs:
-URL: https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741
-  From: inst/CITATION
-        README.md
-  Status: 503
-  Message: Service Unavailable
-
-Found the following (possibly) invalid DOIs:
-  DOI: 10.1111/tgis.12741
+  URL: https://doi.org/10.1111/tgis.12741
     From: inst/CITATION
-    Status: Service Unavailable
-    Message: 503
+          README.md
+    Status: 503
+    Message: Service Unavailable
 ```
 
-I am still the maintainer - I have just changed my contact information due to new employment! I also double checked the citation links and found both to work correctly.
+I am still the maintainer - I have just changed my contact information due to new employment! I also double checked the citation links and found both to work correctly. The link is valid - I have confirmed this manually. 
 
 ## revdepcheck results
 
