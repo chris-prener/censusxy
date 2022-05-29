@@ -1,7 +1,11 @@
 # censusxy 1.0.2.9000
 
-* Expand support for parallel processing to Windows
+* Expand support for parallel processing to Windows and the process has been streamlined so that Unix and Windows platforms now use the same workflow internally. This workflow change was motivated by a bug with macOS 12.4.
+* Dependencies that are listed under `Imports` have been expanded since all operating systems now use the same packages to facilitate parallel processing.
+* `R` version 3.4 is now the minimum version supported
 * Miscellaneous documentation updates
+* We've made some internal changes to ensure that API issues fail gracefully 
+* Documentation improvements have been made to clarify the main vignette
 
 # censusxy 1.0.1
 
@@ -12,7 +16,7 @@
 Version 1.0.0 brings breaking changes, but adds a ton of new functionality. 
 * Full support for all Census Bureau Geographic Tools
 * The syntax of `cxy_geocode()` has changed slightly to facilitate new options
-* Non-Standard Evaluation (NSE) Has Been Removed
+* Non-Standard Evaluation (NSE) has been removed
 * `censusxy` now only has 1 dependency
 * Parallel support added for Unix Platforms
 

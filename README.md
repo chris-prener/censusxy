@@ -4,9 +4,9 @@
 # censusxy <img src="man/figures/logo.png" align="right" />
 
 [![R build
-status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
+status](https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/censusxy/actions)
 [![Coverage
-status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
+status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=master)
 [![CRAN_status_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 [![cran
 checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
@@ -24,14 +24,18 @@ that a single object is returned. There is also support for parallel
 processing of requests, which can significantly shorten the time it
 takes to batch geocode large numbers of addresses.
 
+`censusxy` is described in a 2021 paper in [*Transactions in
+GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) by
+Chris and Branson - please cite the paper if you use `censusxy` in your
+work!
+
 ## What’s New in v1.0.2.9000?
 
 -   `censusxy` now supports parallelization on Windows (macOS and Linux
     had support for this since `v1.0.0`), thanks to a PR from
-    [Christopher Kenny](https://github.com/christopherkenny)
--   `censusxy` is described in a 2021 paper in [*Transactions in
-    GIS*](https://doi.org/10.1111/tgis.12741) - please cite the paper if
-    you use `censusxy` in your work
+    [Christopher Kenny](https://github.com/christopherkenny), and an
+    error that cropped up with macOS 12.4 when submitting requests for
+    parallel processing is addressed
 -   `R` version 3.4 is now the minimum version supported
 -   We’ve made some internal changes to ensure that API issues fail
     gracefully and to improve the documentation
@@ -51,7 +55,7 @@ from GitHub with `remotes`:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/censusxy")
+remotes::install_github("chris-prener/censusxy")
 ```
 
 ### Installing Suggested Dependencies
@@ -64,21 +68,13 @@ users install `sf`. Windows and macOS users should be able to install
 Linux users will need to install several open source spatial libraries
 to get `sf` itself up and running.
 
-The other suggested dependencies that users may want to consider
-installing have to do with parallel processing. As with `sf`, it is not
-necessary for users to take advantage of this functionality to use
-`censusxy`. If you do want make requests to the Census Bureau’s API in
-parallel, you will need `doParallel` as well as `foreach`.
-
-If you want to use these packages, you can either install them
-individually (faster) or install all of the suggested dependencies at
-once (slower, will also give you a number of other packages you may or
-may not want):
+If you want to use these `sf`, you can either install it individually
+(faster) or install all of the suggested dependencies at once (slower,
+will also give you a number of other packages you may or may not want):
 
 ``` r
-## install sf and/or parallel packages
+## install sf only
 install.packages("sf")
-install.packages(c("doParallel","foreach"))
 
 ## install all suggested dependencies
 install.packages("censusxy", dependencies = TRUE)
@@ -122,5 +118,5 @@ If you request an `sf` object, you easily preview the results with the
 ## Contributor Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://slu-opengis.github.io/censusxy/CODE_OF_CONDUCT.html).
+Conduct](https://chris-prener.github.io/censusxy/CODE_OF_CONDUCT.html).
 By participating in this project you agree to abide by its terms.

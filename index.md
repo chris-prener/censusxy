@@ -1,9 +1,9 @@
 # censusxy <img src="man/figures/logo.png" align="right" />
 
 [![R build
-status](https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/slu-openGIS/censusxy/actions)
+status](https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/censusxy/actions)
 [![Coverage
-status](https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/slu-openGIS/censusxy?branch=master)
+status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=master)
 [![CRAN\_status\_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 [![cran
 checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
@@ -12,9 +12,10 @@ checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.o
 
 The `censusxy` package is designed to provide easy access to the [U.S. Census Bureau Geocoding Tools](https://geocoding.geo.census.gov/geocoder/) in `R`. `censusxy` has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing of requests, which can significantly shorten the time it takes to batch geocode large numbers of addresses.
 
+`censusxy` is described in a 2021 paper in [*Transactions in GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) by Chris and Branson - please cite the paper if you use `censusxy` in your work!
+
 ## What's New in v1.0.2.9000?
-* `censusxy` now supports parallelization on Windows (macOS and Linux had support for this since `v1.0.0`), thanks to a PR from [Christopher Kenny](https://github.com/christopherkenny)
-* `censusxy` is described in a 2021 paper in [*Transactions in GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) - please cite the paper if you use `censusxy` in your work
+* `censusxy` now supports parallelization on Windows (macOS and Linux had support for this since `v1.0.0`), thanks to a PR from [Christopher Kenny](https://github.com/christopherkenny), and an error that cropped up with macOS 12.4 when submitting requests for parallel processing is addressed
 * `R` version 3.4 is now the minimum version supported
 * We've made some internal changes to ensure that API issues fail gracefully and to improve the documentation
 
@@ -30,7 +31,7 @@ Alternatively, the development version of `censusxy` can be accessed from GitHub
 
 ```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/censusxy")
+remotes::install_github("chris-prener/censusxy")
 ```
 
 ### Installing Suggested Dependencies

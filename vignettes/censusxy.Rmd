@@ -30,7 +30,7 @@ Alternatively, the development version of `censusxy` can be accessed from GitHub
 
 ```r
 # install.packages("remotes")
-remotes::install_github("slu-openGIS/censusxy")
+remotes::install_github("chris-prener/censusxy")
 ```
 
 ### Installing Suggested Dependencies
@@ -49,7 +49,7 @@ install.packages("censusxy", dependencies = TRUE)
 ## Geocoding Considerations
 ### censusxy Performance
 #### Server Availability
-One of the biggest drawbacks of the Census Bureau's geocoders is their availability and speed. Users of `censusxy` have reported issues to us where `censusxy` appears not to work on their computers. Generally speaking, the issues are with servers on the Census Bureau's end. If you notice that the package does not seem to be working, take a break for a few hours and try again. You will hopefully find that your code, with no changes, executes correctly and returns geocoded data. If you notice continued issues, please do not hesitate to [open an issue for us to investigate](https://github.com/slu-openGIS/censusxy/issues/new/choose).
+One of the biggest drawbacks of the Census Bureau's geocoders is their availability and speed. Users of `censusxy` have reported issues to us where `censusxy` appears not to work on their computers. Generally speaking, the issues are with servers on the Census Bureau's end. If you notice that the package does not seem to be working, take a break for a few hours and try again. You will hopefully find that your code, with no changes, executes correctly and returns geocoded data. If you notice continued issues, please do not hesitate to [open an issue for us to investigate](https://github.com/chris-prener/censusxy/issues/new/choose).
 
 #### Processing Speed
 Another performance issue with `censusxy` relates to speed. The issue, generally speaking, is not within the package itself but rather with external factors. These include your computer's processing power, the quality of your internet connection, and - most importantly - the speed that the Census Bureau's servers process your request. We have taken two steps to improve `censusxy`'s performance over using the Census Bureau's geocoding web interface. The first is that we extract unique addresses in your data and only send those for geocoding. Thus, a large geocoding job may shrink considerably if it contains repetitive addresses. 
@@ -136,7 +136,7 @@ df <- stl_homicides_small
 ```
 
 ### Parsing Addresses
-For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the [`postmastr`](https://github.com/slu-openGIS/postmastr) package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.
+For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the [`postmastr`](https://github.com/chris-prener/postmastr) package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.
 
 ### Batch Geocoding
 In this example, we will use the included `stl_homicides_small` data, which we loaded above and assigned to the object `df`, show the full process for batch geocoding with `cxy_geocode()`:
@@ -213,4 +213,4 @@ geocodes <- lapply(addresses, cxy_oneline)
 * If you are new to `R` itself, welcome! Hadley Wickham's [*R for Data Science*](https://r4ds.had.co.nz) is an excellent way to get started with data manipulation in the tidyverse, which `censusxy` is designed to integrate seamlessly with.
 * If you are new to spatial analysis in `R`, we strongly encourage you check out the excellent new [*Geocomputation in R*](https://geocompr.robinlovelace.net) by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.
 * If you have questions about using `censusxy`, you are encouraged to use the [RStudio Community forums](https://community.rstudio.com). Please create a [`reprex`](https://reprex.tidyverse.org/) before posting. Feel free to tag Chris (`@chris.prener`) in any posts about `censusxy`.
-* If you think you've found a bug, please create a [`reprex`](https://reprex.tidyverse.org/index.html) and then open an issue on [GitHub](https://github.com/slu-openGIS/censusxy/issues/new/choose).
+* If you think you've found a bug, please create a [`reprex`](https://reprex.tidyverse.org/index.html) and then open an issue on [GitHub](https://github.com/chris-prener/censusxy/issues/new/choose).
