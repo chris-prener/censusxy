@@ -62,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/slu-openGIS/censusxy/" class="external-link">
+  <a href="https://github.com/chris-prener/censusxy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -84,15 +84,13 @@
 </h1></div>
 
 <p>The <code>censusxy</code> package is designed to provide easy access to the <a href="https://geocoding.geo.census.gov/geocoder/" class="external-link">U.S. Census Bureau Geocoding Tools</a> in <code>R</code>. <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing of requests, which can significantly shorten the time it takes to batch geocode large numbers of addresses.</p>
+<p><code>censusxy</code> is described in a 2021 paper in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741" class="external-link"><em>Transactions in GIS</em></a> by Chris and Branson - please cite the paper if you use <code>censusxy</code> in your work!</p>
 <div class="section level2">
 <h2 id="whats-new-in-v1029000">What’s New in v1.0.2.9000?<a class="anchor" aria-label="anchor" href="#whats-new-in-v1029000"></a>
 </h2>
 <ul>
 <li>
-<code>censusxy</code> now supports parallelization on Windows (macOS and Linux had support for this since <code>v1.0.0</code>), thanks to a PR from <a href="https://github.com/christopherkenny" class="external-link">Christopher Kenny</a>
-</li>
-<li>
-<code>censusxy</code> is described in a 2021 paper in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741" class="external-link"><em>Transactions in GIS</em></a> - please cite the paper if you use <code>censusxy</code> in your work</li>
+<code>censusxy</code> now supports parallelization on Windows (macOS and Linux had support for this since <code>v1.0.0</code>), thanks to a PR from <a href="https://github.com/christopherkenny" class="external-link">Christopher Kenny</a>, and an error that cropped up with macOS 12.4 when submitting requests for parallel processing is addressed</li>
 <li>
 <code>R</code> version 3.4 is now the minimum version supported</li>
 <li>We’ve made some internal changes to ensure that API issues fail gracefully and to improve the documentation</li>
@@ -110,7 +108,7 @@
 <p>Alternatively, the development version of <code>censusxy</code> can be accessed from GitHub with <code>remotes</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"slu-openGIS/censusxy"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"chris-prener/censusxy"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="installing-suggested-dependencies">Installing Suggested Dependencies<a class="anchor" aria-label="anchor" href="#installing-suggested-dependencies"></a>
@@ -148,8 +146,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=censusxy" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/slu-openGIS/censusxy/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/slu-openGIS/censusxy/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/chris-prener/censusxy/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/chris-prener/censusxy/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -189,8 +187,8 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/slu-openGIS/censusxy/actions" class="external-link"><img src="https://github.com/slu-openGIS/censusxy/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/slu-openGIS/censusxy?branch=master" class="external-link"><img src="https://codecov.io/gh/slu-openGIS/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://github.com/chris-prener/censusxy/actions" class="external-link"><img src="https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/github/chris-prener/censusxy?branch=master" class="external-link"><img src="https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://cran.r-project.org/package=censusxy" class="external-link"><img src="https://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a></li>
 <li><a href="https://cran.r-project.org/web/checks/check_results_censusxy.html" class="external-link"><img src="https://cranchecks.info/badges/worst/censusxy" alt="cran checks"></a></li>
 <li><a href="https://www.r-pkg.org/pkg/censusxy" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a></li>

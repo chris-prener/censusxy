@@ -58,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/slu-openGIS/censusxy/" class="external-link">
+  <a href="https://github.com/chris-prener/censusxy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,7 +81,7 @@
             
             <h4 data-toc-skip class="date">2022-05-29</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/HEAD/vignettes/censusxy.Rmd" class="external-link"><code>vignettes/censusxy.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/chris-prener/censusxy/blob/HEAD/vignettes/censusxy.Rmd" class="external-link"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
 
     </div>
@@ -115,7 +115,7 @@
 <p>Alternatively, the development version of <code>censusxy</code> can be accessed from GitHub with <code>remotes</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"slu-openGIS/censusxy"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"chris-prener/censusxy"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="installing-suggested-dependencies">Installing Suggested Dependencies<a class="anchor" aria-label="anchor" href="#installing-suggested-dependencies"></a>
@@ -139,7 +139,7 @@
 <div class="section level4">
 <h4 id="server-availability">Server Availability<a class="anchor" aria-label="anchor" href="#server-availability"></a>
 </h4>
-<p>One of the biggest drawbacks of the Census Bureau’s geocoders is their availability and speed. Users of <code>censusxy</code> have reported issues to us where <code>censusxy</code> appears not to work on their computers. Generally speaking, the issues are with servers on the Census Bureau’s end. If you notice that the package does not seem to be working, take a break for a few hours and try again. You will hopefully find that your code, with no changes, executes correctly and returns geocoded data. If you notice continued issues, please do not hesitate to <a href="https://github.com/slu-openGIS/censusxy/issues/new/choose" class="external-link">open an issue for us to investigate</a>.</p>
+<p>One of the biggest drawbacks of the Census Bureau’s geocoders is their availability and speed. Users of <code>censusxy</code> have reported issues to us where <code>censusxy</code> appears not to work on their computers. Generally speaking, the issues are with servers on the Census Bureau’s end. If you notice that the package does not seem to be working, take a break for a few hours and try again. You will hopefully find that your code, with no changes, executes correctly and returns geocoded data. If you notice continued issues, please do not hesitate to <a href="https://github.com/chris-prener/censusxy/issues/new/choose" class="external-link">open an issue for us to investigate</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="processing-speed">Processing Speed<a class="anchor" aria-label="anchor" href="#processing-speed"></a>
@@ -218,7 +218,7 @@
 <p>If you plan on using the single address geocoding tools, your data do not need to be in any specific class. To use the batch geocoder, your data must be in a data.frame (or equivalent class). This package provides data on homicides in St Louis City between 2008-2018 as example data in two forms - a small table with 24 addresses (<code>stl_homicides_small</code>) and a larger table with more records (<code>stl_homicides</code>)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slu-openGIS/censusxy" class="external-link">censusxy</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/chris-prener/censusxy" class="external-link">censusxy</a></span><span class="op">)</span>
 
 <span class="co"># load sample data</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="va">stl_homicides_small</span></code></pre></div>
@@ -226,7 +226,7 @@
 <div class="section level3">
 <h3 id="parsing-addresses">Parsing Addresses<a class="anchor" aria-label="anchor" href="#parsing-addresses"></a>
 </h3>
-<p>For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the <a href="https://github.com/slu-openGIS/postmastr" class="external-link"><code>postmastr</code></a> package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.</p>
+<p>For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the <a href="https://github.com/chris-prener/postmastr" class="external-link"><code>postmastr</code></a> package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.</p>
 </div>
 <div class="section level3">
 <h3 id="batch-geocoding">Batch Geocoding<a class="anchor" aria-label="anchor" href="#batch-geocoding"></a>
@@ -293,7 +293,7 @@
 <li>If you are new to <code>R</code> itself, welcome! Hadley Wickham’s <a href="https://r4ds.had.co.nz" class="external-link"><em>R for Data Science</em></a> is an excellent way to get started with data manipulation in the tidyverse, which <code>censusxy</code> is designed to integrate seamlessly with.</li>
 <li>If you are new to spatial analysis in <code>R</code>, we strongly encourage you check out the excellent new <a href="https://geocompr.robinlovelace.net" class="external-link"><em>Geocomputation in R</em></a> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow.</li>
 <li>If you have questions about using <code>censusxy</code>, you are encouraged to use the <a href="https://community.rstudio.com" class="external-link">RStudio Community forums</a>. Please create a <a href="https://reprex.tidyverse.org/" class="external-link"><code>reprex</code></a> before posting. Feel free to tag Chris (<code>@chris.prener</code>) in any posts about <code>censusxy</code>.</li>
-<li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/index.html" class="external-link"><code>reprex</code></a> and then open an issue on <a href="https://github.com/slu-openGIS/censusxy/issues/new/choose" class="external-link">GitHub</a>.</li>
+<li>If you think you’ve found a bug, please create a <a href="https://reprex.tidyverse.org/index.html" class="external-link"><code>reprex</code></a> and then open an issue on <a href="https://github.com/chris-prener/censusxy/issues/new/choose" class="external-link">GitHub</a>.</li>
 </ul>
 </div>
   </div>
