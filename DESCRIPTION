@@ -22,13 +22,14 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
-    httr
-Suggests: 
-    covr,
     doParallel,
     foreach,
-    knitr,
+    httr,
     parallel,
+    utils
+Suggests: 
+    covr,
+    knitr,
     rmarkdown,
     sf,
     testthat
