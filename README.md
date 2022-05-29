@@ -6,7 +6,7 @@
 [![R build
 status](https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/censusxy/actions)
 [![Coverage
-status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=master)
+status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=main)
 [![CRAN_status_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 [![cran
 checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
@@ -29,10 +29,10 @@ GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) by
 Chris and Branson - please cite the paper if you use `censusxy` in your
 work!
 
-## What’s New in v1.0.2.9000?
+## What’s New in v1.1.0?
 
--   `censusxy` now supports parallelization on Windows (macOS and Linux
-    had support for this since `v1.0.0`), thanks to a PR from
+-   `censusxy` now supports parallel processing on Windows (macOS and
+    Linux had support for this since `v1.0.0`), thanks to a PR from
     [Christopher Kenny](https://github.com/christopherkenny), and an
     error that cropped up with macOS 12.4 when submitting requests for
     parallel processing is addressed

@@ -1,5 +1,5 @@
 ## Release summary
-This version of `censusxy` is a maintenance: it addresses the ERRORon CRAN, ensures that issues with the Census Bureau's API resolve gracefully, updates documentation, and updates the contact information for the maintainer. The ERROR on CRAN should now fail gracefully, and the only other change is that R v3.4 is now the minimum version.
+This version of `censusxy` is a maintenance: it addresses the ERROR on CRAN, ensures that issues with the Census Bureau's API resolve gracefully, updates documentation, and updates the contact information for the maintainer. The ERROR on CRAN should now fail gracefully, and the only other change is that R v3.4 is now the minimum version.
 
 ## Test environments
 * local macOS install: R 4.1.2
