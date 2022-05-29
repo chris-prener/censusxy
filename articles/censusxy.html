@@ -79,7 +79,7 @@
       <h1 data-toc-skip>Using the censusxy Package</h1>
                         <h4 data-toc-skip class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 data-toc-skip class="date">2022-05-28</h4>
+            <h4 data-toc-skip class="date">2022-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/slu-openGIS/censusxy/blob/HEAD/vignettes/censusxy.Rmd" class="external-link"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -121,12 +121,10 @@
 <h3 id="installing-suggested-dependencies">Installing Suggested Dependencies<a class="anchor" aria-label="anchor" href="#installing-suggested-dependencies"></a>
 </h3>
 <p>Since the package does not need <code>sf</code> for its basic functionality, it is a suggested dependency rather than a required one. However, many users will want to map these data as <code>sf</code> objects, and we therefore recommend users install <code>sf</code>. Windows and macOS users should be able to install <code>sf</code> without significant issues unless they are building from source. Linux users will need to install several open source spatial libraries to get <code>sf</code> itself up and running.</p>
-<p>The other suggested dependencies that users may want to consider installing have to do with parallel processing. As with <code>sf</code>, it is not necessary for users to take advantage of this functionality to use <code>censusxy</code>. If you do want make requests to the Census Bureau’s API in parallel, you will need <code>doParallel</code> as well as <code>foreach</code>.</p>
-<p>If you want to use these packages, you can either install them individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):</p>
+<p>If you want to use these <code>sf</code>, you can either install it individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## install sf and/or parallel packages</span>
+<code class="sourceCode R"><span class="co">## install sf only</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sf"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"doParallel"</span>,<span class="st">"foreach"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## install all suggested dependencies</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"censusxy"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -147,7 +145,7 @@
 <h4 id="processing-speed">Processing Speed<a class="anchor" aria-label="anchor" href="#processing-speed"></a>
 </h4>
 <p>Another performance issue with <code>censusxy</code> relates to speed. The issue, generally speaking, is not within the package itself but rather with external factors. These include your computer’s processing power, the quality of your internet connection, and - most importantly - the speed that the Census Bureau’s servers process your request. We have taken two steps to improve <code>censusxy</code>’s performance over using the Census Bureau’s geocoding web interface. The first is that we extract unique addresses in your data and only send those for geocoding. Thus, a large geocoding job may shrink considerably if it contains repetitive addresses.</p>
-<p>The second step we take is to break your data into “chunks” if you have more than 1,000 records. This is below the maximum number of rows that the Census Bureau accepts for geocoding. <code>censusxy</code> sends these as separate geocoding requests before putting your data back together when geocoding is completed. One of the biggest things you can do to improve the performance of <code>censusxy</code> is to utilize our <em>optional</em> parallel processing features, which may require the installation of extra packages (see the Installation section above and the description of parallel processing below). When parallel processing is used, these chunks of data can be sent out simultaneously for geocoding.</p>
+<p>The second step we take is to break your data into “chunks” if you have more than 1,000 records. This is below the maximum number of rows that the Census Bureau accepts for geocoding. <code>censusxy</code> sends these as separate geocoding requests before putting your data back together when geocoding is completed. One of the biggest things you can do to improve the performance of <code>censusxy</code> is to utilize our <em>optional</em> parallel processing features. When parallel processing is used, these chunks of data can be sent out simultaneously for geocoding.</p>
 </div>
 <div class="section level4">
 <h4 id="data-quality">Data Quality<a class="anchor" aria-label="anchor" href="#data-quality"></a>
@@ -208,7 +206,7 @@
 </h3>
 <p>The function contains an argument for timeout, which specifies how many minutes until the API query ends as an error. In this implementation, it is per 1000 addresses, not the whole batch size. It is set to default at 30 minutes, which should be appropriate for most internet speeds.</p>
 <p>If a batch times out, the function will terminate, and you will lose any geocoding progress.</p>
-<p>Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. macOS users may find the app <a href="https://apps.apple.com/us/app/amphetamine/id937984704?mt=12" class="external-link">amphetamine</a> useful.</p>
+<p>Be cautious that batches taking a long time may allow your computer to sleep, which may cause a batch to never return. Turning off sleep behavior for your operating system while geocoding is recommended.</p>
 </div>
 </div>
 <div class="section level2">

@@ -116,12 +116,10 @@
 <h3 id="installing-suggested-dependencies">Installing Suggested Dependencies<a class="anchor" aria-label="anchor" href="#installing-suggested-dependencies"></a>
 </h3>
 <p>Since the package does not need <code>sf</code> for its basic functionality, it is a suggested dependency rather than a required one. However, many users will want to map these data as <code>sf</code> objects, and we therefore recommend users install <code>sf</code>. Windows and macOS users should be able to install <code>sf</code> without significant issues unless they are building from source. Linux users will need to install several open source spatial libraries to get <code>sf</code> itself up and running.</p>
-<p>The other suggested dependencies that users may want to consider installing have to do with parallel processing. As with <code>sf</code>, it is not necessary for users to take advantage of this functionality to use <code>censusxy</code>. If you do want make requests to the Census Bureau’s API in parallel, you will need <code>doParallel</code> as well as <code>foreach</code>.</p>
-<p>If you want to use these packages, you can either install them individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):</p>
+<p>If you want to use these <code>sf</code>, you can either install it individually (faster) or install all of the suggested dependencies at once (slower, will also give you a number of other packages you may or may not want):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## install sf and/or parallel packages</span>
+<code class="sourceCode R"><span class="co">## install sf only</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sf"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"doParallel"</span>,<span class="st">"foreach"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## install all suggested dependencies</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"censusxy"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
