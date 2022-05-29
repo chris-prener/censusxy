@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                              |
 |ctype    |en_US.UTF-8                              |
 |tz       |America/Chicago                          |
-|date     |2022-05-27                               |
+|date     |2022-05-28                               |
 |rstudio  |1.4.1717 Juliet Rose (desktop)           |
 |pandoc   |2.14.2 @ /usr/local/bin/ (via rmarkdown) |
 
