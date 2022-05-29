@@ -79,14 +79,6 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
   # Check Parallel Configuration
   if(parallel > 1){
 
-    if (nzchar(find.package(package = "doParallel", quiet = TRUE)) != TRUE) {
-      stop("Please install the 'doParallel' package to use parallel functionality")
-    }
-
-    if (nzchar(find.package(package = "foreach", quiet = TRUE)) != TRUE) {
-      stop("Please install the 'foreach' package to use parallel functionality")
-    }
-
     # this gets around calling it as foreach::%dopar% below which sometimes errors
     `%dopar%` <- foreach::`%dopar%`
 
