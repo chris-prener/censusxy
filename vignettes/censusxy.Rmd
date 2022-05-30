@@ -136,7 +136,7 @@ df <- stl_homicides_small
 ```
 
 ### Parsing Addresses
-For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the [`postmastr`](https://github.com/chris-prener/postmastr) package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.
+For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the [`postmastr`](https://github.com/slu-openGIS/postmastr) package useful for this task, though it remains early in its development life cycle. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.
 
 ### Batch Geocoding
 In this example, we will use the included `stl_homicides_small` data, which we loaded above and assigned to the object `df`, show the full process for batch geocoding with `cxy_geocode()`:
