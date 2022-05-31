@@ -1,4 +1,4 @@
-# censusxy 1.0.2.9000
+# censusxy 1.1.0
 
 * Expand support for parallel processing to Windows and the process has been streamlined so that Unix and Windows platforms now use the same workflow internally. This workflow change was motivated by a bug with macOS 12.4.
 * Dependencies that are listed under `Imports` have been expanded since all operating systems now use the same packages to facilitate parallel processing.

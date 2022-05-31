@@ -1,6 +1,6 @@
 Package: censusxy
 Title: Access the U.S. Census Bureau's Geocoding A.P.I. System
-Version: 1.0.2.9000
+Version: 1.1.0
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@gmail.com", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
