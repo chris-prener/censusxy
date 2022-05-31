@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <h1 data-toc-skip>Using the censusxy Package</h1>
                         <h4 data-toc-skip class="author">Branson Fox and Christopher Prener, Ph.D.</h4>
             
-            <h4 data-toc-skip class="date">2022-05-29</h4>
+            <h4 data-toc-skip class="date">2022-05-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/chris-prener/censusxy/blob/HEAD/vignettes/censusxy.Rmd" class="external-link"><code>vignettes/censusxy.Rmd</code></a></small>
       <div class="hidden name"><code>censusxy.Rmd</code></div>
@@ -226,7 +226,7 @@
 <div class="section level3">
 <h3 id="parsing-addresses">Parsing Addresses<a class="anchor" aria-label="anchor" href="#parsing-addresses"></a>
 </h3>
-<p>For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the <a href="https://github.com/chris-prener/postmastr" class="external-link"><code>postmastr</code></a> package useful for this task. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.</p>
+<p>For use of the batch API, your address data needs to be structured. Meaning, your data contains separate columns for street address, city, state and zip-code. You may find the <a href="https://github.com/slu-openGIS/postmastr" class="external-link"><code>postmastr</code></a> package useful for this task, though it remains early in its development life cycle. Only street address is mandatory, but omission of city, state or zip code drastically lowers the speed and accuracy of the batch geocoder.</p>
 </div>
 <div class="section level3">
 <h3 id="batch-geocoding">Batch Geocoding<a class="anchor" aria-label="anchor" href="#batch-geocoding"></a>
