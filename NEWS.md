@@ -1,3 +1,7 @@
+# censusxy 1.1.1
+
+* Address issue with `OpenBLAS` on CRAN checks
+
 # censusxy 1.1.0
 
 * Expand support for parallel processing to Windows and the process has been streamlined so that Unix and Windows platforms now use the same workflow internally. This workflow change was motivated by a bug with macOS 12.4.

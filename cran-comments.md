@@ -1,24 +1,8 @@
 ## Release summary
-This version of `censusxy` is a maintenance release: it addresses the ERROR on CRAN, ensures that issues with the Census Bureau's API resolve gracefully, updates documentation, and updates the contact information for the maintainer. The ERROR on CRAN should now fail gracefully, and the only other change is that R v3.4 is now the minimum version.
-
-### Resubmission Note
-The initial submission earlier today had a URL that redirected. UW emailed and asked to have it corrected. This version of the submission has fixed the redirected link and confirmed that the only remaining NOTE corresponds to the developer change 
-
-```r
-> devtools::check(manual = TRUE, remote = TRUE, incoming = TRUE)
-> ❯ checking CRAN incoming feasibility ... NOTE
-  Maintainer: ‘Christopher Prener <chris.prener@gmail.com>’
-  
-  New maintainer:
-    Christopher Prener <chris.prener@gmail.com>
-  Old maintainer(s):
-    Christopher Prener <chris.prener@slu.edu>
-
-0 errors ✔ | 0 warnings ✔ | 1 note ✖
-```
+This version of `censusxy` is a maintenance release: it attempts to address the ERROR on CRAN with OpenBLAS. The specific error could not be replicated locally. The problem was not an API error - the package returned the correct error as designed. However, I have changed how user inputs are validated in attempt to prevent this from continuing to be an issue in the first place.
 
 ## Test environments
-* local macOS install: R 4.1.2
+* local macOS install: R 4.2.0
 * Linux ubuntu distribution (via GitHub Actions): R-devel, R-release, past four R-oldrel (4.1.3, 4.0.5, 3.6.3, 3.5.3, 3.4.4)
 * macOS (via GitHub Actions): R-release
 * windows (via GitHub Actions): R-release
@@ -30,11 +14,6 @@ There were no ERRORs, WARNINGs, or NOTEs with local or CI checks. There is one N
 ```r
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Christopher Prener <chris.prener@gmail.com>'
-
-New maintainer:
-  Christopher Prener <chris.prener@gmail.com>
-Old maintainer(s):
-  Christopher Prener <chris.prener@slu.edu>
   
 Found the following (possibly) invalid URLs:
   URL: https://doi.org/10.1111/tgis.12741
@@ -44,7 +23,7 @@ Found the following (possibly) invalid URLs:
     Message: Service Unavailable
 ```
 
-I am still the maintainer - I have just changed my contact information due to new employment! I also double checked the citation links and found both to work correctly. The link is valid - I have confirmed this manually. 
+I also double checked the citation links and found both to work correctly. The link is valid - I have confirmed this manually. 
 
 ## revdepcheck results
 

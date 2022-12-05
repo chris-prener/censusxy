@@ -20,13 +20,6 @@ batch_geocoder <- function(df, return, timeout, benchmark, vintage){
     )
   cnt <- httr::content(req, as = 'text', encoding = 'UTF-8')
 
-  # Error if Benchmark/Vintage Invalid
-  # Not Perfect, Error is Returned as HTML, could be other errors... (BAD API DESIGN!)
-  # Could Cause Large Batches to FAIL if API Fails Unexpectedly
-  if(grepl('<p>', cnt)){
-    stop('API Failed Unexpectedly, Did you supply an Invalid Benchmark or Vintage?')
-  }
-
   cols <- switch (return,
                   'locations' = c('id', 'address', 'status', 'quality', 'matched_address', 'coords', 'tiger_line_id', 'tiger_side'),
                   'geographies' = c('id', 'address', 'status', 'quality', 'matched_address', 'coords', 'tiger_line_id', 'tiger_side', 'state_id', 'county_id', 'tract_id', 'block_id')
@@ -42,6 +35,6 @@ batch_geocoder <- function(df, return, timeout, benchmark, vintage){
 
   df$lon <- vapply(lonlat,function(x){x[1]}, 'numeric')
   df$lat <- vapply(lonlat,function(x){x[2]}, 'numeric')
-  
+
   return(df)
 }

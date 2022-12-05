@@ -73,6 +73,13 @@ cxy_geocode <- function(.data, id = NULL, street, city = NULL, state = NULL, zip
     stop("`output` must be one of 'simple' or 'full'")
   }
 
+  # validate benchmark
+  test <- cxy_benchmarks()
+
+  if (benchmark %in% test$benchmarkName == FALSE){
+    stop("Invalid benchmark provided. Please use 'cxy_benchmarks()' to identify currently accepted benchmark values.")
+  }
+
   # Warn for Omission
   if(is.null(city) | is.null(state) | is.null(zip)){
     warning('Omission of `city`, `state` or `zip` greatly reduces the speed and accuracy of the geocoder.')

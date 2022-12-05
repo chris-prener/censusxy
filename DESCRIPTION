@@ -1,6 +1,6 @@
 Package: censusxy
-Title: Access the U.S. Census Bureau's Geocoding A.P.I. System
-Version: 1.1.0
+Title: Access the U.S. Census Bureau's Geocoding API System
+Version: 1.1.1
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@gmail.com", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
@@ -9,7 +9,7 @@ Authors@R: c(
     person("Christopher", "Kenny", ,"christopherkenny@fas.harvard.edu", c("ctb"),
     comment = c(ORCID = "0000-0002-9386-6860"))
     )
-Description: Provides access to the U.S. Census Bureau's A.P.I for matching American
+Description: Provides access to the U.S. Census Bureau's API for matching American
     street addresses with their longitude and latitude. This includes both single address matching
     as well as batch functionality for multiple addresses. Census geographies can be appended to 
     addresses if desired, and reverse geocoding of point locations to census geographies is also 
@@ -20,7 +20,7 @@ URL: https://chris-prener.github.io/censusxy/
 BugReports: https://github.com/chris-prener/censusxy/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports: 
     doParallel,
     foreach,
