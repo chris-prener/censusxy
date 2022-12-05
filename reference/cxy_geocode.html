@@ -21,7 +21,7 @@ including (optionally, if sf is installed,) sf class objects."><meta property="o
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -64,49 +64,69 @@ including (optionally, if <code>sf</code> is installed,) <code>sf</code> class o
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cxy_geocode</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  id <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">street</span>,
-  city <span class="op">=</span> <span class="cn">NULL</span>,
-  state <span class="op">=</span> <span class="cn">NULL</span>,
-  zip <span class="op">=</span> <span class="cn">NULL</span>,
-  return <span class="op">=</span> <span class="st">"locations"</span>,
-  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,
-  vintage <span class="op">=</span> <span class="cn">NULL</span>,
-  timeout <span class="op">=</span> <span class="fl">30</span>,
-  parallel <span class="op">=</span> <span class="fl">1</span>,
-  class <span class="op">=</span> <span class="st">"dataframe"</span>,
-  output <span class="op">=</span> <span class="st">"simple"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cxy_geocode</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">street</span>,</span>
+<span>  city <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  zip <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return <span class="op">=</span> <span class="st">"locations"</span>,</span>
+<span>  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,</span>
+<span>  vintage <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  timeout <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  parallel <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  class <span class="op">=</span> <span class="st">"dataframe"</span>,</span>
+<span>  output <span class="op">=</span> <span class="st">"simple"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame containing columns with structured address data</p></dd>
+
+
 <dt>id</dt>
 <dd><p>Optional String - Name of column containing unique ID</p></dd>
+
+
 <dt>street</dt>
 <dd><p>String - Name of column containing street address</p></dd>
+
+
 <dt>city</dt>
 <dd><p>Optional String - Name of column containing city</p></dd>
+
+
 <dt>state</dt>
 <dd><p>Optional String - Name of column containing state</p></dd>
+
+
 <dt>zip</dt>
 <dd><p>Optional String - Name of column containing zip code</p></dd>
+
+
 <dt>return</dt>
 <dd><p>One of 'locations' or 'geographies' denoting returned information
 from the API. If you would like Census geography data, you must specify
 a valid vintage for your benchmark.</p></dd>
+
+
 <dt>benchmark</dt>
 <dd><p>Optional Census benchmark to geocode against. To obtain current
 valid benchmarks, use the <code><a href="cxy_benchmarks.html">cxy_benchmarks()</a></code> function.</p></dd>
+
+
 <dt>vintage</dt>
 <dd><p>Optional Census vintage to geocode against. You may use the
 <code><a href="cxy_vintages.html">cxy_vintages()</a></code> function to obtain valid vintages.</p></dd>
+
+
 <dt>timeout</dt>
 <dd><p>Numeric, in minutes, how long until request times out</p></dd>
+
+
 <dt>parallel</dt>
 <dd><p>Integer, number of cores greater than one if parallel requests
 are desired. All operating systems now use a SOCK cluster, and the
@@ -114,14 +134,21 @@ dependencies are not longer suggested packages. Instead, they are
 installed by default. Note that this value may not represent more cores
 than the system reports are available. If it is larger, the maximum number
 of available cores will be used.</p></dd>
+
+
 <dt>class</dt>
 <dd><p>One of 'dataframe' or 'sf' denoting the output class. 'sf' will only return matched addresses.</p></dd>
+
+
 <dt>output</dt>
 <dd><p>One of 'simple' or 'full' denoting the returned columns. Simple returns just coordinates.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.frame or sf object containing geocoded results</p>
+    
+
+<p>A data.frame or sf object containing geocoded results</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -131,12 +158,12 @@ You may not specify more cores than the system reports are available</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># load data</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">stl_homicides</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># geocode</span></span>
-<span class="r-in"><span class="fu">cxy_geocode</span><span class="op">(</span><span class="va">x</span>, street <span class="op">=</span> <span class="st">'street_address'</span>, city <span class="op">=</span> <span class="st">'city'</span>, state <span class="op">=</span> <span class="st">'state'</span>, zip <span class="op">=</span> <span class="st">'postal_code'</span>,</span>
-<span class="r-in">   return <span class="op">=</span> <span class="st">'locations'</span>, class <span class="op">=</span> <span class="st">'dataframe'</span>, output <span class="op">=</span> <span class="st">'simple'</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load data</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">stl_homicides</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># geocode</span></span></span>
+<span class="r-in"><span><span class="fu">cxy_geocode</span><span class="op">(</span><span class="va">x</span>, street <span class="op">=</span> <span class="st">'street_address'</span>, city <span class="op">=</span> <span class="st">'city'</span>, state <span class="op">=</span> <span class="st">'state'</span>, zip <span class="op">=</span> <span class="st">'postal_code'</span>,</span></span>
+<span class="r-in"><span>   return <span class="op">=</span> <span class="st">'locations'</span>, class <span class="op">=</span> <span class="st">'dataframe'</span>, output <span class="op">=</span> <span class="st">'simple'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              street_address year             date state postal_code      city</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9            5738 Terry Ave 2008 01/12/2008 12:37    MO          NA St. Louis</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7            5356 Page Blvd 2008 01/17/2008 04:00    MO          NA St. Louis</span>
@@ -155,11 +182,11 @@ You may not specify more cores than the system reports are available</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4  -90.22941 38.58544</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  -90.23151 38.66029</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  -90.25564 38.66613</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -90.24488 38.61817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -90.24485 38.61837</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  -90.28238 38.65493</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6  -90.24467 38.68689</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  -90.19742 38.64184</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -174,7 +201,7 @@ You may not specify more cores than the system reports are available</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

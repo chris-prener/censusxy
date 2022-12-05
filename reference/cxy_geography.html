@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -58,28 +58,37 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cxy_geography</span><span class="op">(</span>
-  <span class="va">lon</span>,
-  <span class="va">lat</span>,
-  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,
-  vintage <span class="op">=</span> <span class="st">"Current_Current"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cxy_geography</span><span class="op">(</span></span>
+<span>  <span class="va">lon</span>,</span>
+<span>  <span class="va">lat</span>,</span>
+<span>  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,</span>
+<span>  vintage <span class="op">=</span> <span class="st">"Current_Current"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>lon</dt>
 <dd><p>Numeric or String Containing Longitude (x) of Point</p></dd>
+
+
 <dt>lat</dt>
 <dd><p>Numeric or String Containing Latitude (y) of Point</p></dd>
+
+
 <dt>benchmark</dt>
 <dd><p>Optional ID or Name of Census Benchmark. See Details.</p></dd>
+
+
 <dt>vintage</dt>
 <dd><p>Optional ID or Name of Census Vintage. See Details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.frame containing matched address or NULL if not matches</p>
+    
+
+<p>A data.frame containing matched address or NULL if not matches</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -93,11 +102,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">cxy_geography</span><span class="op">(</span>lon <span class="op">=</span> <span class="op">-</span><span class="fl">90.23324</span>, lat <span class="op">=</span> <span class="fl">38.63593</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cxy_geography</span><span class="op">(</span>lon <span class="op">=</span> <span class="op">-</span><span class="fl">90.23324</span>, lat <span class="op">=</span> <span class="fl">38.63593</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.GEOID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                           29005</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.CENTLAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                       +38.6292629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                       +38.6292642</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.AREAWATER</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                             7648466</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.STATE</span>
@@ -117,13 +126,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.NAME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                        State Senate District 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               1425</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               1584</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.CENTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                      -090.2261040</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                      -090.2261035</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.LSY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                          2018</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.AREALAND</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                           87741515</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                           87740306</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.INTPTLON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                       -090.2271308</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.MTFCC</span>
@@ -131,75 +140,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Upper.LDTYP States.STATENS States.GEOID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               O       01779791           29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   States.CENTLAT States.AREAWATER States.STATE States.BASENAME States.STUSAB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    +38.3569829       2487538106           29        Missouri            MO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    +38.3569829       2487526202           29        Missouri            MO</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      States.OID States.LSADC States.FUNCSTAT States.INTPTLAT States.DIVISION</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 2749046934061           00               A     +38.3507500               4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   States.NAME States.REGION States.OBJECTID States.CENTLON States.AREALAND</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Missouri             2              42   -092.4580564    178052241339</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   States.INTPTLON States.MTFCC Combined.Statistical.Areas.GEOID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    -092.4567826        G4000                              476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.CENTLAT Combined.Statistical.Areas.AREAWATER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        +38.6839906                            582143096</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Combined.Statistical.Areas.BASENAME Combined.Statistical.Areas.OID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 St. Louis-St. Charles-Farmington, MO-IL               2619013782255223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.LSADC Combined.Statistical.Areas.FUNCSTAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                               M0                                   S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.INTPTLAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         +38.6843841</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Combined.Statistical.Areas.NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 St. Louis-St. Charles-Farmington, MO-IL CSA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.OBJECTID Combined.Statistical.Areas.CSA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                 130                            476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.CENTLON Combined.Statistical.Areas.INTPTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       -090.2663583                        -090.2644483</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Combined.Statistical.Areas.AREALAND Combined.Statistical.Areas.MTFCC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         23019634151                            G3100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.COUSUB County.Subdivisions.GEOID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      65000                2951065000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.CENTLAT County.Subdivisions.AREAWATER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 +38.6358190                      11563208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.STATE County.Subdivisions.BASENAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Missouri             2              50   -092.4580564    178052253239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   States.INTPTLON States.MTFCC County.Subdivisions.COUSUB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    -092.4567826        G4000                      65000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.GEOID County.Subdivisions.CENTLAT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                2951065000                 +38.6357916</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.AREAWATER County.Subdivisions.STATE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      11534970                        29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.BASENAME County.Subdivisions.OID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    St. Louis          27690325436609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.LSADC County.Subdivisions.FUNCSTAT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        25                            F</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.INTPTLAT County.Subdivisions.NAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                  +38.6356988           St. Louis city</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.OBJECTID County.Subdivisions.CENTLON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        20365                -090.2451153</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.COUSUBCC County.Subdivisions.AREALAND</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           Z7                    159853177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.INTPTLON County.Subdivisions.MTFCC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 -090.2445816                     G4040</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.COUSUBNS County.Subdivisions.COUNTY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     00767557                        510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.NECTAPCI Incorporated.Places.GEOID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            N                   2965000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.CENTLAT Incorporated.Places.AREAWATER</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 +38.6357916                      11534970</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.STATE Incorporated.Places.BASENAME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                        29                    St. Louis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.OID County.Subdivisions.LSADC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          27690325436609                        25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.FUNCSTAT County.Subdivisions.INTPTLAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            F                  +38.6356988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.NAME County.Subdivisions.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           St. Louis city                        20270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.CENTLON County.Subdivisions.COUSUBCC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                -090.2451163                           Z7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.AREALAND County.Subdivisions.INTPTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    159896485                 -090.2445816</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.MTFCC County.Subdivisions.COUSUBNS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     G4040                     00767557</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   County.Subdivisions.COUNTY Incorporated.Places.NECTAPCI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        510                            N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.GEOID Incorporated.Places.CENTLAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   2965000                 +38.6358190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.AREAWATER Incorporated.Places.STATE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      11563208                        29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.BASENAME Incorporated.Places.OID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    St. Louis          27890325442361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.LSADC Incorporated.Places.PLACE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        25                     65000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.OID Incorporated.Places.LSADC Incorporated.Places.PLACE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          27890325442361                        25                     65000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.FUNCSTAT Incorporated.Places.INTPTLAT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                            A                  +38.6356988</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.NAME Incorporated.Places.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           St. Louis city                         9243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           St. Louis city                         9057</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.PLACECC Incorporated.Places.CENTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          C7                -090.2451163</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          C7                -090.2451153</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.CBSAPCI Incorporated.Places.AREALAND</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           Y                    159896485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           N                    159853177</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.INTPTLON Incorporated.Places.PLACENS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                 -090.2445816                    00767557</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Incorporated.Places.MTFCC Counties.GEOID Counties.CENTLAT Counties.AREAWATER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     G4110          29510      +38.6358190           11563208</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     G4110          29510      +38.6357916           11534970</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Counties.STATE Counties.BASENAME   Counties.OID Counties.LSADC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1             29         St. Louis 27590325427938             25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Counties.FUNCSTAT Counties.INTPTLAT  Counties.NAME Counties.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 F       +38.6356988 St. Louis city              1616</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 F       +38.6356988 St. Louis city              1817</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Counties.CENTLON Counties.COUNTYCC Counties.COUNTYNS Counties.AREALAND</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     -090.2451163                C7          00767557         159896485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     -090.2451153                C7          00767557         159853177</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Counties.INTPTLON Counties.MTFCC Counties.COUNTY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      -090.2445816          G4020             510</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.GEOID</span>
@@ -225,7 +216,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.NAME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                        State House District 79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               3402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               3495</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.CENTLON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                      -090.2247821</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.LSY</span>
@@ -239,11 +230,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2018.State.Legislative.Districts...Lower.LDTYP</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                               O</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.GEOID X116th.Congressional.Districts.CENTLAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                 2901                            +38.7274670</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                 2901                            +38.7274717</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.CDSESSN</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                    116</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.AREAWATER X116th.Congressional.Districts.STATE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                 27418506                                   29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                 27418730                                   29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.BASENAME X116th.Congressional.Districts.OID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                       1                    211904690723734</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.LSADC X116th.Congressional.Districts.FUNCSTAT</span>
@@ -251,11 +242,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.INTPTLAT X116th.Congressional.Districts.NAME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                             +38.7285909            Congressional District 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                     177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                     236</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.CENTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           -090.2944727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           -090.2944715</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.AREALAND</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                               583695002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                               583673550</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.INTPTLON X116th.Congressional.Districts.CD116</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                            -090.2965080                                   01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X116th.Congressional.Districts.MTFCC X2020.Census.Blocks.SUFFIX</span>
@@ -271,7 +262,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2020.Census.Blocks.FUNCSTAT X2020.Census.Blocks.INTPTLAT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                            S                  +38.6362480</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2020.Census.Blocks.NAME X2020.Census.Blocks.OBJECTID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               Block 1042                      2104990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1               Block 1042                      2255916</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2020.Census.Blocks.TRACT X2020.Census.Blocks.CENTLON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                    127800                -090.2318925</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   X2020.Census.Blocks.BLKGRP X2020.Census.Blocks.AREALAND</span>
@@ -287,12 +278,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Census.Tracts.FUNCSTAT Census.Tracts.INTPTLAT Census.Tracts.NAME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                      S            +38.6319521  Census Tract 1278</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Census.Tracts.OBJECTID Census.Tracts.TRACT Census.Tracts.CENTLON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                  23357              127800          -090.2259200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                  23228              127800          -090.2259200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Census.Tracts.AREALAND Census.Tracts.INTPTLON Census.Tracts.MTFCC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                2546610           -090.2259200               G5020</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Census.Tracts.COUNTY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                  510</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -307,7 +298,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

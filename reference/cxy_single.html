@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -56,37 +56,52 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cxy_single</span><span class="op">(</span>
-  <span class="va">street</span>,
-  city <span class="op">=</span> <span class="cn">NULL</span>,
-  state <span class="op">=</span> <span class="cn">NULL</span>,
-  zip <span class="op">=</span> <span class="cn">NULL</span>,
-  return <span class="op">=</span> <span class="st">"locations"</span>,
-  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,
-  vintage <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cxy_single</span><span class="op">(</span></span>
+<span>  <span class="va">street</span>,</span>
+<span>  city <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  zip <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return <span class="op">=</span> <span class="st">"locations"</span>,</span>
+<span>  benchmark <span class="op">=</span> <span class="st">"Public_AR_Current"</span>,</span>
+<span>  vintage <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>street</dt>
 <dd><p>String containing street address</p></dd>
+
+
 <dt>city</dt>
 <dd><p>Optional String containing city</p></dd>
+
+
 <dt>state</dt>
 <dd><p>Optional String containing state</p></dd>
+
+
 <dt>zip</dt>
 <dd><p>Optional String or Integer containing 5-digit Zip Code</p></dd>
+
+
 <dt>return</dt>
 <dd><p>One of 'locations' or 'geographies' See Details.</p></dd>
+
+
 <dt>benchmark</dt>
 <dd><p>Optional ID or Name of Census Benchmark. See Details.</p></dd>
+
+
 <dt>vintage</dt>
 <dd><p>Optional ID or Name of Census Vintage. See Details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.frame containing matched address or NULL if not matches</p>
+    
+
+<p>A data.frame containing matched address or NULL if not matches</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -98,11 +113,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="fu">cxy_single</span><span class="op">(</span>street <span class="op">=</span> <span class="st">"20 N Grand Blvd"</span>, city <span class="op">=</span> <span class="st">"St Louis"</span>, state <span class="op">=</span> <span class="st">"MO"</span>, zip <span class="op">=</span> <span class="st">"63108"</span>,</span>
-<span class="r-in">    return <span class="op">=</span> <span class="st">"locations"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">cxy_single</span><span class="op">(</span>street <span class="op">=</span> <span class="st">"20 N Grand Blvd"</span>, city <span class="op">=</span> <span class="st">"St Louis"</span>, state <span class="op">=</span> <span class="st">"MO"</span>, zip <span class="op">=</span> <span class="st">"63108"</span>,</span></span>
+<span class="r-in"><span>    return <span class="op">=</span> <span class="st">"locations"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   tigerLine.side tigerLine.tigerLineId coordinates.x coordinates.y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              R             107607933     -90.23367      38.63474</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              R             107607932     -90.23324      38.63593</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   addressComponents.zip addressComponents.streetName addressComponents.preType</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                 63103                        GRAND                          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   addressComponents.city addressComponents.preDirection</span>
@@ -112,11 +127,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   addressComponents.state addressComponents.suffixType</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                      MO                         BLVD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   addressComponents.toAddress addressComponents.suffixQualifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          98                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         298                                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   addressComponents.preQualifier                          matchedAddress</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                20 N GRAND BLVD, SAINT LOUIS, MO, 63103</span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -131,7 +146,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
