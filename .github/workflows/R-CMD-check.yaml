@@ -38,11 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@main
+      - uses: r-lib/actions/setup-r@v2-branch
         with:
           r-version: ${{ matrix.config.r }}
 
-      - uses: r-lib/actions/setup-pandoc@main
+      - uses: r-lib/actions/setup-pandoc@v2-branch
 
       - name: Query dependencies
         run: |
@@ -96,7 +96,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v2-branch
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
