@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censusxy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -82,20 +82,9 @@
 <div class="section level1">
 <div class="page-header"><h1 id="censusxy-">censusxy <img src="reference/figures/logo.png" align="right"><a class="anchor" aria-label="anchor" href="#censusxy-"></a>
 </h1></div>
-
+<p><a href="https://github.com/chris-prener/censusxy/actions" class="external-link"><img src="https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/chris-prener/censusxy?branch=main" class="external-link"><img src="https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a> <a href="https://cran.r-project.org/package=censusxy" class="external-link"><img src="https://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a> <a href="https://cran.r-project.org/web/checks/check_results_censusxy.html" class="external-link"><img src="https://badges.cranchecks.info/worst/censusxy.svg" alt="cran checks"></a> <a href="https://www.r-pkg.org/pkg/censusxy" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a> <a href="https://zenodo.org/badge/latestdoi/165924122" class="external-link"><img src="https://zenodo.org/badge/165924122.svg" alt="DOI"></a></p>
 <p>The <code>censusxy</code> package is designed to provide easy access to the <a href="https://geocoding.geo.census.gov/geocoder/" class="external-link">U.S. Census Bureau Geocoding Tools</a> in <code>R</code>. <code>censusxy</code> has also been developed specifically with large data sets in mind - only unique addresses are passed to the API for geocoding. If a data set exceeds 1,000 unique addresses, it will be automatically subset into appropriately sized API calls, geocoded, and then put back together so that a single object is returned. There is also support for parallel processing of requests, which can significantly shorten the time it takes to batch geocode large numbers of addresses.</p>
 <p><code>censusxy</code> is described in a 2021 paper in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741" class="external-link"><em>Transactions in GIS</em></a> by Chris and Branson - please cite the paper if you use <code>censusxy</code> in your work!</p>
-<div class="section level2">
-<h2 id="whats-new-in-v110">What’s New in v1.1.0?<a class="anchor" aria-label="anchor" href="#whats-new-in-v110"></a>
-</h2>
-<ul>
-<li>
-<code>censusxy</code> now supports parallel processing on Windows (macOS and Linux had support for this since <code>v1.0.0</code>), thanks to a PR from <a href="https://github.com/christopherkenny" class="external-link">Christopher Kenny</a>, and an error that cropped up with macOS 12.4 when submitting requests for parallel processing is addressed</li>
-<li>
-<code>R</code> version 3.4 is now the minimum version supported</li>
-<li>We’ve made some internal changes to ensure that API issues fail gracefully and to improve the documentation</li>
-</ul>
-</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -184,17 +173,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/chris-prener/censusxy/actions" class="external-link"><img src="https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/chris-prener/censusxy?branch=main" class="external-link"><img src="https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-<li><a href="https://cran.r-project.org/package=censusxy" class="external-link"><img src="https://www.r-pkg.org/badges/version/censusxy" alt="CRAN_status_badge"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_censusxy.html" class="external-link"><img src="https://cranchecks.info/badges/worst/censusxy" alt="cran checks"></a></li>
-<li><a href="https://www.r-pkg.org/pkg/censusxy" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen" alt="Downloads"></a></li>
-<li><a href="https://zenodo.org/badge/latestdoi/165924122" class="external-link"><img src="https://zenodo.org/badge/165924122.svg" alt="DOI"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -207,7 +186,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
