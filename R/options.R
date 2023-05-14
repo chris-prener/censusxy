@@ -11,27 +11,40 @@
 #' @export
 cxy_benchmarks <- function(){
 
-  try(
-    expr = req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
-                            httr::config(
-                              connecttimeout = 30
-                            ),
-                            httr::timeout(30)),
-    silent = TRUE
-  )
+  # check census website status
+  status <- httr::http_status(httr::GET(url = "https://geocoding.geo.census.gov/geocoder/"))$category
 
-  cnt <- httr::content(req)
+  # geocode if status is online
+  if (status == "Success"){
 
-  if (inherits(cnt, what = "list") == TRUE){
+    try(
+      expr = req <- httr::GET('https://geocoding.geo.census.gov/geocoder/benchmarks',
+                              httr::config(
+                                connecttimeout = 30
+                              ),
+                              httr::timeout(30)),
+      silent = TRUE
+    )
 
-    df <- do.call(rbind.data.frame, cnt$benchmarks)
+    cnt <- httr::content(req)
 
-  } else if (inherits(cnt, what = "try-error") == TRUE) {
-    df <- data.frame()
-    message("Census API currently unavailable")
+    if (inherits(cnt, what = "list") == TRUE){
+
+      df <- do.call(rbind.data.frame, cnt$benchmarks)
+
+    } else if (inherits(cnt, what = "try-error") == TRUE) {
+      df <- data.frame()
+      message("Census API currently unavailable")
+    }
+
+  } else if (status != "Success"){
+    message("The Census Bureau's geocoder appears to be offline. Please try again later.")
+    df <- NULL
   }
 
+  # return output
   return(df)
+
 }
 
 #' Get Current Valid Vintages
@@ -53,37 +66,49 @@ cxy_vintages <- function(benchmark){
     stop('`benchmark` is a required argument')
   }
 
-  req <- try(
-    expr = httr::GET('https://geocoding.geo.census.gov/geocoder/vintages',
-                     query = list(
-                       benchmark = benchmark
-                     ),
-                     httr::config(
-                       connecttimeout = 30
-                     ),
-                     httr::timeout(30)),
-    silent = TRUE
-  )
+  # check census website status
+  status <- httr::http_status(httr::GET(url = "https://geocoding.geo.census.gov/geocoder/"))$category
 
-  cnt <- httr::content(req)
+  # geocode if status is online
+  if (status == "Success"){
 
-  if (inherits(cnt, what = "list") == TRUE){
+    req <- try(
+      expr = httr::GET('https://geocoding.geo.census.gov/geocoder/vintages',
+                       query = list(
+                         benchmark = benchmark
+                       ),
+                       httr::config(
+                         connecttimeout = 30
+                       ),
+                       httr::timeout(30)),
+      silent = TRUE
+    )
 
-    if("errors" %in% names(cnt) == TRUE){
-      stop('Not a Valid Benchmark')
+    cnt <- httr::content(req)
+
+    if (inherits(cnt, what = "list") == TRUE){
+
+      if("errors" %in% names(cnt) == TRUE){
+        stop('Not a Valid Benchmark')
+      }
+
+      df <- do.call(rbind.data.frame, cnt$vintages)
+
+      if (length(df) == 0){
+        message("Census API issue detected - vintages not returned by the API")
+      }
+
+    } else if (inherits(cnt, what = "try-error") == TRUE) {
+      df <- data.frame()
+      message("Census API currently unavailable")
     }
 
-    df <- do.call(rbind.data.frame, cnt$vintages)
-
-    if (length(df) == 0){
-      message("Census API issue detected - vintages not returned by the API")
-    }
-
-  } else if (inherits(cnt, what = "try-error") == TRUE) {
-    df <- data.frame()
-    message("Census API currently unavailable")
+  } else if (status != "Success"){
+    message("The Census Bureau's geocoder appears to be offline. Please try again later.")
+    df <- NULL
   }
 
+  # return output
   return(df)
 
 }

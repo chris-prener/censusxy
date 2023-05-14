@@ -1,6 +1,6 @@
 Package: censusxy
 Title: Access the U.S. Census Bureau's Geocoding API System
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: c(
     person("Christopher", "Prener", ,"chris.prener@gmail.com", c("aut", "cre"),
     comment = c(ORCID = "0000-0002-4310-9888")),
@@ -20,7 +20,7 @@ URL: https://chris-prener.github.io/censusxy/
 BugReports: https://github.com/chris-prener/censusxy/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Imports: 
     doParallel,
     foreach,

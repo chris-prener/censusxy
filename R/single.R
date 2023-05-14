@@ -52,32 +52,47 @@ cxy_single <- function(street, city = NULL, state = NULL, zip = NULL, return = '
     warning('Omission of `city`, `state` or `zip` greatly reduces the speed and accuracy of the geocoder.')
   }
 
-  url <- paste0('https://geocoding.geo.census.gov/geocoder/',return,'/address')
-  req <-
-    httr::GET(url,
-              query = list(
-                benchmark = benchmark,
-                vintage = vintage,
-                street = street,
-                city = city,
-                state = state,
-                zip = zip,
-                format = 'json'
-              )
-    )
-  cnt <- httr::content(req)
+  # check census website status
+  status <- httr::http_status(httr::GET(url = "https://geocoding.geo.census.gov/geocoder/"))$category
 
-  # Check for API Errors
-  if(!is.null(cnt$errors)){
-    stop(cnt$errors[[1]])
+  # geocode if status is online
+  if (status == "Success"){
+
+    url <- paste0('https://geocoding.geo.census.gov/geocoder/',return,'/address')
+    req <-
+      httr::GET(url,
+                query = list(
+                  benchmark = benchmark,
+                  vintage = vintage,
+                  street = street,
+                  city = city,
+                  state = state,
+                  zip = zip,
+                  format = 'json'
+                )
+      )
+    cnt <- httr::content(req)
+
+    # Check for API Errors
+    if(!is.null(cnt$errors)){
+      stop(cnt$errors[[1]])
+    }
+
+    matches <- cnt$result$addressMatches
+    if(length(matches) < 1){
+      return(NULL)
+    }
+
+    out <- data.frame(matches)
+
+  } else if (status != "Success"){
+    message("The Census Bureau's geocoder appears to be offline. Please try again later.")
+    out <- NULL
   }
 
-  matches <- cnt$result$addressMatches
-  if(length(matches) < 1){
-    return(NULL)
-  }
-  df <- data.frame(matches)
-  return(df)
+  # return output
+  return(out)
+
 }
 
 #' Geocode Single One Line Address
@@ -126,29 +141,44 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
     stop("`vintage` must be specified for return = 'geographies'")
   }
 
-  url <- paste0('https://geocoding.geo.census.gov/geocoder/',return,'/onelineaddress')
-  req <-
-    httr::GET(url,
-              query = list(
-                benchmark = benchmark,
-                vintage = vintage,
-                address = address,
-                format = 'json'
-              )
-    )
-  cnt <- httr::content(req)
+  # check census website status
+  status <- httr::http_status(httr::GET(url = "https://geocoding.geo.census.gov/geocoder/"))$category
 
-  # Check for API Errors
-  if(!is.null(cnt$errors)){
-    stop(cnt$errors[[1]])
+  # geocode if status is online
+  if (status == "Success"){
+
+    url <- paste0('https://geocoding.geo.census.gov/geocoder/',return,'/onelineaddress')
+    req <-
+      httr::GET(url,
+                query = list(
+                  benchmark = benchmark,
+                  vintage = vintage,
+                  address = address,
+                  format = 'json'
+                )
+      )
+    cnt <- httr::content(req)
+
+    # Check for API Errors
+    if(!is.null(cnt$errors)){
+      stop(cnt$errors[[1]])
+    }
+
+    matches <- cnt$result$addressMatches
+    if(length(matches) < 1){
+      return(NULL)
+    }
+
+    out <- data.frame(matches)
+
+  } else if (status != "Success"){
+    message("The Census Bureau's geocoder appears to be offline. Please try again later.")
+    out <- NULL
   }
 
-  matches <- cnt$result$addressMatches
-  if(length(matches) < 1){
-    return(NULL)
-  }
-  df <- data.frame(matches)
-  return(df)
+  # return output
+  return(out)
+
 }
 
 
@@ -177,36 +207,52 @@ cxy_oneline <- function(address, return = 'locations', benchmark = 'Public_AR_Cu
 #' @importFrom httr GET content
 #'
 #' @examples
+#' \donttest{
 #' cxy_geography(lon = -90.23324, lat = 38.63593)
+#' }
 #'
 #' @export
 cxy_geography <- function(lon, lat, benchmark = 'Public_AR_Current', vintage = 'Current_Current'){
-  url <- 'https://geocoding.geo.census.gov/geocoder/geographies/coordinates'
-  req <-
-    httr::GET(url,
-              query = list(
-                benchmark = benchmark,
-                vintage = vintage,
-                x = lon,
-                y = lat,
-                format = 'json'
-              )
-    )
-  cnt <- httr::content(req)
 
-  # Check for API Errors
-  if(!is.null(cnt$errors)){
-    stop(cnt$errors[[1]])
+  # check census website status
+  status <- httr::http_status(httr::GET(url = "https://geocoding.geo.census.gov/geocoder/"))$category
+
+  # geocode if status is online
+  if (status == "Success"){
+
+    url <- 'https://geocoding.geo.census.gov/geocoder/geographies/coordinates'
+    req <-
+      httr::GET(url,
+                query = list(
+                  benchmark = benchmark,
+                  vintage = vintage,
+                  x = lon,
+                  y = lat,
+                  format = 'json'
+                )
+      )
+    cnt <- httr::content(req)
+
+    # Check for API Errors
+    if(!is.null(cnt$errors)){
+      stop(cnt$errors[[1]])
+    }
+
+    # Check for Matches
+    matches <- cnt$result$geographies
+    if(length(matches) < 1){
+      return(NULL)
+    }
+
+    out <- data.frame(matches)
+
+  } else if (status != "Success"){
+    message("The Census Bureau's geocoder appears to be offline. Please try again later.")
+    out <- NULL
   }
 
-  # Check for Matches
-  matches <- cnt$result$geographies
-  if(length(matches) < 1){
-    return(NULL)
-  }
+  # return output
+  return(out)
 
-  df <- data.frame(matches)
-
-  return(df)
 }
 

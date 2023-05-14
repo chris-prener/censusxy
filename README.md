@@ -9,7 +9,7 @@ status](https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg
 status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=main)
 [![CRAN_status_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
 [![cran
-checks](https://cranchecks.info/badges/worst/censusxy)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
+checks](https://badges.cranchecks.info/worst/censusxy.svg)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen)](https://www.r-pkg.org/pkg/censusxy)
 [![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
 
@@ -28,17 +28,6 @@ takes to batch geocode large numbers of addresses.
 GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) by
 Chris and Branson - please cite the paper if you use `censusxy` in your
 work!
-
-## What’s New in v1.1.0?
-
--   `censusxy` now supports parallel processing on Windows (macOS and
-    Linux had support for this since `v1.0.0`), thanks to a PR from
-    [Christopher Kenny](https://github.com/christopherkenny), and an
-    error that cropped up with macOS 12.4 when submitting requests for
-    parallel processing is addressed
--   `R` version 3.4 is now the minimum version supported
--   We’ve made some internal changes to ensure that API issues fail
-    gracefully and to improve the documentation
 
 ## Installation
 

@@ -38,6 +38,8 @@ To use this function, you must specify a valid vintage for your benchmark. You m
     See \code{vignette('censusxy')} for a full walkthrough.
 }
 \examples{
+\donttest{
 cxy_geography(lon = -90.23324, lat = 38.63593)
+}
 
 }

@@ -1,3 +1,7 @@
+# censusxy 1.1.2
+
+* Address issue with the Census servers being offline
+
 # censusxy 1.1.1
 
 * Address issue with `OpenBLAS` on CRAN checks

@@ -1,8 +1,8 @@
 ## Release summary
-This version of `censusxy` is a maintenance release: it attempts to address the ERROR on CRAN with OpenBLAS. The specific error could not be replicated locally. The problem was not an API error - the package returned the correct error as designed. However, I have changed how user inputs are validated in attempt to prevent this from continuing to be an issue in the first place.
+This version of `censusxy` is a maintenance release to address errors that had occured on CRAN at the end of April that appear to be due to the Census Bureau's geocoder being temporarily down. I've added a check for each function to make sure the API is online and to fail gracefully if it is not.
 
 ## Test environments
-* local macOS install: R 4.2.0
+* local macOS install: R 4.2.2
 * Linux ubuntu distribution (via GitHub Actions): R-devel, R-release, past four R-oldrel (4.1.3, 4.0.5, 3.6.3, 3.5.3, 3.4.4)
 * macOS (via GitHub Actions): R-release
 * windows (via GitHub Actions): R-release

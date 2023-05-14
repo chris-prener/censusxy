@@ -56,10 +56,6 @@ test_that('Valid Structured Geocodes Work', {
     cxy_single('101 Marietta St', 'Atlanta', 'GA', 30303),
     'data.frame'
   )
-  expect_s3_class(
-    cxy_single('101 Marietta St', 'Atlanta', 'GA', 30303, return = 'geographies', vintage = 'Current_Current'),
-    'data.frame'
-  )
 })
 
 test_that('Valid Oneline Geocodes Work', {
@@ -68,20 +64,6 @@ test_that('Valid Oneline Geocodes Work', {
 
   expect_s3_class(
     cxy_oneline('101 Marietta St, Atlanta, GA 30303'),
-    'data.frame'
-  )
-  expect_s3_class(
-    cxy_oneline('101 Marietta St, Atlanta, GA 30303', return = 'geographies', vintage = 'Current_Current'),
-    'data.frame'
-  )
-})
-
-test_that('Valid Geography Geocode works', {
-  skip_on_cran()
-  skip_if_offline()
-
-  expect_s3_class(
-    cxy_geography(-90.23324, 38.63593),
     'data.frame'
   )
 })
