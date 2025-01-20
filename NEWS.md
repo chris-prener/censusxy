@@ -1,3 +1,7 @@
+# censusxy 1.1.3
+
+* Update documentation and GitHub Actions workflows
+
 # censusxy 1.1.2
 
 * Address issue with the Census servers being offline
