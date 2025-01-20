@@ -7,10 +7,6 @@
 status](https://github.com/chris-prener/censusxy/workflows/R-CMD-check/badge.svg)](https://github.com/chris-prener/censusxy/actions)
 [![Coverage
 status](https://codecov.io/gh/chris-prener/censusxy/branch/master/graph/badge.svg)](https://codecov.io/github/chris-prener/censusxy?branch=main)
-[![CRAN_status_badge](https://www.r-pkg.org/badges/version/censusxy)](https://cran.r-project.org/package=censusxy)
-[![cran
-checks](https://badges.cranchecks.info/worst/censusxy.svg)](https://cran.r-project.org/web/checks/check_results_censusxy.html)
-[![Downloads](https://cranlogs.r-pkg.org/badges/censusxy?color=brightgreen)](https://www.r-pkg.org/pkg/censusxy)
 [![DOI](https://zenodo.org/badge/165924122.svg)](https://zenodo.org/badge/latestdoi/165924122)
 
 The `censusxy` package is designed to provide easy access to the [U.S.
@@ -28,6 +24,13 @@ takes to batch geocode large numbers of addresses.
 GIS*](https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.12741) by
 Chris and Branson - please cite the paper if you use `censusxy` in your
 work!
+
+## Current Development Status
+
+While the current, core functionality still works, changes in the Census
+API caused consistent issues with our unit tests, prompting us to remove
+the package from CRAN. As of early 2025, there is no active development
+planned for `censusxy`.
 
 ## Installation
 
